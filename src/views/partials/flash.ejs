@@ -1,0 +1,9 @@
+<% const ESTILO = { sucesso: ['success', 'bi-check-circle-fill'], erro: ['danger', 'bi-exclamation-octagon-fill'],
+                    aviso: ['warning', 'bi-exclamation-triangle-fill'], info: ['info', 'bi-info-circle-fill'] }; %>
+<% for (const f of (flash || [])) { const [cor, icone] = ESTILO[f.tipo] || ESTILO.info; %>
+  <div class="alert alert-<%= cor %> alert-dismissible fade show d-flex align-items-start gap-2 flash-msg" role="alert">
+    <i class="bi <%= icone %> fs-5"></i>
+    <div><%= f.mensagem %></div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+  </div>
+<% } %>

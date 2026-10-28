@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>EstacionamentoCBA - Pátio Agora</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400;1,700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"inverse-surface":"#293040","on-primary":"#ffffff","surface-variant":"#dce2f7","background":"#f9f9ff","primary-fixed-dim":"#84d4d3","on-secondary-fixed-variant":"#004f50","surface-container-lowest":"#ffffff","tertiary-container":"#007233","primary":"#005454","tertiary":"#005725","on-tertiary-container":"#91f4a3","error":"#ba1a1a","surface-container-low":"#f1f3ff","surface-container-high":"#e1e8fd","secondary-container":"#89f0f0","on-primary-fixed":"#002020","on-surface":"#141b2b","surface-tint":"#006a6a","outline-variant":"#bec9c8","on-background":"#141b2b","inverse-on-surface":"#edf0ff","surface-container-highest":"#dce2f7","surface":"#f9f9ff","tertiary-fixed-dim":"#79db8d","on-secondary-fixed":"#002020","on-tertiary-fixed":"#00210a","surface-bright":"#f9f9ff","error-container":"#ffdad6","on-tertiary":"#ffffff","on-surface-variant":"#3e4948","on-error":"#ffffff","surface-container":"#e9edff","on-secondary-container":"#006e6e","on-tertiary-fixed-variant":"#005323","on-error-container":"#93000a","secondary-fixed":"#8cf3f3","primary-fixed":"#a0f0f0","tertiary-fixed":"#95f8a7","secondary":"#006a6a","on-primary-fixed-variant":"#004f50","secondary-fixed-dim":"#6ed7d6","outline":"#6e7979","surface-dim":"#d3daef","on-primary-container":"#9dedec","inverse-primary":"#84d4d3","on-secondary":"#ffffff","primary-container":"#0b6e6e"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-sm":"0.75rem","margin":"2rem","space-xs":"0.375rem","margin-mobile":"1rem","gutter":"1.5rem","space-lg":"2rem","gutter-mobile":"1rem","space-xl":"3rem","space-md":"1.25rem"},fontFamily:{"body-lg-bold":["Atkinson Hyperlegible Next"],"headline-lg-mobile":["Atkinson Hyperlegible Next"],"body-lg":["Atkinson Hyperlegible Next"],"label-code":["JetBrains Mono"],"plate-display":["JetBrains Mono"],"caption":["Atkinson Hyperlegible Next"],"headline-xl-mobile":["Atkinson Hyperlegible Next"],"body-xl":["Atkinson Hyperlegible Next"],"headline-xl":["Atkinson Hyperlegible Next"],"headline-md":["Atkinson Hyperlegible Next"],"headline-lg":["Atkinson Hyperlegible Next"]},fontSize:{"body-lg-bold":["18px",{"lineHeight":"28px","fontWeight":"700"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"label-code":["16px",{"lineHeight":"24px","letterSpacing":"1px","fontWeight":"500"}],"plate-display":["36px",{"lineHeight":"44px","letterSpacing":"4px","fontWeight":"700"}],"caption":["16px",{"lineHeight":"24px","fontWeight":"500"}],"headline-xl-mobile":["30px",{"lineHeight":"38px","fontWeight":"700"}],"body-xl":["22px",{"lineHeight":"32px","fontWeight":"400"}],"headline-xl":["40px",{"lineHeight":"48px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"700"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-lg text-body-lg text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-primary-container text-on-primary shadow-[0_2px_10px_rgba(0,0,0,0.15)]"><div class="h-20 w-full px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Logo CBA Centro de Bionegócios da Amazônia" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W0cQu2lnoreB0-HoyJYybMifykIKqOMocHD0N3eHeLsRm7lTZSeP6iigAsxLHWh6C0Nj050ZvOrigA5bR7o1sVFE1FfErOte7pl6BmMdRojOK8YG7bsUY9_tloxEv3C8RSGEXfq0bBY1_uvu7XRF8gw2QvPnbdTmu9ZkpDB68TgnZQcxNCqcmv-EAHAJTNvXLAqd4bcNUQ0ewkjhSJozokNvM70AJ2biffgycToJE"/><div aria-hidden="true" class="h-8 w-[1px] bg-outline-variant/40"></div><div class="flex items-center gap-space-sm"><span class="font-headline-md text-headline-md tracking-tight text-on-primary whitespace-nowrap">EstacionamentoCBA</span><span class="bg-on-primary-container text-on-primary-fixed font-label-code text-label-code px-space-xs py-0.5 rounded-lg font-bold tracking-wide">v2.4</span><span class="inline-flex items-center gap-1.5 bg-tertiary-container text-on-primary font-caption text-caption px-space-xs py-0.5 rounded-lg"><span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>ONLINE</span></div></div><nav class="hidden xl:flex items-center gap-1" data-active-classes="bg-primary text-on-primary font-body-lg-bold shadow-inner"><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="portaria" href="#">Portaria</a><a aria-current="page" class="inline-flex items-center gap-2 px-space-md py-space-xs rounded-lg focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors bg-primary text-on-primary font-body-lg-bold shadow-inner" data-path="patio-agora" href="#">Pátio agora <span class="bg-secondary-fixed text-on-secondary-fixed font-label-code text-caption px-2 py-0.5 rounded-full font-bold">(4)</span></a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="pessoas" href="#">Pessoas</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="veiculos" href="#">Veículos</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="movimentacoes" href="#">Movimentações</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="relatorios" href="#">Relatórios</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="auditoria" href="#">Auditoria</a></nav><div class="flex items-center gap-space-md"><div class="hidden md:flex flex-col text-right"><span class="font-label-code text-label-code text-on-primary leading-tight font-bold">14:32:08</span><span class="font-caption text-caption text-on-primary-container leading-tight">Guarita 02</span></div><button aria-label="Alternar Alto Contraste e Turno Noturno" class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-on-primary hover:bg-primary/80 focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" type="button"><span class="material-symbols-outlined text-[24px]">contrast</span></button><div aria-hidden="true" class="h-8 w-[1px] bg-outline-variant/40 hidden sm:block"></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="hidden lg:inline font-body-lg-bold text-body-lg-bold text-on-primary">Portaria 2</span></div><a aria-label="Encerrar Sessão da Portaria" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-error hover:bg-error/90 text-on-error font-caption text-caption font-bold focus:outline-none focus:ring-4 focus:ring-error-container transition-colors" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span class="hidden sm:inline">Sair</span></a></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-5rem)] px-margin py-gutter"><div class="flex flex-col w-full">
+<!-- Conteúdo de Apoio Acessível (Skip links internos e live region) -->
+<div aria-live="polite" class="sr-only" id="alerta-leitor-tela">Painel do Pátio carregado com 4 veículos presentes. 1 veículo em estado crítico e 1 em alerta de pernoite.</div>
+<!-- Cabeçalho Operacional e Indicadores de Estado -->
+<header class="w-full flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span aria-hidden="true" class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-[32px]">local_parking</span>
+</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Veículos no Pátio Agora</h1>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-caption text-caption font-bold shadow-xs">
+<span aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+          Atualizado há 30s
+        </span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+        Monitoramento em tempo real da Guarita Principal 02. Registro imediato de ocupação de vagas de pesquisa e pernoite no campus CBA.
+      </p>
+</div>
+<!-- Botões Rápidos de Cabeçalho -->
+<div class="flex items-center gap-space-sm self-start lg:self-auto">
+<button aria-label="Atualizar dados do pátio agora. Atalho tecla F5" class="h-14 px-space-md bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-lg-bold text-body-lg-bold rounded-xl shadow-sm inline-flex items-center gap-2 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-2 transition-all active:scale-95" id="btn-atualizar" onclick="atualizarPatio()" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">refresh</span>
+<span>Atualizar</span>
+<kbd class="ml-1 font-label-code text-caption bg-surface-container-lowest text-on-surface px-2 py-0.5 rounded shadow-xs border-0">F5</kbd>
+</button>
+<button aria-label="Disparar alerta à segurança sobre veículo em pernoite não autorizado" class="h-14 px-space-md bg-error text-on-error hover:bg-error/90 font-body-lg-bold text-body-lg-bold rounded-xl shadow-sm inline-flex items-center gap-2 focus:outline-none focus:ring-4 focus:ring-error-container focus:ring-offset-2 transition-all active:scale-95" onclick="notificarSeguranca()" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">shield_with_heart</span>
+<span>Avisar Segurança</span>
+</button>
+</div>
+</header>
+<!-- Métricas Rápidas Operacionais (Bento Grid com números de alto contraste) -->
+<section aria-label="Estatísticas operacionais do pátio" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md mb-space-lg">
+<!-- Total no Pátio -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Total no Pátio</span>
+<span aria-hidden="true" class="material-symbols-outlined text-primary text-[28px]">directions_car</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-plate-display text-plate-display text-primary leading-none" id="cont-total">4</span>
+<span class="font-caption text-caption text-on-surface-variant font-bold">veículos ativos</span>
+</div>
+<div aria-hidden="true" class="w-full bg-surface-container-high h-2 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary h-full w-[8%]"></div>
+</div>
+</div>
+<!-- Entradas Normais Hoje -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Normais Hoje</span>
+<span aria-hidden="true" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-surface-container text-primary font-bold">
+<span class="material-symbols-outlined text-[20px]">info</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-plate-display text-plate-display text-on-surface leading-none">2</span>
+<span class="font-caption text-caption text-on-surface-variant">fluxo diurno</span>
+</div>
+<span class="font-caption text-caption text-primary font-bold mt-3">Permanência válida</span>
+</div>
+<!-- Atenção (Após 18h) -->
+<div class="bg-[#FFFBEB] rounded-xl p-space-md shadow-md flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-lg-bold text-body-lg text-[#78350F]">Atenção (&gt; 18h)</span>
+<span aria-hidden="true" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#FEF3C7] text-[#B45309]">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-plate-display text-plate-display text-[#B45309] leading-none">1</span>
+<span class="font-caption text-caption text-[#92400E] font-bold">em hora estendida</span>
+</div>
+<span class="font-caption text-caption text-[#B45309] font-bold mt-3">Requer verificação</span>
+</div>
+<!-- Crítico (Desde Ontem) -->
+<div class="bg-[#FEF2F2] rounded-xl p-space-md shadow-md flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-lg-bold text-body-lg text-[#991B1B]">Crítico (Ontem)</span>
+<span aria-hidden="true" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#FEE2E2] text-[#DC2626]">
+<span class="material-symbols-outlined text-[20px]">block</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-plate-display text-plate-display text-[#DC2626] leading-none">1</span>
+<span class="font-caption text-caption text-[#991B1B] font-bold">sem saída formal</span>
+</div>
+<span class="font-caption text-caption text-[#DC2626] font-bold mt-3">&gt; 24h sem autorização</span>
+</div>
+<!-- Vagas Disponíveis -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Vagas Livres</span>
+<span aria-hidden="true" class="material-symbols-outlined text-tertiary text-[28px]">check_circle</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-plate-display text-plate-display text-tertiary leading-none">46</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant font-bold">/ 50</span>
+</div>
+<span class="font-caption text-caption text-tertiary font-bold mt-3">92% de capacidade livre</span>
+</div>
+</section>
+<!-- Barra de Legenda Explícita e Filtro Tático Superdimensionado -->
+<section aria-label="Legenda de prioridade e busca" class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-md mb-space-md flex flex-col gap-space-md">
+<!-- Legenda Semântica com Dupla Codificação -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-sm pb-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-body-lg-bold text-body-lg-bold text-on-surface flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-primary text-[24px]">tune</span>
+        Critérios de Alerta Visual:
+      </span>
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Legenda Normal -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface shadow-xs">
+<span aria-hidden="true" class="material-symbols-outlined text-primary text-[20px]">info</span>
+<span class="font-caption text-caption font-bold">Normal:</span>
+<span class="font-caption text-caption text-on-surface-variant">Permanência regular no dia</span>
+</div>
+<!-- Legenda Atenção -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#FFFBEB] text-[#92400E] shadow-xs">
+<span aria-hidden="true" class="material-symbols-outlined text-[#D97706] text-[20px]">warning</span>
+<span class="font-caption text-caption font-bold">Atenção:</span>
+<span class="font-caption text-caption text-[#B45309]">No pátio após 18:00</span>
+</div>
+<!-- Legenda Crítico -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#FEF2F2] text-[#991B1B] shadow-xs">
+<span aria-hidden="true" class="material-symbols-outlined text-[#DC2626] text-[20px]">block</span>
+<span class="font-caption text-caption font-bold">Crítico:</span>
+<span class="font-caption text-caption text-[#DC2626]">Sem saída desde ontem/dias anteriores</span>
+</div>
+</div>
+</div>
+<!-- Campo de Busca Operacional com Atalho [F2] -->
+<div class="w-full flex flex-col md:flex-row items-stretch gap-space-sm">
+<div class="relative flex-1">
+<label class="sr-only" for="filtro-patio">Filtrar por placa, motorista ou modelo de veículo</label>
+<div aria-hidden="true" class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-primary">
+<span class="material-symbols-outlined text-[32px]">search</span>
+</div>
+<input class="w-full h-16 pl-14 pr-24 bg-surface-container-lowest text-on-surface font-body-lg text-body-lg rounded-xl shadow-inner focus:outline-none focus:ring-4 focus:ring-primary placeholder:text-on-surface-variant/70" id="filtro-patio" name="filtro-patio" oninput="filtrarTabela(this.value)" placeholder="Filtrar por placa, motorista ou modelo... [F2]" type="text"/>
+<div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+<kbd class="font-label-code text-caption bg-surface-container text-on-surface-variant px-3 py-1 rounded shadow-xs font-bold">F2</kbd>
+</div>
+</div>
+<!-- Limpar e Filtrar por Categoria -->
+<div class="flex items-center gap-space-xs">
+<button aria-pressed="true" class="h-16 px-space-md rounded-xl font-body-lg-bold text-body-lg bg-primary text-on-primary shadow-sm hover:opacity-95 focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-all" id="btn-filtro-todos" onclick="filtrarPorStatus('todos')" type="button">
+          Todos (4)
+        </button>
+<button aria-pressed="false" class="h-16 px-space-md rounded-xl font-body-lg-bold text-body-lg bg-surface-container-high text-[#991B1B] hover:bg-[#FEE2F2] focus:outline-none focus:ring-4 focus:ring-error transition-all" id="btn-filtro-critico" onclick="filtrarPorStatus('critico')" type="button">
+          Críticos (1)
+        </button>
+<button aria-pressed="false" class="h-16 px-space-md rounded-xl font-body-lg-bold text-body-lg bg-surface-container-high text-[#B45309] hover:bg-[#FEF3C7] focus:outline-none focus:ring-4 focus:ring-[#F59E0B] transition-all" id="btn-filtro-atencao" onclick="filtrarPorStatus('atencao')" type="button">
+          Atenção (1)
+        </button>
+</div>
+</div>
+</section>
+<!-- Tabela Operacional de Alta Acessibilidade -->
+<div class="w-full overflow-hidden rounded-xl shadow-lg bg-surface-container-lowest mb-space-lg">
+<div class="overflow-x-auto w-full">
+<table aria-label="Lista de veículos presentes no pátio do CBA" class="w-full text-left border-collapse" id="tabela-veiculos">
+<thead>
+<tr class="bg-surface-container-highest text-on-surface">
+<th class="py-space-md px-space-md font-body-lg-bold text-body-lg whitespace-nowrap" scope="col">Status / Alerta</th>
+<th class="py-space-md px-space-md font-body-lg-bold text-body-lg whitespace-nowrap" scope="col">Placa Identificadora</th>
+<th class="py-space-md px-space-md font-body-lg-bold text-body-lg whitespace-nowrap" scope="col">Veículo</th>
+<th class="py-space-md px-space-md font-body-lg-bold text-body-lg whitespace-nowrap" scope="col">Motorista / Vínculo</th>
+<th class="py-space-md px-space-md font-body-lg-bold text-body-lg whitespace-nowrap" scope="col">Hora de Entrada</th>
+<th class="py-space-md px-space-md font-body-lg-bold text-body-lg whitespace-nowrap" scope="col">Tempo de Permanência</th>
+<th class="py-space-md px-space-md font-body-lg-bold text-body-lg text-right whitespace-nowrap" scope="col">Ações Operacionais</th>
+</tr>
+</thead>
+<tbody class="divide-y-0" id="corpo-tabela-veiculos">
+<!-- LINHA 1: CRÍTICO (Desde ontem) -->
+<tr class="bg-[#FEF2F2] hover:bg-[#FEE2E2] transition-colors focus-within:bg-[#FEE2E2] linha-veiculo" data-search="phj4320 roberto silveira chevy onix cinza logistica operacional" data-status="critico">
+<!-- Status -->
+<td class="py-space-md px-space-md align-middle">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#DC2626] text-white font-body-lg-bold text-body-lg shadow-sm">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">block</span>
+<span>⛔ desde ontem</span>
+</div>
+<span class="sr-only">Veículo em estado crítico. Entrada no dia anterior sem liberação.</span>
+</td>
+<!-- Placa (Selo Manaus Padrão) -->
+<td class="py-space-md px-space-md align-middle">
+<div aria-label="Placa PHJ-4320 padrão Manaus" class="inline-flex flex-col items-center bg-[#D1D5DB] rounded-lg shadow-md px-4 py-1 select-all">
+<span class="font-label-code text-[11px] uppercase tracking-wider text-black font-bold leading-tight">AM - MANAUS</span>
+<span class="font-plate-display text-[28px] font-bold text-black tracking-widest leading-none">PHJ-4320</span>
+</div>
+</td>
+<!-- Veículo -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Chevrolet Onix</span>
+<span class="font-caption text-caption text-on-surface-variant">Cinza metálico • Passeio</span>
+</div>
+</td>
+<!-- Motorista -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Roberto Silveira</span>
+<span class="font-caption text-caption text-[#991B1B] font-bold flex items-center gap-1">
+<span aria-hidden="true" class="material-symbols-outlined text-[16px]">badge</span>
+                  Logística Operacional • CBA
+                </span>
+</div>
+</td>
+<!-- Entrada -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-label-code text-label-code text-[#991B1B] font-bold">26/10 às 15:20</span>
+<span class="font-caption text-caption text-on-surface-variant">Ontem</span>
+</div>
+</td>
+<!-- Tempo Permanência -->
+<td class="py-space-md px-space-md align-middle">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#FEE2E2] text-[#991B1B] font-label-code text-label-code font-bold">
+<span aria-hidden="true" class="material-symbols-outlined text-[20px]">schedule</span>
+<span>27 h 10 min</span>
+</div>
+</td>
+<!-- Ações -->
+<td class="py-space-md px-space-md align-middle text-right">
+<button aria-label="Registrar saída do veículo placa PHJ-4320" class="min-h-[52px] px-space-md bg-[#B45309] hover:bg-[#92400E] text-white font-body-lg-bold text-body-lg rounded-xl shadow-md inline-flex items-center justify-center gap-2 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-2 transition-all active:scale-95" onclick="registrarSaida('PHJ-4320', 'Roberto Silveira')" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">output</span>
+<span>Registrar Saída</span>
+<kbd class="font-label-code text-[12px] bg-black/30 text-white px-2 py-0.5 rounded ml-1">Enter</kbd>
+</button>
+</td>
+</tr>
+<!-- LINHA 2: ALERTA (Após 18h) -->
+<tr class="bg-[#FFFBEB] hover:bg-[#FEF3C7] transition-colors focus-within:bg-[#FEF3C7] linha-veiculo" data-search="qnb8a92 carlos eduardo mendes hilux prata visitante fapeam" data-status="atencao">
+<!-- Status -->
+<td class="py-space-md px-space-md align-middle">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#D97706] text-white font-body-lg-bold text-body-lg shadow-sm">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">warning</span>
+<span>⚠ após 18:00</span>
+</div>
+<span class="sr-only">Veículo em alerta de horário. Permanece no pátio após as 18 horas.</span>
+</td>
+<!-- Placa (Selo Mercosul Brasil) -->
+<td class="py-space-md px-space-md align-middle">
+<div aria-label="Placa Mercosul QNB 8A92" class="inline-flex flex-col items-center bg-white rounded-lg shadow-md overflow-hidden select-all">
+<div class="w-full bg-[#003399] px-3 py-0.5 flex items-center justify-between text-white">
+<span class="font-label-code text-[10px] font-bold tracking-widest leading-none">BRASIL</span>
+<div aria-hidden="true" class="w-3.5 h-2.5 bg-yellow-400 rounded-[1px] flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-700"></span>
+</div>
+</div>
+<div class="px-4 py-0.5">
+<span class="font-plate-display text-[28px] font-bold text-black tracking-widest leading-none">QNB-8A92</span>
+</div>
+</div>
+</td>
+<!-- Veículo -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Toyota Hilux</span>
+<span class="font-caption text-caption text-on-surface-variant">Prata • Carga / Campo Florestal</span>
+</div>
+</td>
+<!-- Motorista -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Carlos Eduardo Mendes</span>
+<span class="font-caption text-caption text-[#B45309] font-bold flex items-center gap-1">
+<span aria-hidden="true" class="material-symbols-outlined text-[16px]">person_search</span>
+                  Visitante • Fapeam Pesquisa
+                </span>
+</div>
+</td>
+<!-- Entrada -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-label-code text-label-code text-on-surface font-bold">Hoje, 18:40</span>
+<span class="font-caption text-caption text-[#B45309]">Turno noturno</span>
+</div>
+</td>
+<!-- Tempo Permanência -->
+<td class="py-space-md px-space-md align-middle">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#FEF3C7] text-[#92400E] font-label-code text-label-code font-bold">
+<span aria-hidden="true" class="material-symbols-outlined text-[20px]">schedule</span>
+<span>2 h 15 min</span>
+</div>
+</td>
+<!-- Ações -->
+<td class="py-space-md px-space-md align-middle text-right">
+<button aria-label="Registrar saída do veículo placa QNB-8A92" class="min-h-[52px] px-space-md bg-[#B45309] hover:bg-[#92400E] text-white font-body-lg-bold text-body-lg rounded-xl shadow-md inline-flex items-center justify-center gap-2 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-offset-2 transition-all active:scale-95" onclick="registrarSaida('QNB-8A92', 'Carlos Eduardo Mendes')" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">output</span>
+<span>Registrar Saída</span>
+<kbd class="font-label-code text-[12px] bg-black/30 text-white px-2 py-0.5 rounded ml-1">Enter</kbd>
+</button>
+</td>
+</tr>
+<!-- LINHA 3: NORMAL (Strada) -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors focus-within:bg-surface-container-low linha-veiculo" data-search="abc1234 maria da silva souza fiat strada branca biotecnologia vegetal" data-status="normal">
+<!-- Status -->
+<td class="py-space-md px-space-md align-middle">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container text-primary font-body-lg-bold text-body-lg shadow-xs">
+<span aria-hidden="true" class="material-symbols-outlined text-[22px] text-primary">info</span>
+<span>No pátio</span>
+</div>
+</td>
+<!-- Placa (Selo Mercosul Brasil) -->
+<td class="py-space-md px-space-md align-middle">
+<div aria-label="Placa Mercosul ABC 1234" class="inline-flex flex-col items-center bg-white rounded-lg shadow-md overflow-hidden select-all">
+<div class="w-full bg-[#003399] px-3 py-0.5 flex items-center justify-between text-white">
+<span class="font-label-code text-[10px] font-bold tracking-widest leading-none">BRASIL</span>
+<div aria-hidden="true" class="w-3.5 h-2.5 bg-yellow-400 rounded-[1px] flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-700"></span>
+</div>
+</div>
+<div class="px-4 py-0.5">
+<span class="font-plate-display text-[28px] font-bold text-black tracking-widest leading-none">ABC-1234</span>
+</div>
+</div>
+</td>
+<!-- Veículo -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Fiat Strada</span>
+<span class="font-caption text-caption text-on-surface-variant">Branca • Utilitário / Amostras</span>
+</div>
+</td>
+<!-- Motorista -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Maria da Silva Souza</span>
+<span class="font-caption text-caption text-primary font-bold flex items-center gap-1">
+<span aria-hidden="true" class="material-symbols-outlined text-[16px]">science</span>
+                  Biotecnologia Vegetal
+                </span>
+</div>
+</td>
+<!-- Entrada -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-label-code text-label-code text-on-surface font-bold">Hoje, 08:15</span>
+<span class="font-caption text-caption text-on-surface-variant">Turno Regular</span>
+</div>
+</td>
+<!-- Tempo Permanência -->
+<td class="py-space-md px-space-md align-middle">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-surface-container text-on-surface font-label-code text-label-code font-bold">
+<span aria-hidden="true" class="material-symbols-outlined text-[20px] text-on-surface-variant">schedule</span>
+<span>10 h 15 min</span>
+</div>
+</td>
+<!-- Ações -->
+<td class="py-space-md px-space-md align-middle text-right">
+<button aria-label="Registrar saída do veículo placa ABC-1234" class="min-h-[52px] px-space-md bg-primary hover:bg-primary-container text-on-primary font-body-lg-bold text-body-lg rounded-xl shadow-md inline-flex items-center justify-center gap-2 focus:outline-none focus:ring-4 focus:ring-secondary-fixed focus:ring-offset-2 transition-all active:scale-95" onclick="registrarSaida('ABC-1234', 'Maria da Silva Souza')" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">output</span>
+<span>Registrar Saída</span>
+<kbd class="font-label-code text-[12px] bg-white/20 text-white px-2 py-0.5 rounded ml-1">Enter</kbd>
+</button>
+</td>
+</tr>
+<!-- LINHA 4: NORMAL (Corolla Diretoria) -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors focus-within:bg-surface-container-low linha-veiculo" data-search="nox9912 camila albuquerque toyota corolla preto diretoria cientifica" data-status="normal">
+<!-- Status -->
+<td class="py-space-md px-space-md align-middle">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container text-primary font-body-lg-bold text-body-lg shadow-xs">
+<span aria-hidden="true" class="material-symbols-outlined text-[22px] text-primary">info</span>
+<span>No pátio</span>
+</div>
+</td>
+<!-- Placa (Selo Padrão Cinza Manaus) -->
+<td class="py-space-md px-space-md align-middle">
+<div aria-label="Placa NOX-9912 padrão Manaus" class="inline-flex flex-col items-center bg-[#D1D5DB] rounded-lg shadow-md px-4 py-1 select-all">
+<span class="font-label-code text-[11px] uppercase tracking-wider text-black font-bold leading-tight">AM - MANAUS</span>
+<span class="font-plate-display text-[28px] font-bold text-black tracking-widest leading-none">NOX-9912</span>
+</div>
+</td>
+<!-- Veículo -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Toyota Corolla</span>
+<span class="font-caption text-caption text-on-surface-variant">Preto Ônix • Passeio Oficial</span>
+</div>
+</td>
+<!-- Motorista -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-body-lg-bold text-body-lg text-on-surface">Dra. Camila Albuquerque</span>
+<span class="font-caption text-caption text-primary font-bold flex items-center gap-1">
+<span aria-hidden="true" class="material-symbols-outlined text-[16px]">stars</span>
+                  Diretoria Científica • CBA
+                </span>
+</div>
+</td>
+<!-- Entrada -->
+<td class="py-space-md px-space-md align-middle">
+<div class="flex flex-col">
+<span class="font-label-code text-label-code text-on-surface font-bold">Hoje, 07:15</span>
+<span class="font-caption text-caption text-on-surface-variant">Turno Regular</span>
+</div>
+</td>
+<!-- Tempo Permanência -->
+<td class="py-space-md px-space-md align-middle">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-surface-container text-on-surface font-label-code text-label-code font-bold">
+<span aria-hidden="true" class="material-symbols-outlined text-[20px] text-on-surface-variant">schedule</span>
+<span>11 h 15 min</span>
+</div>
+</td>
+<!-- Ações -->
+<td class="py-space-md px-space-md align-middle text-right">
+<button aria-label="Registrar saída do veículo placa NOX-9912" class="min-h-[52px] px-space-md bg-primary hover:bg-primary-container text-on-primary font-body-lg-bold text-body-lg rounded-xl shadow-md inline-flex items-center justify-center gap-2 focus:outline-none focus:ring-4 focus:ring-secondary-fixed focus:ring-offset-2 transition-all active:scale-95" onclick="registrarSaida('NOX-9912', 'Dra. Camila Albuquerque')" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">output</span>
+<span>Registrar Saída</span>
+<kbd class="font-label-code text-[12px] bg-white/20 text-white px-2 py-0.5 rounded ml-1">Enter</kbd>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Feedback de Busca Vazia (Acessível) -->
+<div class="hidden py-space-xl px-space-md text-center flex-col items-center justify-center" id="sem-resultados">
+<span aria-hidden="true" class="material-symbols-outlined text-outline text-[48px] mb-2">search_off</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Nenhum veículo encontrado no pátio</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Verifique o termo digitado ou pressione a tecla <kbd class="px-2 py-0.5 rounded bg-surface-container font-label-code">Esc</kbd> para limpar o filtro.</p>
+</div>
+</div>
+<!-- Rodapé Operacional com Atalhos e Ações Rápidas de Auditoria -->
+<footer class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col xl:flex-row items-center justify-between gap-space-md">
+<!-- Atalhos de Teclado Operacionais -->
+<div class="flex items-center flex-wrap gap-space-md">
+<span class="font-body-lg-bold text-body-lg-bold text-on-surface flex items-center gap-1.5">
+<span aria-hidden="true" class="material-symbols-outlined text-primary text-[22px]">keyboard</span>
+        Atalhos Rápidos:
+      </span>
+<div class="flex flex-wrap items-center gap-space-sm font-caption text-caption text-on-surface-variant">
+<span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1.5 rounded-lg">
+<kbd class="font-label-code font-bold text-on-surface bg-surface-container-lowest px-1.5 py-0.5 rounded shadow-xs">Enter</kbd> Confirma Saída
+        </span>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1.5 rounded-lg">
+<kbd class="font-label-code font-bold text-on-surface bg-surface-container-lowest px-1.5 py-0.5 rounded shadow-xs">F2</kbd> Buscar Veículo
+        </span>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1.5 rounded-lg">
+<kbd class="font-label-code font-bold text-on-surface bg-surface-container-lowest px-1.5 py-0.5 rounded shadow-xs">Esc</kbd> Limpar Filtro
+        </span>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1.5 rounded-lg">
+<kbd class="font-label-code font-bold text-on-surface bg-surface-container-lowest px-1.5 py-0.5 rounded shadow-xs">F8</kbd> Imprimir Auditoria
+        </span>
+</div>
+</div>
+<!-- Botões de Ação Auxiliar -->
+<div class="flex items-center gap-space-sm flex-wrap w-full xl:w-auto justify-end">
+<button class="h-14 px-space-md bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-lg-bold text-body-lg-bold rounded-xl shadow-xs inline-flex items-center gap-2 focus:outline-none focus:ring-4 focus:ring-primary transition-all" onclick="imprimirListagem()" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">print</span>
+<span>Imprimir Listagem (F8)</span>
+</button>
+<button class="h-14 px-space-md bg-primary text-on-primary hover:bg-primary-container font-body-lg-bold text-body-lg-bold rounded-xl shadow-md inline-flex items-center gap-2 focus:outline-none focus:ring-4 focus:ring-secondary-fixed focus:ring-offset-2 transition-all active:scale-95" onclick="exportarRelatorio()" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">description</span>
+<span>Exportar Relatório do Pátio</span>
+</button>
+</div>
+</footer>
+<!-- Modal Diálogo Acessível de Confirmação de Saída -->
+<div aria-describedby="desc-modal-saida" aria-labelledby="titulo-modal-saida" aria-modal="true" class="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/80 hidden p-margin" id="modal-saida" role="dialog">
+<div class="w-full max-w-xl bg-surface-container-lowest rounded-xl shadow-2xl p-space-lg flex flex-col gap-space-md border-2 border-inverse-surface">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-3">
+<span aria-hidden="true" class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">garage</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface" id="titulo-modal-saida">Confirmar Liberação de Cancela</h2>
+<p class="font-caption text-caption text-on-surface-variant">Cancela Sul 02 • Verificação de Saída CBA</p>
+</div>
+</div>
+<button aria-label="Fechar janela modal" class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface hover:bg-surface-container focus:outline-none focus:ring-4 focus:ring-primary" onclick="fecharModalSaida()" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-2" id="desc-modal-saida">
+<div class="flex justify-between items-center">
+<span class="font-caption text-caption text-on-surface-variant">Veículo:</span>
+<span class="font-body-lg-bold text-body-lg text-on-surface" id="modal-veiculo-nome">--</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-caption text-caption text-on-surface-variant">Placa do Veículo:</span>
+<span class="font-label-code text-label-code font-bold text-primary bg-surface-container-lowest px-2 py-0.5 rounded shadow-xs" id="modal-veiculo-placa">--</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-caption text-caption text-on-surface-variant">Motorista Registrado:</span>
+<span class="font-body-lg-bold text-body-lg text-on-surface" id="modal-veiculo-motorista">--</span>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="font-caption text-caption text-on-surface-variant">Horário do Registro de Saída:</span>
+<span class="font-label-code text-label-code font-bold text-on-surface" id="modal-horario-agora">14:32:08</span>
+</div>
+</div>
+<!-- Alerta de Pernoite no Modal caso seja crítico -->
+<div class="hidden p-space-sm rounded-lg bg-[#FEF2F2] text-[#991B1B] items-center gap-2" id="modal-aviso-critico">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">warning</span>
+<span class="font-caption text-caption font-bold">Atenção: Este veículo permaneceu mais de 24 horas no pátio. Registre observação na auditoria.</span>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-end gap-space-sm pt-space-xs">
+<button class="w-full sm:w-auto h-14 px-space-md rounded-xl font-body-lg-bold text-body-lg bg-surface-container hover:bg-surface-variant text-on-surface focus:outline-none focus:ring-4 focus:ring-primary transition-all" onclick="fecharModalSaida()" type="button">
+          Cancelar (Esc)
+        </button>
+<button class="w-full sm:w-auto min-h-[56px] px-space-lg rounded-xl font-body-lg-bold text-body-lg bg-primary hover:bg-primary-container text-on-primary shadow-lg flex items-center justify-center gap-2 focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-all active:scale-95" id="btn-confirmar-liberacao" onclick="concluirLiberacao()" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[24px]">check_circle</span>
+<span>Liberar Cancela &amp; Salvar [Enter]</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Toast Operacional de Confirmação -->
+<div aria-live="assertive" class="fixed bottom-6 right-6 z-50 bg-primary text-on-primary px-space-md py-space-sm rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300" id="toast-sucesso" role="status">
+<span aria-hidden="true" class="material-symbols-outlined text-tertiary-fixed text-[28px]">verified</span>
+<div>
+<p class="font-body-lg-bold text-body-lg text-white" id="toast-msg-titulo">Cancela Liberada!</p>
+<p class="font-caption text-caption text-secondary-fixed" id="toast-msg-sub">Saída confirmada no banco de dados.</p>
+</div>
+</div>
+</div>
+<script>
+  let placaAtualSaida = '';
+  let motoristaAtualSaida = '';
+
+  // Interceptador Global de Teclado para Acessibilidade e Eficiência de Guarita
+  document.addEventListener('keydown', function(event) {
+    // Tecla F2: Focar busca de placa
+    if (event.key === 'F2') {
+      event.preventDefault();
+      const campoBusca = document.getElementById('filtro-patio');
+      if (campoBusca) {
+        campoBusca.focus();
+        campoBusca.select();
+      }
+    }
+    // Tecla F5: Atualizar pátio
+    else if (event.key === 'F5') {
+      event.preventDefault();
+      atualizarPatio();
+    }
+    // Tecla F8: Imprimir listagem
+    else if (event.key === 'F8') {
+      event.preventDefault();
+      imprimirListagem();
+    }
+    // Tecla Esc: Fechar Modal ou Limpar Busca
+    else if (event.key === 'Escape') {
+      const modal = document.getElementById('modal-saida');
+      if (modal && !modal.classList.contains('hidden')) {
+        fecharModalSaida();
+      } else {
+        const campoBusca = document.getElementById('filtro-patio');
+        if (campoBusca && campoBusca.value.trim() !== '') {
+          campoBusca.value = '';
+          filtrarTabela('');
+          campoBusca.focus();
+        }
+      }
+    }
+    // Tecla Enter no Modal: Confirmar Liberação
+    else if (event.key === 'Enter') {
+      const modal = document.getElementById('modal-saida');
+      if (modal && !modal.classList.contains('hidden')) {
+        event.preventDefault();
+        concluirLiberacao();
+      }
+    }
+  });
+
+  // Função de Filtragem Dinâmica por Texto
+  function filtrarTabela(texto) {
+    const termo = texto.toLowerCase().trim().replace(/[^a-z0-9]/g, '');
+    const linhas = document.querySelectorAll('.linha-veiculo');
+    let encontrados = 0;
+
+    linhas.forEach(linha => {
+      const dadosBusca = (linha.getAttribute('data-search') || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (dadosBusca.includes(termo)) {
+        linha.classList.remove('hidden');
+        encontrados++;
+      } else {
+        linha.classList.add('hidden');
+      }
+    });
+
+    const msgSemResultados = document.getElementById('sem-resultados');
+    const corpoTabela = document.getElementById('corpo-tabela-veiculos');
+    
+    if (encontrados === 0) {
+      msgSemResultados.classList.remove('hidden');
+      msgSemResultados.classList.add('flex');
+    } else {
+      msgSemResultados.classList.add('hidden');
+      msgSemResultados.classList.remove('flex');
+    }
+  }
+
+  // Filtragem Semântica por Status
+  function filtrarPorStatus(tipo) {
+    const botoes = ['todos', 'critico', 'atencao'];
+    botoes.forEach(btn => {
+      const el = document.getElementById(`btn-filtro-${btn}`);
+      if (el) {
+        if (btn === tipo) {
+          el.setAttribute('aria-pressed', 'true');
+          el.className = el.className.replace('bg-surface-container-high', 'bg-primary text-on-primary');
+        } else {
+          el.setAttribute('aria-pressed', 'false');
+          el.className = el.className.replace('bg-primary text-on-primary', 'bg-surface-container-high');
+        }
+      }
+    });
+
+    const linhas = document.querySelectorAll('.linha-veiculo');
+    let visiveis = 0;
+
+    linhas.forEach(linha => {
+      const statusLinha = linha.getAttribute('data-status');
+      if (tipo === 'todos' || statusLinha === tipo) {
+        linha.classList.remove('hidden');
+        visiveis++;
+      } else {
+        linha.classList.add('hidden');
+      }
+    });
+
+    const msgSemResultados = document.getElementById('sem-resultados');
+    if (visiveis === 0) {
+      msgSemResultados.classList.remove('hidden');
+      msgSemResultados.classList.add('flex');
+    } else {
+      msgSemResultados.classList.add('hidden');
+      msgSemResultados.classList.remove('flex');
+    }
+  }
+
+  // Abertura do Modal de Saída
+  function registrarSaida(placa, motorista) {
+    placaAtualSaida = placa;
+    motoristaAtualSaida = motorista;
+
+    document.getElementById('modal-veiculo-placa').textContent = placa;
+    document.getElementById('modal-veiculo-motorista').textContent = motorista;
+    
+    // Obter dados correspondentes da linha
+    const linha = Array.from(document.querySelectorAll('.linha-veiculo')).find(l => l.getAttribute('data-search').includes(placa.toLowerCase().replace('-', '')));
+    const nomeVeiculo = linha ? linha.querySelector('td:nth-child(3) span:first-child').textContent : 'Veículo Cadastrado';
+    document.getElementById('modal-veiculo-nome').textContent = nomeVeiculo;
+
+    const agora = new Date();
+    document.getElementById('modal-horario-agora').textContent = agora.toLocaleTimeString('pt-BR');
+
+    const avisoCritico = document.getElementById('modal-aviso-critico');
+    if (linha && linha.getAttribute('data-status') === 'critico') {
+      avisoCritico.classList.remove('hidden');
+      avisoCritico.classList.add('flex');
+    } else {
+      avisoCritico.classList.add('hidden');
+      avisoCritico.classList.remove('flex');
+    }
+
+    const modal = document.getElementById('modal-saida');
+    modal.classList.remove('hidden');
+    document.getElementById('btn-confirmar-liberacao').focus();
+  }
+
+  function fecharModalSaida() {
+    const modal = document.getElementById('modal-saida');
+    modal.classList.add('hidden');
+  }
+
+  function concluirLiberacao() {
+    fecharModalSaida();
+
+    // Encontrar linha e remover visualmente com animação suave
+    const termo = placaAtualSaida.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const linhas = document.querySelectorAll('.linha-veiculo');
+    linhas.forEach(linha => {
+      if (linha.getAttribute('data-search').includes(termo)) {
+        linha.style.transition = 'all 0.4s ease';
+        linha.style.opacity = '0';
+        linha.style.transform = 'translateX(20px)';
+        setTimeout(() => {
+          linha.remove();
+          atualizarTotais();
+        }, 400);
+      }
+    });
+
+    exibirToast(`Saída Registrada: ${placaAtualSaida}`, `Cancela de saída acionada para ${motoristaAtualSaida}.`);
+  }
+
+  function atualizarTotais() {
+    const totalRestante = document.querySelectorAll('.linha-veiculo').length;
+    const contadorTotal = document.getElementById('cont-total');
+    if (contadorTotal) contadorTotal.textContent = totalRestante;
+
+    const leitor = document.getElementById('alerta-leitor-tela');
+    if (leitor) {
+      leitor.textContent = `Saída confirmada. Restam ${totalRestante} veículos no pátio.`;
+    }
+  }
+
+  function exibirToast(titulo, subtitulo) {
+    const toast = document.getElementById('toast-sucesso');
+    document.getElementById('toast-msg-titulo').textContent = titulo;
+    document.getElementById('toast-msg-sub').textContent = subtitulo;
+
+    toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    setTimeout(() => {
+      toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      toast.classList.remove('translate-y-0', 'opacity-100');
+    }, 4500);
+  }
+
+  function atualizarPatio() {
+    const btn = document.getElementById('btn-atualizar');
+    const icone = btn.querySelector('.material-symbols-outlined');
+    icone.classList.add('animate-spin');
+    
+    setTimeout(() => {
+      icone.classList.remove('animate-spin');
+      exibirToast('Pátio Sincronizado', 'Dados de LPR e guaritas atualizados com sucesso.');
+    }, 600);
+  }
+
+  function notificarSeguranca() {
+    exibirToast('Segurança Notificada', 'Chamado prioritário enviado à ronda noturna sobre pernoite.');
+  }
+
+  function exportarRelatorio() {
+    exibirToast('Exportando Relatório', 'Gerando arquivo CSV/PDF assinado da ocupação do pátio.');
+  }
+
+  function imprimirListagem() {
+    window.print();
+  }
+</script></main><footer class="w-full bg-surface-container-low border-t border-outline-variant py-space-md"><div class="w-full px-margin flex flex-col md:flex-row items-center justify-between gap-space-sm font-caption text-caption text-on-surface-variant"><div><span>Centro de Bionegócios da Amazônia • CBA | Sistema Integrado de Controle de Acesso e Cancela</span></div><div class="flex items-center gap-space-md"><span class="font-label-code text-label-code text-tertiary font-bold">• CANCELA: PRONTA</span><span class="font-label-code text-label-code text-primary font-bold">• LPR: ATIVO</span><span>Guarita Principal Nº 2</span></div></div></footer></body></html>

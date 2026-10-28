@@ -1,0 +1,10 @@
+<%- include('partials/header') %>
+<div class="row justify-content-center mt-4">
+  <div class="col-md-8 col-lg-6 text-center">
+    <i class="bi bi-exclamation-triangle display-3 text-warning"></i>
+    <h1 class="h3 mt-3"><%= titulo %></h1>
+    <p class="lead"><%= mensagem %></p>
+    <a class="btn btn-primary" href="<%= usuario ? '/' : '/login' %>"><i class="bi bi-house me-1"></i>Voltar ao início</a>
+  </div>
+</div>
+<%- include('partials/footer') %>

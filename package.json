@@ -1,0 +1,42 @@
+{
+  "name": "estacionamentocba",
+  "version": "1.0.0",
+  "description": "Controle de acesso de veículos ao estacionamento do CBA",
+  "main": "src/server.js",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node scripts/seed.js",
+    "vendor": "node scripts/copy-vendor.js",
+    "redefinir-senha": "node scripts/redefinir-senha.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^13.0.3",
+    "dotenv": "^18.0.9",
+    "ejs": "^7.0.2",
+    "exceljs": "^4.4.0",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "express-session": "^1.19.0",
+    "helmet": "^8.3.0",
+    "node-cron": "^4.6.0"
+  },
+  "devDependencies": {
+    "@fontsource/atkinson-hyperlegible-next": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.2"
+  },
+  "allowScripts": {
+    "bcrypt@6.0.0": true,
+    "better-sqlite3@13.0.3": true
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
+  }
+}

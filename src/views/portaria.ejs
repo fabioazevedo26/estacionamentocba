@@ -1,0 +1,256 @@
+<%- include('partials/header') %>
+<%
+  const r = rapido || {};
+  const modoRapido = r.motorista_modo === 'existente' ? 'existente' : 'novo';
+%>
+<h1 class="visually-hidden">Portaria</h1>
+<div class="row g-4">
+  <div class="col-xl-7">
+    <div class="card portaria-busca">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-baseline flex-wrap gap-2 mb-2">
+          <label for="busca" class="form-label fs-4 mb-0">Placa ou nome do motorista</label>
+          <span class="text-body-secondary">Pressione <kbd>F2</kbd> para focar</span>
+        </div>
+        <input type="search" id="busca" class="form-control busca-grande" autocomplete="off"
+               autofocus placeholder="Ex.: ABC1234, ABC1D23 ou Maria" maxlength="60"
+               aria-describedby="dicas-busca" aria-controls="resultados"
+               data-veiculo-inicial="<%= veiculoInicial || '' %>">
+        <div id="dicas-busca" class="dicas-atalho mt-2">
+          <span><kbd>Enter</kbd> seleciona</span>
+          <span><kbd>↑</kbd> <kbd>↓</kbd> navegam</span>
+          <span><kbd>Esc</kbd> limpa a busca</span>
+        </div>
+        <div id="resultados" class="list-group mt-3" aria-live="polite"></div>
+        <div id="sem-resultado" class="d-none mt-3" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="painel-veiculo" class="mt-4" aria-live="polite"></div>
+
+    <%# ----- Cadastro rápido ----- %>
+    <div id="painel-rapido" class="card mt-4 border-primary border-2<%= rapido ? '' : ' d-none' %>">
+      <div class="card-header bg-primary text-white fs-4 d-flex align-items-center gap-2">
+        <i class="bi bi-lightning-charge-fill" aria-hidden="true"></i>Cadastro rápido + entrada
+      </div>
+      <div class="card-body p-4">
+        <% if (erroRapido) { %>
+          <div class="alert alert-danger d-flex gap-2" role="alert"><i class="bi bi-exclamation-octagon-fill" aria-hidden="true"></i><div><%= erroRapido %></div></div>
+        <% } %>
+        <form method="post" action="/portaria/cadastro-rapido" id="form-rapido" class="form-portaria">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <h2 class="h5 rotulo-mono mb-3"><i class="bi bi-car-front me-1" aria-hidden="true"></i>Veículo</h2>
+          <div class="row g-3">
+            <div class="col-sm-5">
+              <label class="form-label" for="rapido-placa">Placa</label>
+              <input class="form-control form-control-lg text-uppercase input-placa font-monospace fw-bold" id="rapido-placa" name="placa" required
+                     maxlength="10" value="<%= r.placa || '' %>">
+              <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" id="rapido-fora" name="placa_fora_padrao"<%= r.placa_fora_padrao ? ' checked' : '' %>>
+                <label class="form-check-label" for="rapido-fora">Placa fora do padrão</label>
+              </div>
+            </div>
+            <div class="col-sm-7">
+              <label class="form-label" for="rapido-tipo">Tipo</label>
+              <select class="form-select form-select-lg" id="rapido-tipo" name="tipo" required>
+                <% for (const t of tiposVeiculo) { %>
+                  <option value="<%= t %>"<%= (r.tipo || 'CARRO') === t ? ' selected' : '' %>><%= rotulo(t) %></option>
+                <% } %>
+              </select>
+            </div>
+            <div class="col-sm-7">
+              <label class="form-label" for="rapido-modelo">Marca/Modelo</label>
+              <input class="form-control" id="rapido-modelo" name="marca_modelo" maxlength="80" value="<%= r.marca_modelo || '' %>"
+                     placeholder="Ex.: Fiat Strada">
+            </div>
+            <div class="col-sm-5">
+              <label class="form-label" for="rapido-cor">Cor</label>
+              <input class="form-control" id="rapido-cor" name="cor" maxlength="30" value="<%= r.cor || '' %>">
+            </div>
+          </div>
+
+          <h2 class="h5 rotulo-mono mt-4 mb-3"><i class="bi bi-person me-1" aria-hidden="true"></i>Motorista</h2>
+          <div class="motorista-bloco" data-modo="<%= modoRapido %>">
+            <div class="row g-2 mb-3" role="radiogroup" aria-label="Motorista">
+              <div class="col-sm-6">
+                <input type="radio" class="btn-check modo-radio" name="motorista_modo" id="rapido-modo-novo" value="novo"<%= modoRapido === 'novo' ? ' checked' : '' %>>
+                <label class="btn btn-outline-primary btn-lg w-100" for="rapido-modo-novo"><i class="bi bi-person-plus" aria-hidden="true"></i>Novo visitante</label>
+              </div>
+              <div class="col-sm-6">
+                <input type="radio" class="btn-check modo-radio" name="motorista_modo" id="rapido-modo-existente" value="existente"<%= modoRapido === 'existente' ? ' checked' : '' %>>
+                <label class="btn btn-outline-primary btn-lg w-100" for="rapido-modo-existente"><i class="bi bi-person-check" aria-hidden="true"></i>Pessoa cadastrada</label>
+              </div>
+            </div>
+            <div class="modo-existente">
+              <%- include('partials/pessoa-picker', { campo: 'motorista_id', valorId: r.motorista_id, valorNome: r.motorista_id_nome,
+                    rotulo: '', placeholder: 'Buscar colaborador ou visitante pelo nome…' }) %>
+              <div class="alerta-motorista mt-2"></div>
+            </div>
+            <div class="modo-novo row g-3">
+              <div class="col-sm-6">
+                <label class="form-label" for="rapido-vnome">Nome do visitante</label>
+                <input class="form-control" id="rapido-vnome" name="visitante_nome" maxlength="120" value="<%= r.visitante_nome || '' %>" data-requerido>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="rapido-vempresa">Empresa</label>
+                <input class="form-control" id="rapido-vempresa" name="visitante_empresa" maxlength="120" value="<%= r.visitante_empresa || '' %>">
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="rapido-vtel">Telefone <span class="fw-normal text-body-secondary">(opcional)</span></label>
+                <input class="form-control" id="rapido-vtel" name="visitante_telefone" maxlength="30" value="<%= r.visitante_telefone || '' %>">
+              </div>
+            </div>
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" id="rapido-prop" name="motorista_proprietario"
+                     <%= !rapido || r.motorista_proprietario ? 'checked' : '' %>>
+              <label class="form-check-label" for="rapido-prop">O motorista é o proprietário do veículo</label>
+            </div>
+          </div>
+
+          <h2 class="h5 rotulo-mono mt-4 mb-3"><i class="bi bi-clock me-1" aria-hidden="true"></i>Entrada</h2>
+          <div class="row g-3">
+            <div class="col-sm-5">
+              <div class="d-flex justify-content-between align-items-baseline">
+                <label class="form-label" for="rapido-entrada">Data e hora</label>
+                <button type="button" class="btn btn-link p-0 fw-bold usar-agora">Usar agora</button>
+              </div>
+              <input class="form-control" type="datetime-local" id="rapido-entrada" name="entrada_em" data-agora value="<%= r.entrada_em || '' %>">
+            </div>
+            <div class="col-sm-7">
+              <label class="form-label" for="rapido-obs">Observação <span class="fw-normal text-body-secondary">(opcional)</span></label>
+              <input class="form-control" id="rapido-obs" name="observacao" maxlength="500" value="<%= r.observacao || '' %>">
+            </div>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <button class="btn btn-success btn-lg flex-grow-1 btn-acao" type="submit">
+              <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>CADASTRAR E REGISTRAR ENTRADA
+            </button>
+            <button class="btn btn-outline-secondary btn-lg" type="button" id="cancelar-rapido">Cancelar <kbd>Esc</kbd></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-5">
+    <div class="card mb-3">
+      <div class="card-body d-flex justify-content-between align-items-center gap-3">
+        <div>
+          <h2 class="h4 mb-0">Últimas movimentações</h2>
+          <span class="text-body-secondary">Registros de hoje</span>
+        </div>
+        <a class="text-end text-decoration-none" href="/patio">
+          <div class="rotulo-mono">No pátio agora</div>
+          <div class="contador-grande"><%= patioCount %> <%= patioCount === 1 ? 'veículo' : 'veículos' %></div>
+        </a>
+      </div>
+    </div>
+
+    <% if (!ultimas.length) { %>
+      <div class="card mb-3"><div class="card-body text-body-secondary">Nenhuma movimentação hoje.</div></div>
+    <% } %>
+    <% for (const m of ultimas) { const saiu = Boolean(m.saida_em); %>
+      <div class="card mb-2">
+        <div class="card-body py-3">
+          <div class="mov-item">
+            <div>
+              <% if (saiu) { %>
+                <span class="chip chip-neutro font-monospace"><i class="bi bi-box-arrow-left" aria-hidden="true"></i>Saída <%= fmtHora(m.saida_em) %></span>
+              <% } else { %>
+                <span class="chip chip-solido-ok font-monospace"><i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>Entrada <%= fmtHora(m.entrada_em) %></span>
+              <% } %>
+              <div class="nome mt-2"><%= m.motorista_nome %></div>
+              <div class="text-body-secondary"><%= [m.marca_modelo, m.cor].filter(Boolean).join(' · ') || rotulo(m.veiculo_tipo) %><%= m.motorista_tipo === 'VISITANTE' ? ' · Visitante' + (m.empresa ? ' / ' + m.empresa : '') : (m.setor ? ' · ' + m.setor : '') %></div>
+            </div>
+            <a class="placa <%= placaClasse(m.placa) %>" href="/veiculos/<%= m.veiculo_id %>"><%= placa(m.placa) %></a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+    <% if (ultimas.length) { %>
+      <div class="text-end mb-3"><a href="/movimentacoes?de=<%= hoje() %>&ate=<%= hoje() %>">Ver todas as movimentações de hoje</a></div>
+    <% } %>
+
+    <div class="relogio-oficial mt-3" aria-label="Hora oficial">
+      <div class="icone"><i class="bi bi-clock" aria-hidden="true"></i></div>
+      <div>
+        <div class="rotulo">Hora oficial (Manaus)</div>
+        <div class="hora" id="relogio-hora">--:--:--</div>
+        <div class="data" id="relogio-data"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# ----- Modelos clonados pelo JavaScript ao selecionar um veículo ----- %>
+<template id="tpl-entrada">
+  <form method="post" action="/portaria/entrada" class="form-portaria">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" name="veiculo_id">
+    <div class="motorista-bloco" data-modo="existente">
+      <div class="form-label fs-5 mb-2">Motorista no momento</div>
+      <div class="row g-2 mb-3" role="radiogroup" aria-label="Motorista no momento">
+        <div class="col-sm-6">
+          <input type="radio" class="btn-check modo-radio" name="motorista_modo" id="entrada-modo-existente" value="existente" checked>
+          <label class="btn btn-outline-primary btn-lg w-100" for="entrada-modo-existente"><i class="bi bi-person-check" aria-hidden="true"></i>Pessoa cadastrada</label>
+        </div>
+        <div class="col-sm-6">
+          <input type="radio" class="btn-check modo-radio" name="motorista_modo" id="entrada-modo-novo" value="novo">
+          <label class="btn btn-outline-primary btn-lg w-100" for="entrada-modo-novo"><i class="bi bi-person-plus" aria-hidden="true"></i>Novo visitante</label>
+        </div>
+      </div>
+      <div class="modo-existente">
+        <%- include('partials/pessoa-picker', { campo: 'motorista_id', valorId: '', valorNome: '', rotulo: '',
+              placeholder: 'Buscar outra pessoa pelo nome…' }) %>
+        <div class="alerta-motorista mt-2"></div>
+      </div>
+      <div class="modo-novo row g-3">
+        <div class="col-sm-6">
+          <label class="form-label" for="entrada-vnome">Nome do visitante</label>
+          <input class="form-control" id="entrada-vnome" name="visitante_nome" maxlength="120" data-requerido>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label" for="entrada-vempresa">Empresa</label>
+          <input class="form-control" id="entrada-vempresa" name="visitante_empresa" maxlength="120">
+        </div>
+      </div>
+    </div>
+    <div class="row g-3 mt-1">
+      <div class="col-sm-5">
+        <div class="d-flex justify-content-between align-items-baseline">
+          <label class="form-label" for="entrada-em">Data e hora</label>
+          <button type="button" class="btn btn-link p-0 fw-bold usar-agora">Usar agora</button>
+        </div>
+        <input class="form-control form-control-lg font-monospace" type="datetime-local" id="entrada-em" name="entrada_em" data-agora>
+      </div>
+      <div class="col-sm-7">
+        <label class="form-label" for="entrada-obs">Observação <span class="fw-normal text-body-secondary">(opcional)</span></label>
+        <input class="form-control form-control-lg" id="entrada-obs" name="observacao" maxlength="500">
+      </div>
+    </div>
+    <button class="btn btn-success btn-lg w-100 mt-4 btn-acao" type="submit">
+      <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>REGISTRAR ENTRADA <kbd>Enter</kbd>
+    </button>
+  </form>
+</template>
+
+<template id="tpl-saida">
+  <form method="post" action="/portaria/saida" class="form-portaria">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" name="mov_id">
+    <div class="row g-3">
+      <div class="col-sm-6">
+        <div class="d-flex justify-content-between align-items-baseline">
+          <label class="form-label" for="saida-em">Data e hora da saída</label>
+          <button type="button" class="btn btn-link p-0 fw-bold usar-agora">Usar agora</button>
+        </div>
+        <input class="form-control form-control-lg font-monospace" type="datetime-local" id="saida-em" name="saida_em" data-agora>
+      </div>
+    </div>
+    <button class="btn btn-warning btn-lg w-100 mt-4 btn-acao" type="submit">
+      <i class="bi bi-box-arrow-left" aria-hidden="true"></i>REGISTRAR SAÍDA <kbd>Enter</kbd>
+    </button>
+  </form>
+</template>
+
+<%- include('partials/footer', { scripts: ['/js/portaria.js'] }) %>

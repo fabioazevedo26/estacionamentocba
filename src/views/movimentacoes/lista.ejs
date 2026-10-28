@@ -1,0 +1,64 @@
+<%- include('../partials/header') %>
+<h1 class="h3 mb-3"><i class="bi bi-arrow-left-right me-2"></i>Movimentações</h1>
+
+<form class="card card-body shadow-sm mb-3" method="get">
+  <% if (f.veiculo_id) { %><input type="hidden" name="veiculo_id" value="<%= f.veiculo_id %>"><% } %>
+  <% if (f.motorista_id) { %><input type="hidden" name="motorista_id" value="<%= f.motorista_id %>"><% } %>
+  <div class="row g-2 align-items-end">
+    <div class="col-md-4">
+      <label class="form-label small" for="q">Busca</label>
+      <input class="form-control" id="q" name="q" value="<%= f.q %>" placeholder="Placa ou nome do motorista">
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="de">Entrada de</label>
+      <input class="form-control" type="date" id="de" name="de" value="<%= f.de %>">
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="ate">até</label>
+      <input class="form-control" type="date" id="ate" name="ate" value="<%= f.ate %>">
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="situacao">Situação</label>
+      <select class="form-select" id="situacao" name="situacao">
+        <option value="">Todas</option>
+        <option value="abertas"<%= f.situacao === 'abertas' ? ' selected' : '' %>>No pátio (sem saída)</option>
+        <option value="fechadas"<%= f.situacao === 'fechadas' ? ' selected' : '' %>>Com saída</option>
+      </select>
+    </div>
+    <div class="col-6 col-md-2 d-flex gap-2">
+      <button class="btn btn-primary"><i class="bi bi-funnel"></i> Filtrar</button>
+      <a class="btn btn-outline-secondary" href="/movimentacoes">Limpar</a>
+    </div>
+  </div>
+  <% if (f.veiculo_id || f.motorista_id) { %>
+    <div class="small mt-2 text-body-secondary"><i class="bi bi-funnel-fill"></i> Filtrando por <%= f.veiculo_id ? 'veículo' : 'motorista' %> específico.
+      <a href="/movimentacoes">remover</a></div>
+  <% } %>
+</form>
+
+<div class="table-responsive card shadow-sm mb-3">
+  <table class="table table-hover align-middle mb-0">
+    <thead class="table-light">
+      <tr><th>Data</th><th>Entrada</th><th>Saída</th><th>Permanência</th><th>Placa</th><th>Veículo</th><th>Motorista</th><th>Observação</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% if (!lista.length) { %><tr><td colspan="9" class="text-center text-body-secondary py-4">Nenhuma movimentação encontrada.</td></tr><% } %>
+      <% for (const m of lista) { %>
+        <tr>
+          <td><%= fmtData(m.entrada_em) %></td>
+          <td><%= fmtHora(m.entrada_em) %></td>
+          <td class="text-nowrap"><% if (m.saida_em) { %><%= m.saida_em.slice(0, 10) === m.entrada_em.slice(0, 10) ? fmtHora(m.saida_em) : fmtDataHora(m.saida_em) %><% } else { %><span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>No pátio</span><% } %></td>
+          <td><%= fmtDuracao(minutosEntre(m.entrada_em, m.saida_em)) %></td>
+          <td><a href="/veiculos/<%= m.veiculo_id %>" class="placa <%= placaClasse(m.placa) %> text-decoration-none"><%= placa(m.placa) %></a></td>
+          <td><%= rotulo(m.veiculo_tipo) %><%= m.marca_modelo ? ' · ' + m.marca_modelo : '' %></td>
+          <td><a href="/pessoas/<%= m.motorista_id %>" class="text-decoration-none"><%= m.motorista_nome %></a>
+            <div class="small text-body-secondary"><%= rotulo(m.motorista_tipo) %></div></td>
+          <td class="small obs-col"><%= m.observacao || '' %></td>
+          <td class="text-end"><a href="/movimentacoes/<%= m.id %>/corrigir" class="btn btn-sm btn-outline-primary text-nowrap"><i class="bi bi-pencil-square"></i> Corrigir</a></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/paginacao') %>
+<%- include('../partials/footer') %>

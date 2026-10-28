@@ -1,0 +1,18 @@
+<%#
+  Campo de busca de pessoa (autocomplete). Parâmetros:
+  campo (nome do input hidden), valorId, valorNome, rotulo, obrigatorio, placeholder, ajuda
+%>
+<div class="pessoa-picker position-relative">
+  <% if (typeof rotulo !== 'undefined' && rotulo) { %><label class="form-label"><%= rotulo %></label><% } %>
+  <div class="input-group">
+    <span class="input-group-text"><i class="bi bi-person"></i></span>
+    <input type="text" class="form-control picker-busca" autocomplete="off" name="<%= campo %>_nome"
+           placeholder="<%= typeof placeholder !== 'undefined' ? placeholder : 'Digite o nome para buscar…' %>"
+           value="<%= typeof valorNome !== 'undefined' ? valorNome || '' : '' %>">
+    <button class="btn btn-outline-secondary picker-limpar" type="button" title="Limpar"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <input type="hidden" class="picker-id" name="<%= campo %>" value="<%= typeof valorId !== 'undefined' ? valorId || '' : '' %>"
+         <%= typeof obrigatorio !== 'undefined' && obrigatorio ? 'data-obrigatorio' : '' %>>
+  <div class="list-group picker-resultados shadow"></div>
+  <% if (typeof ajuda !== 'undefined' && ajuda) { %><div class="form-text"><%= ajuda %></div><% } %>
+</div>

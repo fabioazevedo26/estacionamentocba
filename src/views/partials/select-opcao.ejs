@@ -1,0 +1,13 @@
+<%# Select de cargo/setor com a opção "Outro (digitar)". Parâmetros: nome, rotulo, lista, valor %>
+<% const v = typeof valor !== 'undefined' && valor ? valor : '';
+   const naLista = !v || lista.includes(v); %>
+<label class="form-label" for="<%= nome %>"><%= rotulo %></label>
+<select class="form-select" id="<%= nome %>" name="<%= nome %>" data-outro="<%= nome %>_outro">
+  <option value="">— selecione —</option>
+  <% for (const op of lista) { %>
+    <option value="<%= op %>"<%= op === v ? ' selected' : '' %>><%= op %></option>
+  <% } %>
+  <option value="__outro__"<%= !naLista ? ' selected' : '' %>>Outro (digitar)</option>
+</select>
+<input type="text" class="form-control mt-2<%= naLista ? ' d-none' : '' %>" id="<%= nome %>_outro" name="<%= nome %>_outro"
+       maxlength="60" placeholder="Digite o novo valor" value="<%= naLista ? '' : v %>">

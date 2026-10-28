@@ -1,0 +1,80 @@
+<%- include('../partials/header') %>
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+  <div>
+    <a href="/veiculos" class="small text-decoration-none"><i class="bi bi-arrow-left"></i> Veículos</a>
+    <h1 class="h3 mb-1"><span class="placa <%= placaClasse(veiculo.placa) %> placa-grande"><%= placa(veiculo.placa) %></span>
+      <%- statusChip(veiculo.status) %></h1>
+    <div class="text-body-secondary"><%= rotulo(veiculo.tipo) %><%= veiculo.marca_modelo ? ' · ' + veiculo.marca_modelo : '' %><%= veiculo.cor ? ' · ' + veiculo.cor : '' %></div>
+  </div>
+  <a class="btn btn-primary" href="/veiculos/<%= veiculo.id %>/editar"><i class="bi bi-pencil me-1"></i>Editar</a>
+</div>
+
+<% if (veiculo.status === 'BLOQUEADO') { %>
+  <div class="alert alert-danger fs-5"><i class="bi bi-lock-fill me-1"></i><strong>BLOQUEADO:</strong> <%= veiculo.motivo_bloqueio %></div>
+<% } else if (veiculo.status === 'INATIVO') { %>
+  <div class="alert alert-secondary"><i class="bi bi-archive me-1"></i>Veículo inativo: não aparece nas buscas da portaria.</div>
+<% } %>
+<% if (aberta) { %>
+  <div class="alert alert-info"><i class="bi bi-p-circle me-1"></i>No pátio desde <strong><%= fmtDataHora(aberta.entrada_em) %></strong>
+    com <%= aberta.motorista_nome %>.</div>
+<% } %>
+
+<div class="row g-4">
+  <div class="col-lg-5">
+    <div class="card shadow-sm mb-4">
+      <div class="card-header fw-semibold">Dados</div>
+      <div class="card-body">
+        <dl class="row mb-0">
+          <dt class="col-5">Placa</dt><dd class="col-7"><%= placa(veiculo.placa) %><%= veiculo.placa_fora_padrao ? ' (fora do padrão)' : '' %></dd>
+          <dt class="col-5">Tipo</dt><dd class="col-7"><%= rotulo(veiculo.tipo) %></dd>
+          <dt class="col-5">Marca/Modelo</dt><dd class="col-7"><%= veiculo.marca_modelo || '—' %></dd>
+          <dt class="col-5">Cor</dt><dd class="col-7"><%= veiculo.cor || '—' %></dd>
+          <dt class="col-5">Observação</dt><dd class="col-7"><%= veiculo.observacao || '—' %></dd>
+          <dt class="col-5">Cadastro</dt><dd class="col-7"><%= fmtDataHora(veiculo.criado_em) %></dd>
+        </dl>
+      </div>
+      <div class="card-footer">
+        <%- include('../partials/status-acoes', { base: '/veiculos/' + veiculo.id, registro: veiculo,
+              nomeExibicao: 'o veículo ' + placa(veiculo.placa), temMovimentacoes: totalMov > 0 }) %>
+      </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-header fw-semibold"><i class="bi bi-person me-1"></i>Proprietário</div>
+      <div class="card-body">
+        <% if (veiculo.proprietario_id) { %>
+          <p class="mb-3"><a href="/pessoas/<%= veiculo.proprietario_id %>" class="fw-semibold"><%= veiculo.proprietario_nome %></a>
+            <%- statusChip(veiculo.proprietario_status) %></p>
+        <% } else { %>
+          <p class="text-body-secondary">Sem proprietário definido.</p>
+        <% } %>
+        <form method="post" action="/veiculos/<%= veiculo.id %>/proprietario">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <%- include('../partials/pessoa-picker', { campo: 'proprietario_id', valorId: '', valorNome: '',
+                rotulo: veiculo.proprietario_id ? 'Trocar proprietário' : 'Definir proprietário', obrigatorio: true }) %>
+          <div class="d-flex gap-2 mt-2">
+            <button class="btn btn-outline-primary"><i class="bi bi-check-lg me-1"></i>Salvar proprietário</button>
+          </div>
+        </form>
+        <% if (veiculo.proprietario_id) { %>
+          <form method="post" action="/veiculos/<%= veiculo.id %>/proprietario" class="mt-2" data-confirm="Remover o proprietário deste veículo?">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="hidden" name="proprietario_id" value="">
+            <button class="btn btn-link text-danger p-0"><i class="bi bi-x-circle me-1"></i>Remover proprietário</button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="card shadow-sm">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span class="fw-semibold"><i class="bi bi-clock-history me-1"></i>Histórico de movimentações (<%= totalMov %>)</span>
+        <% if (totalMov > historico.length) { %><a class="small" href="/movimentacoes?veiculo_id=<%= veiculo.id %>">ver todas</a><% } %>
+      </div>
+      <%- include('../movimentacoes/tabela-curta', { linhas: historico, mostrar: 'motorista' }) %>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

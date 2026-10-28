@@ -1,0 +1,50 @@
+<%- include('partials/header') %>
+<div class="login-pagina">
+  <div class="login-topo">
+    <button type="button" class="btn btn-outline-primary" data-alternar-tema aria-pressed="false">
+      <i class="bi bi-circle-half" aria-hidden="true"></i><span class="rotulo-tema">Modo noturno</span>
+    </button>
+  </div>
+  <div class="card login-cartao">
+    <div class="card-body p-4 p-sm-5">
+      <img class="login-logo" src="/img/logo-cba.png" alt="CBA — Centro de Bionegócios da Amazônia" width="240" height="277">
+      <h1 class="login-titulo text-center mb-1">EstacionamentoCBA</h1>
+      <p class="text-center text-body-secondary fs-5 mb-4">Controle de acesso de veículos</p>
+
+      <% if (erro) { %>
+        <div class="alert alert-danger d-flex gap-2" role="alert">
+          <i class="bi bi-exclamation-octagon-fill fs-5" aria-hidden="true"></i><div><%= erro %></div>
+        </div>
+      <% } %>
+
+      <form method="post" action="/login">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="mb-3">
+          <label class="form-label" for="usuario"><i class="bi bi-person-badge me-1" aria-hidden="true"></i>Usuário</label>
+          <input class="form-control form-control-lg" id="usuario" name="usuario" required autocomplete="username"
+                 value="<%= usuarioDigitado %>" <%= usuarioDigitado ? '' : 'autofocus' %>>
+        </div>
+        <div class="mb-4">
+          <label class="form-label" for="senha"><i class="bi bi-lock me-1" aria-hidden="true"></i>Senha</label>
+          <div class="input-group">
+            <input class="form-control form-control-lg" id="senha" name="senha" type="password" required
+                   autocomplete="current-password" <%= usuarioDigitado ? 'autofocus' : '' %>>
+            <button class="btn btn-outline-secondary px-3" type="button" id="mostrar-senha" aria-pressed="false"
+                    aria-controls="senha" title="Mostrar senha">
+              <i class="bi bi-eye fs-5" aria-hidden="true"></i><span class="visually-hidden">Mostrar senha</span>
+            </button>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg w-100" type="submit">
+          <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>ENTRAR
+        </button>
+        <p class="text-center text-body-secondary mt-3 mb-0">Pressione <kbd>Enter</kbd> para entrar</p>
+      </form>
+    </div>
+  </div>
+  <p class="text-center text-body-secondary mt-4 mb-0">
+    <strong class="text-body">Centro de Bionegócios da Amazônia</strong><br>
+    Uso exclusivo da equipe da portaria.
+  </p>
+</div>
+<%- include('partials/footer', { scripts: ['/js/login.js'] }) %>

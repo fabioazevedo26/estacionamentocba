@@ -1,0 +1,50 @@
+<%#
+  Botões de bloquear/desbloquear/inativar/reativar/excluir. Parâmetros:
+  base (ex.: /pessoas/3), registro (com status), nomeExibicao, temMovimentacoes
+%>
+<div class="d-flex flex-wrap gap-2">
+  <% if (registro.status === 'BLOQUEADO') { %>
+    <form method="post" action="<%= base %>/status" data-confirm="Desbloquear <%= nomeExibicao %>?">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <input type="hidden" name="operacao" value="desbloquear">
+      <button class="btn btn-success"><i class="bi bi-unlock me-1"></i>Desbloquear</button>
+    </form>
+  <% } else if (registro.status === 'ATIVO') { %>
+    <button class="btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#form-bloqueio">
+      <i class="bi bi-lock me-1"></i>Bloquear
+    </button>
+  <% } %>
+  <% if (registro.status === 'INATIVO') { %>
+    <form method="post" action="<%= base %>/status" data-confirm="Reativar <%= nomeExibicao %>?">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <input type="hidden" name="operacao" value="reativar">
+      <button class="btn btn-outline-success"><i class="bi bi-arrow-counterclockwise me-1"></i>Reativar</button>
+    </form>
+  <% } else { %>
+    <form method="post" action="<%= base %>/status"
+          data-confirm="Inativar <%= nomeExibicao %>? O cadastro some das buscas da portaria, mas continua nos relatórios.">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <input type="hidden" name="operacao" value="inativar">
+      <button class="btn btn-outline-secondary"><i class="bi bi-archive me-1"></i>Inativar</button>
+    </form>
+  <% } %>
+  <form method="post" action="<%= base %>/excluir"
+        data-confirm="<%= temMovimentacoes
+          ? nomeExibicao + ' possui movimentações e NÃO poderá ser excluído(a); o sistema vai explicar e sugerir inativar. Continuar?'
+          : 'Excluir ' + nomeExibicao + ' definitivamente? Esta ação não pode ser desfeita.' %>">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button class="btn btn-outline-danger"><i class="bi bi-trash me-1"></i>Excluir</button>
+  </form>
+</div>
+<% if (registro.status === 'ATIVO') { %>
+<div class="collapse mt-3" id="form-bloqueio">
+  <form method="post" action="<%= base %>/status" class="card card-body border-danger">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" name="operacao" value="bloquear">
+    <label class="form-label fw-semibold" for="motivo">Motivo do bloqueio</label>
+    <input class="form-control mb-2" id="motivo" name="motivo" required maxlength="300"
+           placeholder="Ex.: acesso suspenso pela direção">
+    <div><button class="btn btn-danger"><i class="bi bi-lock-fill me-1"></i>Confirmar bloqueio</button></div>
+  </form>
+</div>
+<% } %>

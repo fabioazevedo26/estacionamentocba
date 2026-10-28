@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>EstacionamentoCBA - Guarita Operacional</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400;1,700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"inverse-on-surface":"#edf0ff","primary-fixed-dim":"#84d4d3","surface-container-high":"#e1e8fd","inverse-primary":"#84d4d3","on-secondary-container":"#006e6e","on-primary-fixed":"#002020","on-error-container":"#93000a","on-tertiary-container":"#91f4a3","surface-bright":"#f9f9ff","error":"#ba1a1a","tertiary-container":"#007233","primary":"#005454","on-surface":"#141b2b","tertiary":"#005725","background":"#f9f9ff","on-secondary-fixed":"#002020","on-secondary-fixed-variant":"#004f50","on-tertiary-fixed-variant":"#005323","primary-container":"#0b6e6e","surface-container-highest":"#dce2f7","outline":"#6e7979","on-tertiary":"#ffffff","secondary-fixed-dim":"#6ed7d6","secondary-container":"#89f0f0","surface":"#f9f9ff","error-container":"#ffdad6","tertiary-fixed":"#95f8a7","on-primary":"#ffffff","on-error":"#ffffff","on-primary-container":"#9dedec","secondary-fixed":"#8cf3f3","surface-container-low":"#f1f3ff","surface-dim":"#d3daef","tertiary-fixed-dim":"#79db8d","surface-container-lowest":"#ffffff","on-secondary":"#ffffff","outline-variant":"#bec9c8","inverse-surface":"#293040","primary-fixed":"#a0f0f0","surface-variant":"#dce2f7","on-primary-fixed-variant":"#004f50","on-tertiary-fixed":"#00210a","on-background":"#141b2b","surface-container":"#e9edff","on-surface-variant":"#3e4948","surface-tint":"#006a6a","secondary":"#006a6a"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-lg":"2rem","space-xs":"0.375rem","gutter-mobile":"1rem","space-sm":"0.75rem","margin-mobile":"1rem","space-xl":"3rem","space-md":"1.25rem","gutter":"1.5rem","margin":"2rem"},fontFamily:{"headline-md":["Atkinson Hyperlegible Next"],"body-xl":["Atkinson Hyperlegible Next"],"body-lg":["Atkinson Hyperlegible Next"],"headline-xl":["Atkinson Hyperlegible Next"],"caption":["Atkinson Hyperlegible Next"],"headline-lg":["Atkinson Hyperlegible Next"],"body-lg-bold":["Atkinson Hyperlegible Next"],"headline-lg-mobile":["Atkinson Hyperlegible Next"],"label-code":["JetBrains Mono"],"headline-xl-mobile":["Atkinson Hyperlegible Next"],"plate-display":["JetBrains Mono"]},fontSize:{"headline-md":["24px",{"lineHeight":"32px","fontWeight":"700"}],"body-xl":["22px",{"lineHeight":"32px","fontWeight":"400"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-xl":["40px",{"lineHeight":"48px","fontWeight":"700"}],"caption":["16px",{"lineHeight":"24px","fontWeight":"500"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}],"body-lg-bold":["18px",{"lineHeight":"28px","fontWeight":"700"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","fontWeight":"700"}],"label-code":["16px",{"lineHeight":"24px","letterSpacing":"1px","fontWeight":"500"}],"headline-xl-mobile":["30px",{"lineHeight":"38px","fontWeight":"700"}],"plate-display":["36px",{"lineHeight":"44px","letterSpacing":"4px","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-lg text-body-lg text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-primary-container text-on-primary shadow-[0_2px_10px_rgba(0,0,0,0.15)]"><div class="h-20 w-full px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Logo CBA Centro de Bionegócios da Amazônia" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W0cQu2lnoreB0-HoyJYybMifykIKqOMocHD0N3eHeLsRm7lTZSeP6iigAsxLHWh6C0Nj050ZvOrigA5bR7o1sVFE1FfErOte7pl6BmMdRojOK8YG7bsUY9_tloxEv3C8RSGEXfq0bBY1_uvu7XRF8gw2QvPnbdTmu9ZkpDB68TgnZQcxNCqcmv-EAHAJTNvXLAqd4bcNUQ0ewkjhSJozokNvM70AJ2biffgycToJE"/><div aria-hidden="true" class="h-8 w-[1px] bg-outline-variant/40"></div><div class="flex items-center gap-space-sm"><span class="font-headline-md text-headline-md tracking-tight text-on-primary whitespace-nowrap">EstacionamentoCBA</span><span class="bg-on-primary-container text-on-primary-fixed font-label-code text-label-code px-space-xs py-0.5 rounded-lg font-bold tracking-wide">v2.4</span><span class="inline-flex items-center gap-1.5 bg-tertiary-container text-on-primary font-caption text-caption px-space-xs py-0.5 rounded-lg"><span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>ONLINE</span></div></div><nav class="hidden xl:flex items-center gap-1" data-active-classes="bg-primary text-on-primary font-body-lg-bold shadow-inner"><a class="inline-flex items-center gap-2 px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="portaria" href="#">Portaria</a><a class="inline-flex items-center gap-2 px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="patio-agora" href="#">Pátio agora<span class="bg-secondary-fixed text-on-secondary-fixed font-label-code text-caption px-2 py-0.5 rounded-full font-bold">4</span></a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="pessoas" href="#">Pessoas</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="veiculos" href="#">Veículos</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="movimentacoes" href="#">Movimentações</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="relatorios" href="#">Relatórios</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="auditoria" href="#">Auditoria</a></nav><div class="flex items-center gap-space-md"><div class="hidden md:flex flex-col text-right"><span class="font-label-code text-label-code text-on-primary leading-tight font-bold">14:32:08</span><span class="font-caption text-caption text-on-primary-container leading-tight">Guarita 02</span></div><button aria-label="Alternar Alto Contraste e Turno Noturno" class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-on-primary hover:bg-primary/80 focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" type="button"><span class="material-symbols-outlined text-[24px]">contrast</span></button><div aria-hidden="true" class="h-8 w-[1px] bg-outline-variant/40 hidden sm:block"></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="hidden lg:inline font-body-lg-bold text-body-lg-bold text-on-primary">Portaria 2</span></div><a aria-label="Encerrar Sessão da Portaria" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-error hover:bg-error/90 text-on-error font-caption text-caption font-bold focus:outline-none focus:ring-4 focus:ring-error-container transition-colors" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span class="hidden sm:inline">Sair</span></a></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-5rem)] px-margin py-gutter"><div class="flex flex-col w-full relative">
+<!-- Top Operational Banner Notification (Background Context) -->
+<div class="w-full bg-error-container text-on-error-container rounded-lg p-space-md mb-gutter shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-error text-on-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]">warning</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md leading-tight text-on-error-container">Placa não cadastrada detectada pela Câmera LPR 01</span>
+<span class="bg-error text-on-error font-label-code text-caption px-space-xs py-0.5 rounded-lg font-bold">LPR 08:22:10</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Liberação de tráfego travada: registro de acesso imediato ou triagem de visitante obrigatória.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<span class="inline-flex items-center gap-2 bg-on-error text-error px-space-md py-space-xs rounded-lg font-body-lg-bold text-body-lg-bold">
+<span class="w-3 h-3 rounded-full bg-error animate-ping"></span>
+        AGUARDANDO CADASTRO
+      </span>
+</div>
+</div>
+<!-- Main Split Dashboard Underlay (Tonal Contrast) -->
+<div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-gutter opacity-45 pointer-events-none select-none">
+<!-- Left Column: Search & Operational Lane (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Search Input Container -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<label class="block font-caption text-caption text-on-surface-variant mb-space-xs uppercase tracking-wider">Identificação Rápida de Placa (F2)</label>
+<div class="h-16 bg-surface-container-low rounded-lg px-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">search</span>
+<span class="font-plate-display text-headline-md tracking-wider text-on-surface">NOV9Z99</span>
+</div>
+<span class="bg-surface-container-high text-on-surface-variant font-label-code text-caption px-2 py-1 rounded">ESC</span>
+</div>
+</div>
+<!-- Quick Metrics Strip -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-body-lg-bold text-body-lg-bold text-on-surface">Pátio Geral (Bloco CBA)</span>
+<span class="font-label-code text-label-code text-tertiary font-bold">142/180 VAGAS</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 78.8%;"></div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm font-caption text-caption">
+<div class="bg-surface-container-low p-2 rounded-lg text-on-surface">
+<span class="block text-on-surface-variant">Credenciados</span>
+<strong class="font-headline-md text-headline-md">118</strong>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg text-on-surface">
+<span class="block text-on-surface-variant">Visitantes</span>
+<strong class="font-headline-md text-headline-md">24</strong>
+</div>
+</div>
+</div>
+<!-- Camera Feed Mockup -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption text-on-surface-variant font-bold">Câmera LPR 01 - Portão Principal</span>
+<span class="inline-flex items-center gap-1 font-label-code text-caption text-error font-bold">● GRAVANDO</span>
+</div>
+<div class="relative w-full h-44 bg-inverse-surface rounded-lg overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Security barrier surveillance camera view of a modern silver sedan stopped at an automated parking gate entrance surrounded by lush Amazon rainforest greenery and contemporary research building architecture in Manaus Brazil, clear morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb26afmJ3PdZoCgm-1gO9Pj2aaJE-Ea-ozMX-Yvy410ZxhapQq_h_7inUl4qvAgjmljoyaPkLdpxr8x_pufsGOrPAE2b02QB3Y_8P70Hp99TchPCMR9uoTtTUFRefh4nVMyLaI7d03u6K3EdDmAVAY1ibB8-irynkSkmKTSWL3P0Peevsm6KcmhhmZbi3jxix4D1oAL21O6gbVe9hzrbwpAfvwzDUXxBxOvJMl7BU"/>
+<div class="absolute bottom-2 left-2 bg-on-secondary-fixed text-surface-container-lowest px-2 py-0.5 rounded font-label-code text-caption">
+            RECONHECIMENTO: 99.4%
+          </div>
+</div>
+</div>
+</div>
+<!-- Right Column: Operational History (8 cols) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Feed de Movimentação em Tempo Real</h2>
+<p class="font-caption text-caption text-on-surface-variant">Últimos veículos processados na Guarita Principal Nº 2</p>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">MANAUS: 08:22:10 GMT-4</span>
+</div>
+<!-- Feed Cards -->
+<div class="flex flex-col gap-space-sm">
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code text-on-surface font-bold bg-surface-container-lowest px-3 py-1 rounded">PHQ-4102</span>
+<div>
+<p class="font-body-lg-bold text-body-lg-bold text-on-surface">Toyota Hilux Prata • CBA Frotas</p>
+<span class="font-caption text-caption text-on-surface-variant">Condutor: Marcos Vinicius (Pesquisador Sênior)</span>
+</div>
+</div>
+<div class="text-right">
+<span class="bg-surface-container-high text-on-secondary-container px-space-xs py-0.5 rounded font-caption text-caption font-bold">ENTRADA 08:19</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code text-on-surface font-bold bg-surface-container-lowest px-3 py-1 rounded">OAM-8819</span>
+<div>
+<p class="font-body-lg-bold text-body-lg-bold text-on-surface">Honda Civic Preto • Visitante Externo</p>
+<span class="font-caption text-caption text-on-surface-variant">Condutor: Dra. Clarice Antunes (Inpa)</span>
+</div>
+</div>
+<div class="text-right">
+<span class="bg-surface-container-high text-on-secondary-container px-space-xs py-0.5 rounded font-caption text-caption font-bold">ENTRADA 08:14</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code text-on-surface font-bold bg-surface-container-lowest px-3 py-1 rounded">JXU-1090</span>
+<div>
+<p class="font-body-lg-bold text-body-lg-bold text-on-surface">Renault Master Branco • Encomendas Express</p>
+<span class="font-caption text-caption text-on-surface-variant">Condutor: Marcelo Rios (Logística)</span>
+</div>
+</div>
+<div class="text-right">
+<span class="bg-surface-container-highest text-on-surface-variant px-space-xs py-0.5 rounded font-caption text-caption font-bold">SAÍDA 08:09</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL OVERLAY: CADASTRO RÁPIDO + ENTRADA -->
+<!-- Fully Accessible High-Contrast Floating Panel -->
+<div aria-labelledby="modal-quick-register-title" aria-modal="true" class="fixed inset-0 z-50 bg-inverse-surface/80 flex items-center justify-center p-gutter overflow-y-auto" role="dialog">
+<div class="relative w-full max-w-5xl bg-surface-container-lowest rounded-xl shadow-2xl overflow-hidden my-auto">
+<!-- Top Alert Ribbon: Status Guarita -->
+<div class="bg-primary text-on-primary px-space-lg py-space-sm flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+<span class="font-body-lg-bold text-body-lg-bold">CBA Portaria 02 • Guarita Norte</span>
+<span class="bg-secondary-container text-on-secondary-container font-label-code text-caption px-2 py-0.5 rounded-lg font-bold">SISTEMA ATIVO</span>
+</div>
+<div class="flex items-center gap-space-md font-label-code text-caption">
+<span>STATUS CANCELA: <strong class="text-tertiary-fixed">AGUARDANDO LIBERAÇÃO</strong></span>
+<span class="hidden sm:inline">•</span>
+<span class="hidden sm:inline">HORÁRIO LOCAL: 08:22:10</span>
+</div>
+</div>
+<!-- Modal Header -->
+<div class="px-space-lg pt-space-lg pb-space-md bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-16 h-16 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[36px]">no_crash</span>
+</div>
+<div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface" id="modal-quick-register-title">CADASTRO RÁPIDO + ENTRADA</h1>
+<span class="bg-secondary-container text-on-secondary-container font-body-lg-bold text-caption px-space-sm py-1 rounded-lg">
+                NOVO VEÍCULO / VISITANTE
+              </span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">
+              Preencha os dados essenciais para registrar a entrada do veículo e liberar a cancela física.
+            </p>
+</div>
+</div>
+<button aria-label="Fechar e Cancelar Cadastro (Esc)" class="self-start md:self-center px-4 py-2.5 rounded-lg bg-surface-container-highest hover:bg-surface-dim text-on-surface font-body-lg-bold text-body-lg flex items-center gap-2 focus:outline-none focus:ring-4 focus:ring-primary transition-colors" id="btn-close-modal" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+<span>Fechar [Esc]</span>
+</button>
+</div>
+<!-- Form Content Body -->
+<form class="p-space-lg flex flex-col gap-space-lg" id="quick-entry-form" onsubmit="event.preventDefault();">
+<!-- SEÇÃO 1: VEÍCULO -->
+<fieldset class="bg-surface-container-low/60 rounded-xl p-space-md flex flex-col gap-space-md">
+<legend class="flex items-center gap-2 font-headline-md text-headline-md text-primary font-bold px-2">
+<span class="material-symbols-outlined text-[24px]">directions_car</span>
+            SEÇÃO 1 • DADOS DO VEÍCULO
+          </legend>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md items-start">
+<!-- Plate Mercosul Badge Viewer -->
+<div class="md:col-span-5 flex flex-col gap-space-xs">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="plate-input">Placa Identificada pelo LPR</label>
+<!-- Realistic Mercosul Plate Container -->
+<div class="w-full bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm">
+<!-- Blue Mercosul Header -->
+<div class="h-8 bg-[#003399] text-[#ffffff] px-space-md flex items-center justify-between">
+<span class="font-label-code text-caption font-bold tracking-widest">BRASIL</span>
+<div class="w-5 h-3.5 bg-[#009c3b] flex items-center justify-center p-0.5">
+<div class="w-full h-full bg-[#ffdf00] flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-[#002776]"></div>
+</div>
+</div>
+</div>
+<!-- Characters Field -->
+<div class="p-2 flex items-center justify-center bg-surface-container-lowest">
+<input aria-label="Placa do veículo no padrão Mercosul" class="w-full text-center font-plate-display text-plate-display tracking-widest text-on-surface bg-transparent focus:outline-none focus:bg-surface-container-high py-1 uppercase" id="plate-input" maxlength="8" name="plate" required="" type="text" value="NOV9Z99"/>
+</div>
+</div>
+<!-- Plate Exception Toggle -->
+<label class="inline-flex items-center gap-3 mt-1 cursor-pointer select-none">
+<input class="w-6 h-6 rounded bg-surface text-primary focus:ring-4 focus:ring-primary cursor-pointer" id="plate-exception" type="checkbox"/>
+<span class="font-body-lg text-body-lg text-on-surface-variant">Placa fora do padrão Mercosul / Internacional</span>
+</label>
+</div>
+<!-- Vehicle Type Selectors -->
+<div class="md:col-span-7 flex flex-col gap-space-xs">
+<span class="font-body-lg-bold text-body-lg-bold text-on-surface">Tipo de Veículo</span>
+<div aria-label="Tipo de Veículo" class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs" role="radiogroup">
+<button aria-checked="true" class="vehicle-type-btn h-14 rounded-lg bg-primary text-on-primary font-body-lg-bold text-body-lg flex flex-col items-center justify-center gap-0.5 focus:outline-none focus:ring-4 focus:ring-secondary-fixed shadow-sm" data-type="carro" role="radio" type="button">
+<span class="material-symbols-outlined text-[20px]">directions_car</span>
+<span class="text-caption font-bold">Carro</span>
+</button>
+<button aria-checked="false" class="vehicle-type-btn h-14 rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg flex flex-col items-center justify-center gap-0.5 hover:bg-surface-container-high focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" data-type="moto" role="radio" type="button">
+<span class="material-symbols-outlined text-[20px]">two_wheeler</span>
+<span class="text-caption font-bold">Moto</span>
+</button>
+<button aria-checked="false" class="vehicle-type-btn h-14 rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg flex flex-col items-center justify-center gap-0.5 hover:bg-surface-container-high focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" data-type="van" role="radio" type="button">
+<span class="material-symbols-outlined text-[20px]">airport_shuttle</span>
+<span class="text-caption font-bold">Van/Utilitário</span>
+</button>
+<button aria-checked="false" class="vehicle-type-btn h-14 rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg flex flex-col items-center justify-center gap-0.5 hover:bg-surface-container-high focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" data-type="caminhao" role="radio" type="button">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+<span class="text-caption font-bold">Carga/Pesado</span>
+</button>
+</div>
+<!-- Brand / Model & Color -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm mt-space-xs">
+<div class="flex flex-col gap-1">
+<label class="font-body-lg-bold text-caption text-on-surface" for="vehicle-model">Marca / Modelo</label>
+<input class="h-12 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" id="vehicle-model" name="vehicle-model" placeholder="Ex: Chevrolet Onix Plus" required="" type="text" value="Chevrolet Onix Plus"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-body-lg-bold text-caption text-on-surface" for="vehicle-color">Cor Predominante</label>
+<input class="h-12 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" id="vehicle-color" name="vehicle-color" placeholder="Ex: Prata Metálico" required="" type="text" value="Prata Metálico"/>
+</div>
+</div>
+</div>
+</div>
+</fieldset>
+<!-- SEÇÃO 2: MOTORISTA / CONDUTOR -->
+<fieldset class="bg-surface-container-low/60 rounded-xl p-space-md flex flex-col gap-space-md">
+<legend class="flex items-center gap-2 font-headline-md text-headline-md text-primary font-bold px-2">
+<span class="material-symbols-outlined text-[24px]">person</span>
+            SEÇÃO 2 • IDENTIFICAÇÃO DO CONDUTOR
+          </legend>
+<!-- Driver Profile Selector (Segmented buttons) -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="font-body-lg-bold text-body-lg-bold text-on-surface mr-2">Perfil:</span>
+<button aria-pressed="true" class="driver-mode-btn h-12 px-space-md rounded-lg bg-primary text-on-primary font-body-lg-bold text-body-lg inline-flex items-center gap-2 focus:outline-none focus:ring-4 focus:ring-secondary-fixed shadow-sm" data-mode="novo" type="button">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+              Novo Visitante / Terceirizado
+            </button>
+<button aria-pressed="false" class="driver-mode-btn h-12 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg inline-flex items-center gap-2 hover:bg-surface-container-high focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" data-mode="existente" type="button">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+              Pessoa já cadastrada no CBA
+            </button>
+</div>
+<!-- Driver Form Inputs -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+<div class="md:col-span-6 flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="driver-name">Nome Completo do Motorista</label>
+<input class="h-14 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" id="driver-name" name="driver-name" placeholder="Ex: Rodrigo Mendonça Tavares" required="" type="text" value="Rodrigo Mendonça Tavares"/>
+</div>
+<div class="md:col-span-3 flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="driver-phone">Telefone / WhatsApp</label>
+<input class="h-14 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" id="driver-phone" name="driver-phone" placeholder="(92) 90000-0000" required="" type="tel" value="(92) 98451-2290"/>
+</div>
+<div class="md:col-span-3 flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="driver-doc">CPF / Documento RG</label>
+<input class="h-14 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" id="driver-doc" name="driver-doc" placeholder="000.000.000-00" type="text" value="742.810.332-90"/>
+</div>
+<div class="md:col-span-7 flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="driver-company">Empresa / Instituição Vinculada</label>
+<input class="h-12 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" id="driver-company" name="driver-company" placeholder="Ex: BioAmazon Pesquisas Ltda ou Visitante Particular" type="text" value="BioAmazon Pesquisas Ltda"/>
+</div>
+<div class="md:col-span-5 flex items-center pt-5">
+<label class="inline-flex items-center gap-3 cursor-pointer select-none">
+<input checked="" class="w-6 h-6 rounded bg-surface text-primary focus:ring-4 focus:ring-primary cursor-pointer" id="driver-owner" type="checkbox"/>
+<span class="font-body-lg-bold text-body-lg-bold text-on-surface">O condutor é o proprietário do veículo</span>
+</label>
+</div>
+</div>
+</fieldset>
+<!-- SEÇÃO 3: PARÂMETROS DE ENTRADA -->
+<fieldset class="bg-surface-container-low/60 rounded-xl p-space-md flex flex-col gap-space-md">
+<legend class="flex items-center gap-2 font-headline-md text-headline-md text-primary font-bold px-2">
+<span class="material-symbols-outlined text-[24px]">gate</span>
+            SEÇÃO 3 • PARÂMETROS DE ENTRADA E CANCELA
+          </legend>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+<!-- Timestamp With Use Now Button -->
+<div class="md:col-span-4 flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="entry-time">Data e Hora de Entrada</label>
+<div class="flex items-center gap-2">
+<input class="h-12 w-full px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-label-code text-body-lg focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" id="entry-time" name="entry-time" type="text" value="27/10/2026 08:22"/>
+<button class="h-12 px-3 rounded-lg bg-surface-container-highest hover:bg-surface-dim text-on-surface font-caption text-caption font-bold shrink-0 focus:outline-none focus:ring-4 focus:ring-primary" id="btn-use-now" type="button">
+                  Usar Agora
+                </button>
+</div>
+</div>
+<!-- Gate Destination / Reason -->
+<div class="md:col-span-8 flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="gate-reason">Destino / Observação da Guarita</label>
+<input class="h-12 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-body-lg text-body-lg focus:outline-none focus:ring-4 focus:ring-primary shadow-sm" id="gate-reason" name="gate-reason" placeholder="Ex: Reunião Bloco B / Carga e Descarga" type="text" value="Reunião com Diretoria de Biotecnologia - Bloco B"/>
+</div>
+</div>
+</fieldset>
+<!-- ACTION FOOTER: LARGE TACTILE TOUCH BUTTONS -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md pt-space-xs">
+<!-- Cancel Button -->
+<button class="h-14 sm:h-16 px-space-lg rounded-xl bg-surface-container-high hover:bg-surface-dim text-on-surface font-body-lg-bold text-body-lg inline-flex items-center justify-center gap-2 focus:outline-none focus:ring-4 focus:ring-primary transition-colors shrink-0" id="btn-cancel-action" type="button">
+<span class="material-symbols-outlined text-[24px]">cancel</span>
+<span>Cancelar [Esc]</span>
+</button>
+<!-- Primary Submit Button -->
+<button class="h-14 sm:h-16 px-space-xl rounded-xl bg-primary hover:bg-primary-container text-on-primary font-headline-md text-headline-md inline-flex items-center justify-center gap-space-sm focus:outline-none focus:ring-4 focus:ring-secondary-fixed shadow-md transition-all flex-grow" id="btn-submit-entry" type="submit">
+<span class="material-symbols-outlined text-[32px]">check_circle</span>
+<span>CADASTRAR E REGISTRAR ENTRADA [Enter]</span>
+<span class="material-symbols-outlined text-[28px] hidden md:inline">arrow_forward</span>
+</button>
+</div>
+<!-- Hotkeys Guidance Bar -->
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-wrap items-center justify-between text-on-surface-variant font-caption text-caption gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">keyboard</span>
+<span>Atalhos rápidos de guarita:</span>
+<strong class="font-label-code text-caption text-on-surface">[Enter]</strong> Confirmar &amp; Abrir Cancela •
+            <strong class="font-label-code text-caption text-on-surface">[Tab]</strong> Próximo Campo •
+            <strong class="font-label-code text-caption text-on-surface">[Esc]</strong> Fechar Modal
+          </div>
+<span class="font-label-code text-caption text-primary font-bold">● Cancela vinculada: CANCELA 01 (PRINCIPAL)</span>
+</div>
+</form>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Keyboard navigation support: Esc to cancel/close, Enter to submit
+    const modal = document.querySelector('[role="dialog"]');
+    const plateInput = document.getElementById('plate-input');
+    const submitBtn = document.getElementById('btn-submit-entry');
+    const cancelBtn = document.getElementById('btn-cancel-action');
+    const closeBtn = document.getElementById('btn-close-modal');
+    const useNowBtn = document.getElementById('btn-use-now');
+    const entryTimeInput = document.getElementById('entry-time');
+
+    if (plateInput) {
+      plateInput.focus();
+      plateInput.select();
+    }
+
+    function handleClose() {
+      if (modal) {
+        modal.classList.add('hidden');
+      }
+    }
+
+    function handleSubmit() {
+      // Simulate gate open confirmation feedback
+      submitBtn.classList.remove('bg-primary');
+      submitBtn.classList.add('bg-tertiary-container');
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-[32px] animate-spin">sync</span><span>LIBERANDO CANCELA 01...</span>';
+      
+      setTimeout(function() {
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[32px]">done_all</span><span>ENTRADA REGISTRADA! CANCELA ABERTA</span>';
+        setTimeout(function() {
+          handleClose();
+        }, 800);
+      }, 700);
+    }
+
+    if (cancelBtn) cancelBtn.addEventListener('click', handleClose);
+    if (closeBtn) closeBtn.addEventListener('click', handleClose);
+    if (submitBtn) submitBtn.addEventListener('click', handleSubmit);
+
+    // Segmented / Vehicle type buttons toggle
+    const vehicleButtons = document.querySelectorAll('.vehicle-type-btn');
+    vehicleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        vehicleButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary', 'font-body-lg-bold');
+          b.classList.add('bg-surface-container-lowest', 'text-on-surface', 'font-body-lg');
+          b.setAttribute('aria-checked', 'false');
+        });
+        btn.classList.add('bg-primary', 'text-on-primary', 'font-body-lg-bold');
+        btn.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'font-body-lg');
+        btn.setAttribute('aria-checked', 'true');
+      });
+    });
+
+    // Driver mode switcher
+    const driverModeButtons = document.querySelectorAll('.driver-mode-btn');
+    driverModeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        driverModeButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary', 'font-body-lg-bold');
+          b.classList.add('bg-surface-container-lowest', 'text-on-surface', 'font-body-lg');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('bg-primary', 'text-on-primary', 'font-body-lg-bold');
+        btn.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'font-body-lg');
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    });
+
+    // Use Now button logic
+    if (useNowBtn && entryTimeInput) {
+      useNowBtn.addEventListener('click', () => {
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const mins = String(now.getMinutes()).padStart(2, '0');
+        entryTimeInput.value = `${day}/${month}/${year} ${hours}:${mins}`;
+      });
+    }
+
+    // Global Key Listener for Guard Quick Operation
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        handleClose();
+      } else if (event.key === 'Enter' && event.ctrlKey) {
+        event.preventDefault();
+        handleSubmit();
+      }
+    });
+  })();
+</script></main><footer class="w-full bg-surface-container-low border-t border-outline-variant py-space-md"><div class="w-full px-margin flex flex-col md:flex-row items-center justify-between gap-space-sm font-caption text-caption text-on-surface-variant"><div><span>Centro de Bionegócios da Amazônia • CBA | Sistema Integrado de Controle de Acesso e Cancela</span></div><div class="flex items-center gap-space-md"><span class="font-label-code text-label-code text-tertiary font-bold">• CANCELA: PRONTA</span><span class="font-label-code text-label-code text-primary font-bold">• LPR: ATIVO</span><span>Guarita Principal Nº 2</span></div></div></footer></body></html>

@@ -1,0 +1,27 @@
+<%# Tabela de histórico usada nas fichas. Parâmetros: linhas, mostrar ('veiculo' | 'motorista') %>
+<div class="table-responsive">
+  <table class="table table-sm table-hover align-middle mb-0">
+    <thead class="table-light">
+      <tr><th>Data</th><th>Entrada</th><th>Saída</th><th>Permanência</th><th><%= mostrar === 'veiculo' ? 'Veículo' : 'Motorista' %></th><th></th></tr>
+    </thead>
+    <tbody>
+      <% if (!linhas.length) { %><tr><td colspan="6" class="text-center text-body-secondary py-3">Nenhuma movimentação.</td></tr><% } %>
+      <% for (const m of linhas) { %>
+        <tr>
+          <td><%= fmtData(m.entrada_em) %></td>
+          <td><%= fmtHora(m.entrada_em) %></td>
+          <td><% if (m.saida_em) { %><%= m.saida_em.slice(0, 10) === m.entrada_em.slice(0, 10) ? fmtHora(m.saida_em) : fmtDataHora(m.saida_em) %><% } else { %><span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>No pátio</span><% } %></td>
+          <td><%= fmtDuracao(minutosEntre(m.entrada_em, m.saida_em)) %></td>
+          <td>
+            <% if (mostrar === 'veiculo') { %>
+              <a href="/veiculos/<%= m.veiculo_id %>" class="placa <%= placaClasse(m.placa) %> text-decoration-none"><%= placa(m.placa) %></a>
+            <% } else { %>
+              <a href="/pessoas/<%= m.motorista_id %>" class="text-decoration-none"><%= m.motorista_nome %></a>
+            <% } %>
+          </td>
+          <td class="text-end"><a href="/movimentacoes/<%= m.id %>/corrigir" class="btn btn-sm btn-link" title="Corrigir horário"><i class="bi bi-pencil-square"></i></a></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>

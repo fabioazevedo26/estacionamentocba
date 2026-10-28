@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>EstacionamentoCBA - Pátio Agora</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400;1,700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"inverse-surface":"#293040","on-primary":"#ffffff","surface-variant":"#dce2f7","background":"#f9f9ff","primary-fixed-dim":"#84d4d3","on-secondary-fixed-variant":"#004f50","surface-container-lowest":"#ffffff","tertiary-container":"#007233","primary":"#005454","tertiary":"#005725","on-tertiary-container":"#91f4a3","error":"#ba1a1a","surface-container-low":"#f1f3ff","surface-container-high":"#e1e8fd","secondary-container":"#89f0f0","on-primary-fixed":"#002020","on-surface":"#141b2b","surface-tint":"#006a6a","outline-variant":"#bec9c8","on-background":"#141b2b","inverse-on-surface":"#edf0ff","surface-container-highest":"#dce2f7","surface":"#f9f9ff","tertiary-fixed-dim":"#79db8d","on-secondary-fixed":"#002020","on-tertiary-fixed":"#00210a","surface-bright":"#f9f9ff","error-container":"#ffdad6","on-tertiary":"#ffffff","on-surface-variant":"#3e4948","on-error":"#ffffff","surface-container":"#e9edff","on-secondary-container":"#006e6e","on-tertiary-fixed-variant":"#005323","on-error-container":"#93000a","secondary-fixed":"#8cf3f3","primary-fixed":"#a0f0f0","tertiary-fixed":"#95f8a7","secondary":"#006a6a","on-primary-fixed-variant":"#004f50","secondary-fixed-dim":"#6ed7d6","outline":"#6e7979","surface-dim":"#d3daef","on-primary-container":"#9dedec","inverse-primary":"#84d4d3","on-secondary":"#ffffff","primary-container":"#0b6e6e"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-sm":"0.75rem","margin":"2rem","space-xs":"0.375rem","margin-mobile":"1rem","gutter":"1.5rem","space-lg":"2rem","gutter-mobile":"1rem","space-xl":"3rem","space-md":"1.25rem"},fontFamily:{"body-lg-bold":["Atkinson Hyperlegible Next"],"headline-lg-mobile":["Atkinson Hyperlegible Next"],"body-lg":["Atkinson Hyperlegible Next"],"label-code":["JetBrains Mono"],"plate-display":["JetBrains Mono"],"caption":["Atkinson Hyperlegible Next"],"headline-xl-mobile":["Atkinson Hyperlegible Next"],"body-xl":["Atkinson Hyperlegible Next"],"headline-xl":["Atkinson Hyperlegible Next"],"headline-md":["Atkinson Hyperlegible Next"],"headline-lg":["Atkinson Hyperlegible Next"]},fontSize:{"body-lg-bold":["18px",{"lineHeight":"28px","fontWeight":"700"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"label-code":["16px",{"lineHeight":"24px","letterSpacing":"1px","fontWeight":"500"}],"plate-display":["36px",{"lineHeight":"44px","letterSpacing":"4px","fontWeight":"700"}],"caption":["16px",{"lineHeight":"24px","fontWeight":"500"}],"headline-xl-mobile":["30px",{"lineHeight":"38px","fontWeight":"700"}],"body-xl":["22px",{"lineHeight":"32px","fontWeight":"400"}],"headline-xl":["40px",{"lineHeight":"48px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"700"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-lg text-body-lg text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-primary-container text-on-primary shadow-[0_2px_10px_rgba(0,0,0,0.15)]"><div class="h-20 w-full px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Logo CBA Centro de Bionegócios da Amazônia" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W0cQu2lnoreB0-HoyJYybMifykIKqOMocHD0N3eHeLsRm7lTZSeP6iigAsxLHWh6C0Nj050ZvOrigA5bR7o1sVFE1FfErOte7pl6BmMdRojOK8YG7bsUY9_tloxEv3C8RSGEXfq0bBY1_uvu7XRF8gw2QvPnbdTmu9ZkpDB68TgnZQcxNCqcmv-EAHAJTNvXLAqd4bcNUQ0ewkjhSJozokNvM70AJ2biffgycToJE"/><div aria-hidden="true" class="h-8 w-[1px] bg-outline-variant/40"></div><div class="flex items-center gap-space-sm"><span class="font-headline-md text-headline-md tracking-tight text-on-primary whitespace-nowrap">EstacionamentoCBA</span><span class="bg-on-primary-container text-on-primary-fixed font-label-code text-label-code px-space-xs py-0.5 rounded-lg font-bold tracking-wide">v2.4</span><span class="inline-flex items-center gap-1.5 bg-tertiary-container text-on-primary font-caption text-caption px-space-xs py-0.5 rounded-lg"><span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>ONLINE</span></div></div><nav class="hidden xl:flex items-center gap-1" data-active-classes="bg-primary text-on-primary font-body-lg-bold shadow-inner"><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="portaria" href="#">Portaria</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="patio-agora" href="#">Pátio agora <span class="bg-secondary-fixed text-on-secondary-fixed font-label-code text-caption px-2 py-0.5 rounded-full font-bold">(4)</span></a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="pessoas" href="#">Pessoas</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="veiculos" href="#">Veículos</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="movimentacoes" href="#">Movimentações</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="relatorios" href="#">Relatórios</a><a class="px-space-md py-space-xs rounded-lg font-body-lg text-body-lg text-on-primary/90 hover:bg-primary/50 hover:text-on-primary focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" data-path="auditoria" href="#">Auditoria</a></nav><div class="flex items-center gap-space-md"><div class="hidden md:flex flex-col text-right"><span class="font-label-code text-label-code text-on-primary leading-tight font-bold">14:32:08</span><span class="font-caption text-caption text-on-primary-container leading-tight">Guarita 02</span></div><button aria-label="Alternar Alto Contraste e Turno Noturno" class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-on-primary hover:bg-primary/80 focus:outline-none focus:ring-4 focus:ring-secondary-fixed transition-colors" type="button"><span class="material-symbols-outlined text-[24px]">contrast</span></button><div aria-hidden="true" class="h-8 w-[1px] bg-outline-variant/40 hidden sm:block"></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="hidden lg:inline font-body-lg-bold text-body-lg-bold text-on-primary">Portaria 2</span></div><a aria-label="Encerrar Sessão da Portaria" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-error hover:bg-error/90 text-on-error font-caption text-caption font-bold focus:outline-none focus:ring-4 focus:ring-error-container transition-colors" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span class="hidden sm:inline">Sair</span></a></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-5rem)] px-margin py-gutter"><div class="flex flex-col w-full">
+<!-- SCRIPT PARA ATALHOS DE TECLADO E INTERATIVIDADE -->
+<script>
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const resetBtn = document.getElementById('btn-limpar-filtros');
+        if (resetBtn) resetBtn.click();
+      } else if (e.key === 'F8') {
+        e.preventDefault();
+        window.print();
+      } else if (e.key === 'F9') {
+        e.preventDefault();
+        const exportBtn = document.getElementById('btn-exportar-excel-topo');
+        if (exportBtn) exportBtn.click();
+      }
+    });
+
+    function showFeedback(mensagem) {
+      const toast = document.getElementById('status-toast');
+      if (toast) {
+        toast.innerText = mensagem;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3500);
+      }
+    }
+  </script>
+<!-- NOTIFICAÇÃO ACESSÍVEL / LIVE REGION -->
+<div aria-live="polite" class="hidden fixed bottom-6 right-6 z-50 bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-xl font-body-lg-bold text-body-lg-bold shadow-xl flex items-center gap-2" id="status-toast" role="status"></div>
+<!-- CABEÇALHO DA PÁGINA COM AÇÕES E METADADOS -->
+<header class="w-full flex flex-col xl:flex-row xl:items-end justify-between gap-gutter pb-space-lg">
+<div class="flex flex-col gap-1 max-w-4xl">
+<div class="flex items-center gap-space-sm mb-1">
+<span class="inline-flex items-center gap-1.5 bg-primary-container text-on-primary font-label-code text-caption px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+          AUDITORIA &amp; LOGÍSTICA
+        </span>
+<span class="text-on-surface-variant font-caption text-caption">• Atualizado em tempo real da Guarita 02</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight leading-none">
+        Relatórios de Movimentação e Acesso
+      </h1>
+<p class="font-body-xl text-body-xl text-on-surface-variant pt-2 leading-relaxed">
+        Histórico completo de entradas, saídas e permanência de veículos no campus CBA. Monitoramento para auditoria patrimonial e relatórios gerenciais.
+      </p>
+</div>
+<!-- BOTÕES DE AÇÃO SUPERIORES (ALVOS >= 56px) -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button aria-label="Exportar base completa para formato Excel" class="min-h-[56px] px-space-lg bg-tertiary-container hover:bg-tertiary text-on-primary font-body-lg-bold text-body-lg-bold rounded-xl shadow-sm flex items-center gap-space-xs transition-colors focus:outline-none focus:ring-4 focus:ring-tertiary-fixed cursor-pointer" id="btn-exportar-excel-topo" onclick="showFeedback('Gerando planilha Excel (.xlsx)... Download iniciado!')" type="button">
+<span class="material-symbols-outlined text-[26px]">table_chart</span>
+<span>Exportar Excel (.xlsx)</span>
+<span class="bg-black/20 text-on-primary font-label-code text-caption px-2 py-0.5 rounded-lg ml-1">[F9]</span>
+</button>
+<button aria-label="Imprimir relatório gerencial atual" class="min-h-[56px] px-space-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-lg-bold text-body-lg-bold rounded-xl shadow-sm flex items-center gap-space-xs transition-colors focus:outline-none focus:ring-4 focus:ring-primary cursor-pointer" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[26px]">print</span>
+<span>Imprimir Relatório</span>
+<span class="bg-surface-container-highest text-on-surface-variant font-label-code text-caption px-2 py-0.5 rounded-lg ml-1">[F8]</span>
+</button>
+</div>
+</header>
+<!-- 4 CARDS DE TOTAIS E MÉTRICAS OPERACIONAIS -->
+<section aria-label="Métricas e Totais do Período" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter pb-space-xl">
+<!-- Card 1: Período -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider font-bold">Período Selecionado</span>
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">date_range</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">01 a 27 Out 2026</div>
+<div class="font-caption text-caption text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>27 dias computados</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Total Entradas -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider font-bold">Total de Entradas</span>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">login</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-tertiary font-bold tracking-tight">1.428</div>
+<div class="font-caption text-caption text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-[18px]">trending_up</span>
+<span>Média de 53 registros/dia</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Veículos Distintos -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider font-bold">Veículos Distintos</span>
+<div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">directions_car</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">184</div>
+<div class="font-caption text-caption text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span>89% da frota credenciada ativa</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Permanência Média -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider font-bold">Permanência Média</span>
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">schedule</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">05 h 42 min</div>
+<div class="font-caption text-caption text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">timelapse</span>
+<span>Turnos regulares diurnos</span>
+</div>
+</div>
+</div>
+</section>
+<!-- BLOCO DE FILTROS AVANÇADOS -->
+<section aria-labelledby="titulo-filtros" class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-xl flex flex-col gap-space-md">
+<!-- Topo do Bloco de Filtros -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">filter_alt</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface leading-tight" id="titulo-filtros">Filtros de Pesquisa</h2>
+<span class="font-caption text-caption text-on-surface-variant">Selecione os parâmetros e pressione [Enter] para consultar</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="min-h-[48px] px-space-md rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-variant font-body-lg-bold text-body-lg-bold transition-colors focus:outline-none focus:ring-4 focus:ring-primary flex items-center gap-1 cursor-pointer" id="btn-limpar-filtros" onclick="document.getElementById('form-filtros').reset(); showFeedback('Filtros restaurados aos padrões.')" type="button">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+<span>Limpar Filtros</span>
+<span class="font-label-code text-caption text-on-surface-variant ml-1">[Esc]</span>
+</button>
+<button class="min-h-[48px] px-space-lg rounded-lg bg-primary hover:bg-primary-container text-on-primary font-body-lg-bold text-body-lg-bold transition-colors focus:outline-none focus:ring-4 focus:ring-secondary-fixed flex items-center gap-1 shadow-sm cursor-pointer" onclick="showFeedback('Aplicando filtros avançados na base de dados...')" type="button">
+<span class="material-symbols-outlined text-[22px]">search</span>
+<span>Aplicar Filtros</span>
+<span class="bg-black/20 text-on-primary font-label-code text-caption px-2 py-0.5 rounded-lg ml-1">[Enter]</span>
+</button>
+</div>
+</div>
+<form class="flex flex-col gap-space-md" id="form-filtros" onsubmit="event.preventDefault(); showFeedback('Filtros aplicados com sucesso.');">
+<!-- LINHA 1: PERÍODO RÁPIDO SEGMENTADO -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface">Seletor de Período</label>
+<div class="flex flex-wrap items-center gap-2">
+<button class="min-h-[48px] px-space-md rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-body-lg-bold text-body-lg-bold transition-colors focus:outline-none focus:ring-4 focus:ring-primary" type="button">
+            Hoje
+          </button>
+<button class="min-h-[48px] px-space-md rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-body-lg-bold text-body-lg-bold transition-colors focus:outline-none focus:ring-4 focus:ring-primary" type="button">
+            Esta semana
+          </button>
+<button aria-current="true" class="min-h-[48px] px-space-md rounded-lg bg-primary text-on-primary font-body-lg-bold text-body-lg-bold shadow-sm focus:outline-none focus:ring-4 focus:ring-secondary-fixed" type="button">
+            ✓ Este mês
+          </button>
+<button class="min-h-[48px] px-space-md rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-body-lg-bold text-body-lg-bold transition-colors focus:outline-none focus:ring-4 focus:ring-primary" type="button">
+            Mês específico
+          </button>
+<div class="flex items-center gap-2 bg-surface-container-low px-space-md py-1 rounded-lg">
+<span class="font-caption text-caption text-on-surface-variant font-bold">Personalizado:</span>
+<input aria-label="Data inicial" class="w-32 bg-surface-container-lowest text-on-surface px-2 py-1.5 rounded-lg font-label-code text-label-code focus:outline-none focus:ring-4 focus:ring-primary" type="text" value="01/10/2026"/>
+<span class="font-caption text-caption text-on-surface-variant">até</span>
+<input aria-label="Data final" class="w-32 bg-surface-container-lowest text-on-surface px-2 py-1.5 rounded-lg font-label-code text-label-code focus:outline-none focus:ring-4 focus:ring-primary" type="text" value="27/10/2026"/>
+</div>
+</div>
+</div>
+<!-- LINHA 2: GRID DE CAMPOS (PESSOA, PLACA, TIPO PESSOA, TIPO VEÍCULO) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Pessoa / Condutor -->
+<div class="flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="filtro-pessoa">Pessoa / Condutor</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant pointer-events-none text-[22px]">person_search</span>
+<input class="w-full min-h-[52px] pl-11 pr-4 bg-surface-container-low rounded-lg text-on-surface font-body-lg text-body-lg placeholder:text-on-surface-variant/70 focus:bg-surface-container-lowest focus:outline-none focus:ring-4 focus:ring-primary transition-all" id="filtro-pessoa" placeholder="Nome ou CPF..." type="text"/>
+</div>
+</div>
+<!-- Placa do Veículo -->
+<div class="flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="filtro-placa">Placa do Veículo</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant pointer-events-none text-[22px]">directions_car</span>
+<input class="w-full min-h-[52px] pl-11 pr-4 bg-surface-container-low rounded-lg text-on-surface font-label-code text-label-code uppercase tracking-wider placeholder:text-on-surface-variant/70 focus:bg-surface-container-lowest focus:outline-none focus:ring-4 focus:ring-primary transition-all" id="filtro-placa" placeholder="Ex: ABC-1234" type="text"/>
+</div>
+</div>
+<!-- Tipo de Pessoa -->
+<div class="flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="filtro-tipo-pessoa">Tipo de Pessoa</label>
+<select class="w-full min-h-[52px] px-3 bg-surface-container-low rounded-lg text-on-surface font-body-lg text-body-lg focus:bg-surface-container-lowest focus:outline-none focus:ring-4 focus:ring-primary transition-all cursor-pointer" id="filtro-tipo-pessoa">
+<option value="">Todos os tipos</option>
+<option value="colaborador">Colaborador CBA</option>
+<option value="pesquisador">Pesquisador / Bolsista</option>
+<option value="visitante">Visitante</option>
+<option value="terceirizado">Terceirizado / Prestador</option>
+</select>
+</div>
+<!-- Tipo de Veículo -->
+<div class="flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="filtro-tipo-veiculo">Tipo de Veículo</label>
+<select class="w-full min-h-[52px] px-3 bg-surface-container-low rounded-lg text-on-surface font-body-lg text-body-lg focus:bg-surface-container-lowest focus:outline-none focus:ring-4 focus:ring-primary transition-all cursor-pointer" id="filtro-tipo-veiculo">
+<option value="">Todos os veículos</option>
+<option value="carro">Carro (Passeio)</option>
+<option value="moto">Moto</option>
+<option value="van">Van / Utilitário</option>
+<option value="caminhao">Caminhão / Carga</option>
+</select>
+</div>
+</div>
+<!-- LINHA 3: CARGO, SETOR, EMPRESA E CHECKBOX -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-space-md items-end">
+<!-- Cargo / Função -->
+<div class="flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="filtro-cargo">Cargo / Função</label>
+<input class="w-full min-h-[52px] px-4 bg-surface-container-low rounded-lg text-on-surface font-body-lg text-body-lg placeholder:text-on-surface-variant/70 focus:bg-surface-container-lowest focus:outline-none focus:ring-4 focus:ring-primary transition-all" id="filtro-cargo" placeholder="Ex: Pesquisador, Vigilante..." type="text"/>
+</div>
+<!-- Setor / Laboratório -->
+<div class="flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="filtro-setor">Setor / Laboratório</label>
+<select class="w-full min-h-[52px] px-3 bg-surface-container-low rounded-lg text-on-surface font-body-lg text-body-lg focus:bg-surface-container-lowest focus:outline-none focus:ring-4 focus:ring-primary transition-all cursor-pointer" id="filtro-setor">
+<option value="">Todos os setores</option>
+<option value="bio-veg">Biotecnologia Vegetal</option>
+<option value="extracao">Extração &amp; Fitoquímica</option>
+<option value="diretoria">Diretoria Científica</option>
+<option value="logistica">Logística &amp; Suprimentos</option>
+<option value="ti">Tecnologia da Informação</option>
+</select>
+</div>
+<!-- Empresa -->
+<div class="flex flex-col gap-1">
+<label class="font-body-lg-bold text-body-lg-bold text-on-surface" for="filtro-empresa">Empresa / Instituição</label>
+<input class="w-full min-h-[52px] px-4 bg-surface-container-low rounded-lg text-on-surface font-body-lg text-body-lg placeholder:text-on-surface-variant/70 focus:bg-surface-container-lowest focus:outline-none focus:ring-4 focus:ring-primary transition-all" id="filtro-empresa" placeholder="Ex: CBA, Fapeam, ClimaNorte..." type="text"/>
+</div>
+<!-- Checkbox de pendências no pátio -->
+<div class="min-h-[52px] flex items-center bg-surface-container-low rounded-lg px-4 hover:bg-surface-container transition-colors">
+<label class="flex items-center gap-3 cursor-pointer select-none w-full">
+<input class="w-6 h-6 rounded text-primary focus:ring-4 focus:ring-primary accent-primary cursor-pointer" id="filtro-somente-patio" type="checkbox"/>
+<span class="font-body-lg-bold text-body-lg-bold text-on-surface leading-snug">
+              Somente no pátio (sem saída)
+            </span>
+</label>
+</div>
+</div>
+</form>
+</section>
+<!-- CONTROLE DA TABELA E RESULTADOS -->
+<section aria-label="Tabela de Relatórios" class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<!-- BARRA SUPERIOR DA TABELA -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-md">
+<span class="font-headline-md text-headline-md text-on-surface">
+          1.428 <span class="font-body-lg text-body-lg text-on-surface-variant font-normal">registros encontrados</span>
+</span>
+<div class="h-6 w-[1px] bg-outline-variant/60 hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<label class="font-caption text-caption text-on-surface-variant font-bold" for="registros-pagina">Exibir por página:</label>
+<select class="bg-surface-container-lowest text-on-surface font-body-lg text-body-lg px-2 py-1 rounded-lg focus:outline-none focus:ring-4 focus:ring-primary cursor-pointer" id="registros-pagina">
+<option selected="" value="25">25</option>
+<option value="50">50</option>
+<option value="100">100</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="min-h-[48px] px-space-md bg-tertiary-container hover:bg-tertiary text-on-primary font-body-lg-bold text-body-lg-bold rounded-lg shadow-sm flex items-center gap-2 transition-colors focus:outline-none focus:ring-4 focus:ring-tertiary-fixed cursor-pointer" onclick="showFeedback('Exportando 1.428 registros filtrados para Excel...')" type="button">
+<span class="material-symbols-outlined text-[22px]">download</span>
+<span>Exportar Planilha Completa</span>
+</button>
+</div>
+</div>
+<!-- TABELA DE REGISTROS RESPONSIVA COM ALTA LEGIBILIDADE -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[1100px]">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-body-lg-bold text-body-lg-bold">
+<th class="py-space-sm px-space-sm rounded-l-lg" scope="col">Entrada</th>
+<th class="py-space-sm px-space-sm" scope="col">Saída</th>
+<th class="py-space-sm px-space-sm" scope="col">Permanência</th>
+<th class="py-space-sm px-space-sm" scope="col">Placa</th>
+<th class="py-space-sm px-space-sm" scope="col">Veículo / Modelo</th>
+<th class="py-space-sm px-space-sm" scope="col">Condutor / Vínculo</th>
+<th class="py-space-sm px-space-sm" scope="col">Setor / Empresa</th>
+<th class="py-space-sm px-space-sm" scope="col">Status</th>
+<th class="py-space-sm px-space-sm rounded-r-lg text-right" scope="col">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low font-body-lg text-body-lg text-on-surface">
+<!-- LINHA 1: Maria da Silva Souza (No Pátio) -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-sm">
+<div class="font-label-code text-label-code text-on-surface font-bold">27/10/2026</div>
+<div class="font-label-code text-caption text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">south_east</span>08:15
+              </div>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="inline-flex items-center gap-1 text-on-surface-variant font-caption text-caption italic bg-surface-container-high px-2 py-0.5 rounded-lg">
+                -- (No pátio)
+              </span>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface">06 h 17 min</span>
+</td>
+<td class="py-space-md px-space-sm">
+<!-- Selo Placa Mercosul -->
+<div class="inline-flex flex-col border-2 border-on-surface rounded-lg overflow-hidden bg-surface-container-lowest shadow-sm">
+<div class="bg-[#003399] text-white px-2 py-0.2 text-[10px] font-label-code flex items-center justify-between tracking-widest leading-none">
+<span>BRASIL</span>
+<span class="text-[8px]">●</span>
+</div>
+<div class="px-2.5 py-0.5 text-center font-plate-display text-[22px] leading-tight text-on-surface tracking-wider font-bold">
+                  ABC-1234
+                </div>
+</div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Fiat Strada</div>
+<div class="font-caption text-caption text-on-surface-variant">Branca • Picape</div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Maria da Silva Souza</div>
+<span class="inline-block bg-primary-container/20 text-primary font-caption text-caption px-2 py-0.5 rounded-lg mt-0.5">
+                Biotecnologia Vegetal
+              </span>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">CBA</div>
+<div class="font-caption text-caption text-on-surface-variant">Campus Principal</div>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="inline-flex items-center gap-1.5 bg-[#DBEAFE] text-[#1D4ED8] font-body-lg-bold text-caption px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[18px]">local_parking</span>
+                No pátio
+              </span>
+</td>
+<td class="py-space-md px-space-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button aria-label="Ver detalhes de movimentação" class="p-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-variant focus:outline-none focus:ring-4 focus:ring-primary transition-colors" onclick="showFeedback('Abrindo histórico detalhado do veículo ABC-1234')" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button aria-label="Imprimir comprovante" class="p-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-variant focus:outline-none focus:ring-4 focus:ring-primary transition-colors" onclick="showFeedback('Imprimindo comprovante de acesso...')" type="button">
+<span class="material-symbols-outlined text-[20px]">receipt</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- LINHA 2: Dra. Camila Albuquerque (Concluída) -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-sm">
+<div class="font-label-code text-label-code text-on-surface font-bold">27/10/2026</div>
+<div class="font-label-code text-caption text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">south_east</span>07:15
+              </div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-label-code text-label-code text-on-surface font-bold">27/10/2026</div>
+<div class="font-label-code text-caption text-on-surface-variant font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">north_east</span>13:40
+              </div>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface">06 h 25 min</span>
+</td>
+<td class="py-space-md px-space-sm">
+<!-- Selo Placa Padrão Antigo (Cinza) -->
+<div class="inline-flex flex-col border-2 border-outline rounded-lg overflow-hidden bg-surface-container-highest shadow-sm">
+<div class="bg-outline text-white px-2 py-0.2 text-[10px] font-label-code text-center tracking-wider leading-none">
+                  AM - MANAUS
+                </div>
+<div class="px-2.5 py-0.5 text-center font-plate-display text-[22px] leading-tight text-on-surface tracking-wider font-bold">
+                  NOX-9912
+                </div>
+</div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Toyota Corolla</div>
+<div class="font-caption text-caption text-on-surface-variant">Preto • Sedã</div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Dra. Camila Albuquerque</div>
+<span class="inline-block bg-primary-container/20 text-primary font-caption text-caption px-2 py-0.5 rounded-lg mt-0.5">
+                Diretoria Científica
+              </span>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">CBA</div>
+<div class="font-caption text-caption text-on-surface-variant">Gabinete Central</div>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="inline-flex items-center gap-1.5 bg-tertiary-fixed text-on-tertiary-fixed font-body-lg-bold text-caption px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                Concluída
+              </span>
+</td>
+<td class="py-space-md px-space-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button aria-label="Ver detalhes de movimentação" class="p-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-variant focus:outline-none focus:ring-4 focus:ring-primary transition-colors" onclick="showFeedback('Abrindo histórico detalhado do veículo NOX-9912')" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button aria-label="Imprimir comprovante" class="p-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-variant focus:outline-none focus:ring-4 focus:ring-primary transition-colors" onclick="showFeedback('Imprimindo comprovante de acesso...')" type="button">
+<span class="material-symbols-outlined text-[20px]">receipt</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- LINHA 3: Roberto Silveira (Pendente > 24h) -->
+<tr class="hover:bg-error-container/20 bg-error-container/10 transition-colors">
+<td class="py-space-md px-space-sm">
+<div class="font-label-code text-label-code text-on-surface font-bold">26/10/2026</div>
+<div class="font-label-code text-caption text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">south_east</span>15:20
+              </div>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="inline-flex items-center gap-1 text-error font-caption text-caption font-bold bg-error-container px-2 py-0.5 rounded-lg">
+<span class="material-symbols-outlined text-[16px]">warning</span>Sem saída registrada
+              </span>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="font-label-code text-label-code font-bold text-error">27 h 10 min</span>
+</td>
+<td class="py-space-md px-space-sm">
+<!-- Selo Placa Padrão Antigo (Cinza) -->
+<div class="inline-flex flex-col border-2 border-outline rounded-lg overflow-hidden bg-surface-container-highest shadow-sm">
+<div class="bg-outline text-white px-2 py-0.2 text-[10px] font-label-code text-center tracking-wider leading-none">
+                  AM - MANAUS
+                </div>
+<div class="px-2.5 py-0.5 text-center font-plate-display text-[22px] leading-tight text-on-surface tracking-wider font-bold">
+                  PHJ-4320
+                </div>
+</div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Chevrolet Onix</div>
+<div class="font-caption text-caption text-on-surface-variant">Cinza • Hatch</div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Roberto Silveira</div>
+<span class="inline-block bg-surface-container-high text-on-surface font-caption text-caption px-2 py-0.5 rounded-lg mt-0.5">
+                Logística &amp; Suprimentos
+              </span>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Terceirizado</div>
+<div class="font-caption text-caption text-on-surface-variant">TransNorte Log</div>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="inline-flex items-center gap-1.5 bg-error-container text-on-error-container font-body-lg-bold text-caption px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[18px]">priority_high</span>
+                Pendente &gt;24h
+              </span>
+</td>
+<td class="py-space-md px-space-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button aria-label="Notificar vigilância sobre permanência irregular" class="p-2 rounded-lg bg-error text-on-error hover:bg-error/90 focus:outline-none focus:ring-4 focus:ring-error-container transition-colors" onclick="showFeedback('Alerta de permanência excessiva registrado para Guarita 01 e 02')" type="button">
+<span class="material-symbols-outlined text-[20px]">notification_important</span>
+</button>
+<button aria-label="Ver detalhes de movimentação" class="p-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-variant focus:outline-none focus:ring-4 focus:ring-primary transition-colors" onclick="showFeedback('Abrindo histórico detalhado do veículo PHJ-4320')" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- LINHA 4: Carlos Oliveira (Concluída) -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-sm">
+<div class="font-label-code text-label-code text-on-surface font-bold">26/10/2026</div>
+<div class="font-label-code text-caption text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">south_east</span>08:00
+              </div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-label-code text-label-code text-on-surface font-bold">26/10/2026</div>
+<div class="font-label-code text-caption text-on-surface-variant font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">north_east</span>17:55
+              </div>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface">09 h 55 min</span>
+</td>
+<td class="py-space-md px-space-sm">
+<!-- Selo Placa Padrão Antigo (Cinza) -->
+<div class="inline-flex flex-col border-2 border-outline rounded-lg overflow-hidden bg-surface-container-highest shadow-sm">
+<div class="bg-outline text-white px-2 py-0.2 text-[10px] font-label-code text-center tracking-wider leading-none">
+                  AM - MANAUS
+                </div>
+<div class="px-2.5 py-0.5 text-center font-plate-display text-[22px] leading-tight text-on-surface tracking-wider font-bold">
+                  KAU-5421
+                </div>
+</div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Renault Master</div>
+<div class="font-caption text-caption text-on-surface-variant">Prata • Furgão Técnico</div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Carlos Oliveira</div>
+<span class="inline-block bg-surface-container-high text-on-surface font-caption text-caption px-2 py-0.5 rounded-lg mt-0.5">
+                Manutenção Predial
+              </span>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">ClimaNorte ME</div>
+<div class="font-caption text-caption text-on-surface-variant">OS Nº 8829/26</div>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="inline-flex items-center gap-1.5 bg-tertiary-fixed text-on-tertiary-fixed font-body-lg-bold text-caption px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                Concluída
+              </span>
+</td>
+<td class="py-space-md px-space-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button aria-label="Ver detalhes de movimentação" class="p-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-variant focus:outline-none focus:ring-4 focus:ring-primary transition-colors" onclick="showFeedback('Abrindo histórico detalhado do veículo KAU-5421')" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button aria-label="Imprimir comprovante" class="p-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-variant focus:outline-none focus:ring-4 focus:ring-primary transition-colors" onclick="showFeedback('Imprimindo comprovante de acesso...')" type="button">
+<span class="material-symbols-outlined text-[20px]">receipt</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- LINHA 5: Carlos Eduardo Mendes (Concluída) -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-sm">
+<div class="font-label-code text-label-code text-on-surface font-bold">25/10/2026</div>
+<div class="font-label-code text-caption text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">south_east</span>19:10
+              </div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-label-code text-label-code text-on-surface font-bold">25/10/2026</div>
+<div class="font-label-code text-caption text-on-surface-variant font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">north_east</span>23:45
+              </div>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface">04 h 35 min</span>
+</td>
+<td class="py-space-md px-space-sm">
+<!-- Selo Placa Mercosul -->
+<div class="inline-flex flex-col border-2 border-on-surface rounded-lg overflow-hidden bg-surface-container-lowest shadow-sm">
+<div class="bg-[#003399] text-white px-2 py-0.2 text-[10px] font-label-code flex items-center justify-between tracking-widest leading-none">
+<span>BRASIL</span>
+<span class="text-[8px]">●</span>
+</div>
+<div class="px-2.5 py-0.5 text-center font-plate-display text-[22px] leading-tight text-on-surface tracking-wider font-bold">
+                  QNB-8A92
+                </div>
+</div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Toyota Hilux</div>
+<div class="font-caption text-caption text-on-surface-variant">Prata • 4x4 Pesquisa</div>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Carlos Eduardo Mendes</div>
+<span class="inline-block bg-primary-container/20 text-primary font-caption text-caption px-2 py-0.5 rounded-lg mt-0.5">
+                Pesquisador Visitante
+              </span>
+</td>
+<td class="py-space-md px-space-sm">
+<div class="font-body-lg-bold text-body-lg-bold text-on-surface">Fapeam Pesquisa</div>
+<div class="font-caption text-caption text-on-surface-variant">Convênio Amazônia Viva</div>
+</td>
+<td class="py-space-md px-space-sm">
+<span class="inline-flex items-center gap-1.5 bg-tertiary-fixed text-on-tertiary-fixed font-body-lg-bold text-caption px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                Concluída
+              </span>
+</td>
+<td class="py-space-md px-space-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button aria-label="Ver detalhes de movimentação" class="p-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-variant focus:outline-none focus:ring-4 focus:ring-primary transition-colors" onclick="showFeedback('Abrindo histórico detalhado do veículo QNB-8A92')" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button aria-label="Imprimir comprovante" class="p-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-variant focus:outline-none focus:ring-4 focus:ring-primary transition-colors" onclick="showFeedback('Imprimindo comprovante de acesso...')" type="button">
+<span class="material-symbols-outlined text-[20px]">receipt</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- PAGINAÇÃO ACESSÍVEL E COMPLETA -->
+<nav aria-label="Navegação da Tabela" class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pt-space-sm border-t border-surface-container">
+<div class="font-caption text-caption text-on-surface-variant">
+        Mostrando <span class="font-bold text-on-surface">1 a 5</span> de <span class="font-bold text-on-surface">1.428</span> registros cadastrados
+      </div>
+<div class="flex items-center gap-1.5">
+<button class="min-h-[44px] px-3 rounded-lg bg-surface-container-low text-on-surface-variant/40 font-body-lg-bold text-body-lg-bold cursor-not-allowed flex items-center gap-1" disabled="" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+<span>Anterior</span>
+</button>
+<button aria-current="page" class="min-h-[44px] w-11 rounded-lg bg-primary text-on-primary font-body-lg-bold text-body-lg-bold shadow-sm focus:outline-none focus:ring-4 focus:ring-secondary-fixed" type="button">
+          1
+        </button>
+<button class="min-h-[44px] w-11 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface font-body-lg-bold text-body-lg-bold transition-colors focus:outline-none focus:ring-4 focus:ring-primary" type="button">
+          2
+        </button>
+<button class="min-h-[44px] w-11 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface font-body-lg-bold text-body-lg-bold transition-colors focus:outline-none focus:ring-4 focus:ring-primary" type="button">
+          3
+        </button>
+<span class="px-2 font-caption text-caption text-on-surface-variant">...</span>
+<button class="min-h-[44px] w-11 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface font-body-lg-bold text-body-lg-bold transition-colors focus:outline-none focus:ring-4 focus:ring-primary" type="button">
+          58
+        </button>
+<button class="min-h-[44px] px-3 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface font-body-lg-bold text-body-lg-bold transition-colors focus:outline-none focus:ring-4 focus:ring-primary flex items-center gap-1 cursor-pointer" type="button">
+<span>Próxima</span>
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</nav>
+</section>
+<!-- BARRA DE ATALHOS DE TECLADO RÁPIDOS PARA O OPERADOR -->
+<section aria-label="Atalhos de Teclado" class="mt-space-md py-space-sm px-space-md bg-surface-container-high rounded-xl flex flex-wrap items-center justify-between gap-space-sm font-caption text-caption text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">keyboard</span>
+<span class="font-body-lg-bold text-body-lg-bold text-on-surface">Atalhos Operacionais:</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-md font-label-code text-caption">
+<span class="flex items-center gap-1.5"><kbd class="bg-surface-container-lowest text-on-surface px-2 py-0.5 rounded shadow-sm">[Enter]</kbd> Filtrar</span>
+<span class="flex items-center gap-1.5"><kbd class="bg-surface-container-lowest text-on-surface px-2 py-0.5 rounded shadow-sm">[Esc]</kbd> Limpar Filtros</span>
+<span class="flex items-center gap-1.5"><kbd class="bg-surface-container-lowest text-on-surface px-2 py-0.5 rounded shadow-sm">[F8]</kbd> Imprimir Relatório</span>
+<span class="flex items-center gap-1.5"><kbd class="bg-surface-container-lowest text-on-surface px-2 py-0.5 rounded shadow-sm">[F9]</kbd> Exportar Excel</span>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-low border-t border-outline-variant py-space-md"><div class="w-full px-margin flex flex-col md:flex-row items-center justify-between gap-space-sm font-caption text-caption text-on-surface-variant"><div><span>Centro de Bionegócios da Amazônia • CBA | Sistema Integrado de Controle de Acesso e Cancela</span></div><div class="flex items-center gap-space-md"><span class="font-label-code text-label-code text-tertiary font-bold">• CANCELA: PRONTA</span><span class="font-label-code text-label-code text-primary font-bold">• LPR: ATIVO</span><span>Guarita Principal Nº 2</span></div></div></footer></body></html>

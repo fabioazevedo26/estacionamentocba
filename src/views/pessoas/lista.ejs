@@ -1,0 +1,73 @@
+<%- include('../partials/header') %>
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+  <h1 class="h3 mb-0"><i class="bi bi-people me-2"></i>Pessoas</h1>
+  <a class="btn btn-primary" href="/pessoas/nova"><i class="bi bi-person-plus me-1"></i>Nova pessoa</a>
+</div>
+
+<form class="card card-body shadow-sm mb-3" method="get">
+  <div class="row g-2 align-items-end">
+    <div class="col-md-4">
+      <label class="form-label small" for="q">Busca</label>
+      <input class="form-control" id="q" name="q" value="<%= f.q %>" placeholder="Nome ou empresa">
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="tipo">Tipo</label>
+      <select class="form-select" id="tipo" name="tipo">
+        <option value="">Todos</option>
+        <option value="COLABORADOR"<%= f.tipo === 'COLABORADOR' ? ' selected' : '' %>>Colaborador</option>
+        <option value="VISITANTE"<%= f.tipo === 'VISITANTE' ? ' selected' : '' %>>Visitante</option>
+      </select>
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="status">Status</label>
+      <select class="form-select" id="status" name="status">
+        <option value="">Todos</option>
+        <% for (const s of ['ATIVO', 'BLOQUEADO', 'INATIVO']) { %>
+          <option value="<%= s %>"<%= f.status === s ? ' selected' : '' %>><%= rotulo(s) %></option>
+        <% } %>
+      </select>
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="cargo">Cargo</label>
+      <select class="form-select" id="cargo" name="cargo">
+        <option value="">Todos</option>
+        <% for (const c of cargos) { %><option<%= f.cargo === c ? ' selected' : '' %>><%= c %></option><% } %>
+      </select>
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="setor">Setor</label>
+      <select class="form-select" id="setor" name="setor">
+        <option value="">Todos</option>
+        <% for (const s of setores) { %><option<%= f.setor === s ? ' selected' : '' %>><%= s %></option><% } %>
+      </select>
+    </div>
+    <div class="col-12 d-flex gap-2">
+      <button class="btn btn-primary"><i class="bi bi-funnel me-1"></i>Filtrar</button>
+      <a class="btn btn-outline-secondary" href="/pessoas">Limpar</a>
+    </div>
+  </div>
+</form>
+
+<div class="table-responsive card shadow-sm mb-3">
+  <table class="table table-hover align-middle mb-0">
+    <thead class="table-light">
+      <tr><th>Nome</th><th>Tipo</th><th>Cargo</th><th>Setor</th><th>Empresa</th><th class="text-center">Veículos</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <% if (!lista.length) { %><tr><td colspan="7" class="text-center text-body-secondary py-4">Nenhuma pessoa encontrada.</td></tr><% } %>
+      <% for (const p of lista) { %>
+        <tr>
+          <td><a href="/pessoas/<%= p.id %>" class="fw-semibold text-decoration-none"><%= p.nome %></a></td>
+          <td><%= rotulo(p.tipo) %></td>
+          <td><%= p.cargo || '' %></td>
+          <td><%= p.setor || '' %></td>
+          <td><%= p.empresa || '' %></td>
+          <td class="text-center"><%= p.qtd_veiculos %></td>
+          <td><%- statusChip(p.status) %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/paginacao') %>
+<%- include('../partials/footer') %>

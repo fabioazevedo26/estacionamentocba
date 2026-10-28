@@ -1,0 +1,72 @@
+<%- include('../partials/header') %>
+<h1 class="h3 mb-3"><i class="bi bi-shield-check me-2"></i>Auditoria</h1>
+
+<form class="card card-body shadow-sm mb-3" method="get">
+  <div class="row g-2 align-items-end">
+    <div class="col-6 col-md-3">
+      <label class="form-label small" for="de">De</label>
+      <input class="form-control" type="date" id="de" name="de" value="<%= f.de %>">
+    </div>
+    <div class="col-6 col-md-3">
+      <label class="form-label small" for="ate">Até</label>
+      <input class="form-control" type="date" id="ate" name="ate" value="<%= f.ate %>">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label small" for="acao">Ação</label>
+      <select class="form-select" id="acao" name="acao">
+        <option value="">Todas</option>
+        <% for (const a of acoes) { %><option value="<%= a %>"<%= f.acao === a ? ' selected' : '' %>><%= a.replace(/_/g, ' ') %></option><% } %>
+      </select>
+    </div>
+    <div class="col-md-3 d-flex gap-2">
+      <button class="btn btn-primary"><i class="bi bi-funnel me-1"></i>Filtrar</button>
+      <a class="btn btn-outline-secondary" href="/auditoria">Limpar</a>
+    </div>
+  </div>
+</form>
+
+<%
+  const linkEntidade = (a) => ({ PESSOA: '/pessoas/', VEICULO: '/veiculos/', MOVIMENTACAO: '/movimentacoes/' }[a.entidade]);
+  const COR_ACAO = { EXCLUIR: 'danger', BLOQUEAR: 'danger', DESBLOQUEAR: 'success', CRIAR: 'primary', CORRIGIR_HORARIO: 'warning',
+                     REGISTRAR_ENTRADA: 'success', REGISTRAR_SAIDA: 'secondary', INATIVAR: 'dark', LOGIN: 'info', EDITAR: 'primary' };
+  const valorTxt = (v) => v === null || v === undefined || v === '' ? '—' : (typeof v === 'object' ? JSON.stringify(v) : String(v));
+%>
+<div class="table-responsive card shadow-sm mb-3">
+  <table class="table table-sm align-middle mb-0">
+    <thead class="table-light">
+      <tr><th>Data/hora</th><th>Usuário</th><th>Ação</th><th>Registro</th><th>Detalhes</th></tr>
+    </thead>
+    <tbody>
+      <% if (!lista.length) { %><tr><td colspan="5" class="text-center text-body-secondary py-4">Nenhum registro.</td></tr><% } %>
+      <% for (const a of lista) { const d = a.detalhes || {}; %>
+        <tr>
+          <td class="text-nowrap"><%= fmtData(a.data_hora) %> <%= a.data_hora.slice(11, 19) %></td>
+          <td><%= a.usuario || '' %></td>
+          <td><span class="badge text-bg-<%= COR_ACAO[a.acao] || 'secondary' %>"><%= a.acao.replace(/_/g, ' ') %></span></td>
+          <td class="text-nowrap">
+            <% if (a.entidade) { %>
+              <% const link = linkEntidade(a); %>
+              <%= a.entidade.toLowerCase() %>
+              <% if (a.entidade_id && link && a.acao !== 'EXCLUIR' && a.entidade !== 'MOVIMENTACAO') { %><a href="<%= link + a.entidade_id %>">#<%= a.entidade_id %></a><% } else if (a.entidade_id) { %>#<%= a.entidade_id %><% } %>
+            <% } %>
+          </td>
+          <td class="small detalhes-auditoria">
+            <%
+              const antes = d.antes || {}; const depois = d.depois || {};
+              const chaves = [...new Set([...Object.keys(antes), ...Object.keys(depois)])];
+              const extras = Object.entries(d).filter(([k]) => k !== 'antes' && k !== 'depois');
+            %>
+            <% for (const k of chaves) { if (valorTxt(antes[k]) === valorTxt(depois[k]) && d.antes) continue; %>
+              <div><span class="text-body-secondary"><%= k %>:</span>
+                <% if (d.antes && d.depois) { %><del><%= valorTxt(antes[k]) %></del> → <% } %>
+                <%= valorTxt(d.depois ? depois[k] : antes[k]) %></div>
+            <% } %>
+            <% for (const [k, v] of extras) { %><div><span class="text-body-secondary"><%= k %>:</span> <%= valorTxt(v) %></div><% } %>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/paginacao') %>
+<%- include('../partials/footer') %>

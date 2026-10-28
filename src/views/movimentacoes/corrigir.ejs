@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+<% const val = valores || { entrada_em: paraInputDataHora(mov.entrada_em), saida_em: paraInputDataHora(mov.saida_em), observacao: '' }; %>
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-xl-6">
+    <a href="/movimentacoes" class="small text-decoration-none"><i class="bi bi-arrow-left"></i> Movimentações</a>
+    <h1 class="h3 mb-3"><i class="bi bi-pencil-square me-2"></i>Corrigir horário</h1>
+    <div class="card shadow-sm mb-3">
+      <div class="card-body">
+        <span class="placa <%= placaClasse(mov.placa) %>"><%= placa(mov.placa) %></span>
+        <span class="ms-2"><%= rotulo(mov.veiculo_tipo) %><%= mov.marca_modelo ? ' · ' + mov.marca_modelo : '' %></span>
+        <div class="mt-1">Motorista: <strong><%= mov.motorista_nome %></strong></div>
+        <div class="small text-body-secondary mt-1">Registrado: entrada <%= fmtDataHora(mov.entrada_em) %>
+          · saída <%= mov.saida_em ? fmtDataHora(mov.saida_em) : '(ainda no pátio)' %></div>
+        <% if (mov.observacao) { %><div class="small mt-2"><i class="bi bi-chat-left-text me-1"></i><%= mov.observacao %></div><% } %>
+      </div>
+    </div>
+    <% if (erro) { %><div class="alert alert-danger"><i class="bi bi-exclamation-octagon me-1"></i><%= erro %></div><% } %>
+    <form method="post" action="/movimentacoes/<%= mov.id %>/corrigir" class="card card-body shadow-sm">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label" for="entrada_em">Entrada *</label>
+          <input class="form-control" type="datetime-local" id="entrada_em" name="entrada_em" required value="<%= val.entrada_em %>">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label" for="saida_em">Saída<%= mov.saida_em ? ' *' : '' %></label>
+          <input class="form-control" type="datetime-local" id="saida_em" name="saida_em" value="<%= val.saida_em %>"<%= mov.saida_em ? ' required' : '' %>>
+          <% if (!mov.saida_em) { %><div class="form-text">Deixe vazio se o veículo ainda está no pátio.</div><% } %>
+        </div>
+        <div class="col-12">
+          <label class="form-label" for="observacao">Motivo da correção *</label>
+          <textarea class="form-control" id="observacao" name="observacao" rows="2" required minlength="5" maxlength="300"
+                    placeholder="Ex.: porteiro esqueceu de registrar a saída no horário"><%= val.observacao %></textarea>
+          <div class="form-text">Obrigatório. Fica registrado na movimentação e na auditoria.</div>
+        </div>
+      </div>
+      <div class="d-flex gap-2 mt-4">
+        <button class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Salvar correção</button>
+        <a class="btn btn-outline-secondary" href="/movimentacoes">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+<%- include('../partials/footer') %>

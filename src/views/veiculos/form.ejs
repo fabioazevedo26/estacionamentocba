@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+<div class="row justify-content-center">
+  <div class="col-lg-9 col-xl-7">
+    <h1 class="h3 mb-3"><i class="bi bi-truck-front me-2"></i><%= titulo %></h1>
+    <% if (erro) { %><div class="alert alert-danger"><i class="bi bi-exclamation-octagon me-1"></i><%= erro %></div><% } %>
+    <form method="post" action="<%= veiculo.id ? '/veiculos/' + veiculo.id : '/veiculos' %>" class="card card-body shadow-sm">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="row g-3">
+        <div class="col-md-5">
+          <label class="form-label" for="placa">Placa *</label>
+          <input class="form-control form-control-lg text-uppercase input-placa" id="placa" name="placa" required maxlength="10"
+                 value="<%= veiculo.placa || '' %>" autofocus>
+          <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" id="placa_fora_padrao" name="placa_fora_padrao"<%= Number(veiculo.placa_fora_padrao) ? ' checked' : '' %>>
+            <label class="form-check-label" for="placa_fora_padrao">Placa fora do padrão</label>
+          </div>
+          <div class="form-text">Padrões aceitos: ABC1234 ou Mercosul ABC1D23. Marque "fora do padrão" para carretas, placas estrangeiras etc.</div>
+        </div>
+        <div class="col-md-7">
+          <label class="form-label" for="tipo">Tipo *</label>
+          <select class="form-select form-select-lg" id="tipo" name="tipo" required>
+            <% for (const t of tipos) { %><option value="<%= t %>"<%= veiculo.tipo === t ? ' selected' : '' %>><%= rotulo(t) %></option><% } %>
+          </select>
+        </div>
+        <div class="col-md-7">
+          <label class="form-label" for="marca_modelo">Marca/Modelo</label>
+          <input class="form-control" id="marca_modelo" name="marca_modelo" maxlength="80" value="<%= veiculo.marca_modelo || '' %>">
+        </div>
+        <div class="col-md-5">
+          <label class="form-label" for="cor">Cor</label>
+          <input class="form-control" id="cor" name="cor" maxlength="30" value="<%= veiculo.cor || '' %>">
+        </div>
+        <div class="col-12">
+          <%- include('../partials/pessoa-picker', { campo: 'proprietario_id', valorId: veiculo.proprietario_id,
+                valorNome: veiculo.proprietario_nome || veiculo.proprietario_id_nome, rotulo: 'Proprietário (opcional)',
+                ajuda: 'Um veículo pertence a no máximo uma pessoa. Deixe vazio se não houver.' }) %>
+        </div>
+        <div class="col-12">
+          <label class="form-label" for="observacao">Observação</label>
+          <textarea class="form-control" id="observacao" name="observacao" rows="2" maxlength="500"><%= veiculo.observacao || '' %></textarea>
+        </div>
+      </div>
+      <div class="d-flex gap-2 mt-4">
+        <button class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Salvar</button>
+        <a class="btn btn-outline-secondary" href="<%= veiculo.id ? '/veiculos/' + veiculo.id : '/veiculos' %>">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+<%- include('../partials/footer') %>
