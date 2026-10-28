@@ -107,7 +107,7 @@ function doProprietario(pessoaId) {
 }
 
 // Busca da portaria: placa (ou parte), nome do proprietário ou do motorista
-// que está com o veículo no pátio. Inativos não aparecem.
+// que está com o veículo no estacionamento. Inativos não aparecem.
 function buscaPortaria(q, limite = 10) {
   const placa = placaUtil.normalizar(q);
   const nome = db.semAcento(String(q || '').trim());

@@ -29,7 +29,7 @@
       <%
         const itens = [
           ['/', 'Portaria', 'bi-door-open'],
-          ['/patio', 'Pátio agora', 'bi-car-front'],
+          ['/patio', 'Estacionamento', 'bi-car-front'],
           ['/pedestres', 'Pedestres', 'bi-person-walking'],
           ['/pessoas', 'Pessoas', 'bi-people'],
           ['/veiculos', 'Veículos', 'bi-truck-front'],
@@ -45,7 +45,7 @@
             <a class="nav-link<%= ativo ? ' active' : '' %>" href="<%= href %>"<%- ativo ? ' aria-current="page"' : '' %>>
               <i class="bi <%= icone %>" aria-hidden="true"></i><%= nome %>
               <% if (href === '/patio') { %>
-                <span class="badge contador-patio" title="Veículos no pátio agora"><%= patioCount %><span class="visually-hidden"> veículos no pátio</span></span>
+                <span class="badge contador-patio" title="Veículos no estacionamento agora"><%= patioCount %><span class="visually-hidden"> veículos no estacionamento</span></span>
               <% } else if (href === '/pedestres') { %>
                 <span class="badge contador-patio" title="Pedestres no CBA agora"><%= pedestresCount %><span class="visually-hidden"> pedestres no CBA</span></span>
               <% } %>

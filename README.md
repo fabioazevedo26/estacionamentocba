@@ -14,7 +14,7 @@ internet**: Bootstrap e os ícones são servidos pelo próprio sistema.
 - **Pedestres**: entrada e saída de pessoas a pé (colaborador cadastrado ou novo
   visitante), lista de quem está no CBA agora com botão de saída, histórico com correção
   de horário e exportação para Excel. Pessoa bloqueada não pode entrar.
-- **Pátio agora**: veículos dentro do estacionamento, com permanência e botão de saída.
+- **Estacionamento**: veículos dentro do estacionamento, com permanência e botão de saída.
   Linhas em amarelo depois de `HORA_FIM_DIA` e em vermelho para entradas de dias
   anteriores sem saída. Contador no menu em todas as telas.
 - **Pessoas** e **Veículos**: cadastro, edição, filtros, bloqueio com motivo,
@@ -34,7 +34,7 @@ internet**: Bootstrap e os ícones são servidos pelo próprio sistema.
 | `↑` / `↓` | navegam pelos resultados |
 | `Enter` depois de selecionar | confirma a entrada ou a saída (o botão já fica em foco) |
 | `Esc` | limpa a tela e volta para a busca |
-| `F2` | leva o cursor para a busca (também filtra a lista no Pátio agora) |
+| `F2` | leva o cursor para a busca (também filtra a lista no Estacionamento) |
 
 ### Identidade visual e acessibilidade
 
@@ -70,7 +70,7 @@ Copie `.env.example` para `.env` e preencha:
 | `SESSION_SECRET` | *(longo e aleatório)* | Segredo das sessões. Gere com `openssl rand -hex 32`. |
 | `ADMIN_USER` | `Portaria2` | Usuário criado na primeira execução. |
 | `ADMIN_PASSWORD` | *(senha forte)* | Usada **somente** na primeira execução, quando ainda não há usuários. É gravada como hash bcrypt. Depois, troque a senha pela interface. |
-| `HORA_FIM_DIA` | `18:00` | A partir desse horário, veículos ainda no pátio ficam destacados. |
+| `HORA_FIM_DIA` | `18:00` | A partir desse horário, veículos ainda no estacionamento ficam destacados. |
 | `BACKUP_RETENCAO_DIAS` | `30` | Quantos dias de backups manter em `data/backups`. |
 
 > Se `SESSION_SECRET` ficar vazio, o sistema funciona, mas todos precisam fazer login
@@ -317,7 +317,7 @@ Os arquivos de `public/vendor` (Bootstrap, ícones e fontes) fazem parte do repo
 | `pessoas` | colaboradores e visitantes |
 | `opcoes` | listas de cargo e setor (crescem com "Outro (digitar)") |
 | `veiculos` | veículos, com proprietário opcional |
-| `movimentacoes` | entradas e saídas de veículos (`saida_em` vazio = no pátio) |
+| `movimentacoes` | entradas e saídas de veículos (`saida_em` vazio = no estacionamento) |
 | `acessos_pedestres` | entradas e saídas a pé (`saida_em` vazio = no CBA) |
 | `auditoria` | histórico de ações |
 | `migracoes` | migrações já aplicadas |

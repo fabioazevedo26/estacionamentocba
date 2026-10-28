@@ -25,7 +25,7 @@
 
   function badgeSituacao(v) {
     if (v.status === 'BLOQUEADO') return '<span class="chip chip-solido-bloq"><i class="bi bi-lock-fill" aria-hidden="true"></i>BLOQUEADO</span>';
-    if (v.dentro) return '<span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>No pátio</span>';
+    if (v.dentro) return '<span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>No estacionamento</span>';
     return '<span class="chip chip-neutro"><i class="bi bi-sign-turn-right" aria-hidden="true"></i>Fora</span>';
   }
 
@@ -165,10 +165,10 @@
          <div class="text-body-secondary">${vinculo}</div>`
       : '<span class="text-body-secondary">Sem proprietário cadastrado</span>';
     const situacao = dentro
-      ? '<span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>NO PÁTIO</span>'
-      : '<span class="chip chip-neutro"><i class="bi bi-sign-turn-right" aria-hidden="true"></i>FORA DO PÁTIO</span>';
+      ? '<span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>NO ESTACIONAMENTO</span>'
+      : '<span class="chip chip-neutro"><i class="bi bi-sign-turn-right" aria-hidden="true"></i>FORA DO ESTACIONAMENTO</span>';
     const detalheDentro = dentro
-      ? `<div class="col-sm-6"><div class="rotulo-info">No pátio desde</div>
+      ? `<div class="col-sm-6"><div class="rotulo-info">No estacionamento desde</div>
            <div class="valor-info font-monospace">${esc(v.movimentacao.entrada)}</div>
            <div class="text-body-secondary">há ${esc(v.movimentacao.permanencia)} · motorista: <strong>${esc(v.movimentacao.motorista)}</strong></div></div>`
       : '';
@@ -178,7 +178,7 @@
         <div class="status-faixa bg-${cor} text-white">
           <span><i class="bi ${bloqueado ? 'bi-x-octagon-fill' : 'bi-check-circle-fill'} me-2" aria-hidden="true"></i>${
             bloqueado ? 'BLOQUEADO' : 'LIBERADO PARA ACESSO'}</span>
-          <span class="selo text-${cor}">${bloqueado ? 'ACESSO NEGADO' : (dentro ? 'DENTRO DO PÁTIO' : 'PERMISSÃO ATIVA')}</span>
+          <span class="selo text-${cor}">${bloqueado ? 'ACESSO NEGADO' : (dentro ? 'DENTRO DO ESTACIONAMENTO' : 'PERMISSÃO ATIVA')}</span>
         </div>
         <div class="card-body p-4">
           ${bloqueado ? `<div class="alert alert-danger alerta-bloqueio" role="alert">

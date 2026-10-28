@@ -47,7 +47,7 @@
           <td><%= v.marca_modelo || '' %></td>
           <td><%= v.cor || '' %></td>
           <td><% if (v.proprietario_id) { %><a href="/pessoas/<%= v.proprietario_id %>" class="text-decoration-none"><%= v.proprietario_nome %></a><% } else { %><span class="text-body-secondary">—</span><% } %></td>
-          <td><%- v.dentro ? '<span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>No pátio</span>' : '<span class="text-body-secondary small">fora</span>' %></td>
+          <td><%- v.dentro ? '<span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>No estacionamento</span>' : '<span class="text-body-secondary small">fora</span>' %></td>
           <td><%- statusChip(v.status) %></td>
         </tr>
       <% } %>

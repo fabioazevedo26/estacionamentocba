@@ -10,7 +10,7 @@
         <span class="ms-2"><%= rotulo(mov.veiculo_tipo) %><%= mov.marca_modelo ? ' · ' + mov.marca_modelo : '' %></span>
         <div class="mt-1">Motorista: <strong><%= mov.motorista_nome %></strong></div>
         <div class="small text-body-secondary mt-1">Registrado: entrada <%= fmtDataHora(mov.entrada_em) %>
-          · saída <%= mov.saida_em ? fmtDataHora(mov.saida_em) : '(ainda no pátio)' %></div>
+          · saída <%= mov.saida_em ? fmtDataHora(mov.saida_em) : '(ainda no estacionamento)' %></div>
         <% if (mov.observacao) { %><div class="small mt-2"><i class="bi bi-chat-left-text me-1"></i><%= mov.observacao %></div><% } %>
       </div>
     </div>
@@ -25,7 +25,7 @@
         <div class="col-md-6">
           <label class="form-label" for="saida_em">Saída<%= mov.saida_em ? ' *' : '' %></label>
           <input class="form-control" type="datetime-local" id="saida_em" name="saida_em" value="<%= val.saida_em %>"<%= mov.saida_em ? ' required' : '' %>>
-          <% if (!mov.saida_em) { %><div class="form-text">Deixe vazio se o veículo ainda está no pátio.</div><% } %>
+          <% if (!mov.saida_em) { %><div class="form-text">Deixe vazio se o veículo ainda está no estacionamento.</div><% } %>
         </div>
         <div class="col-12">
           <label class="form-label" for="observacao">Motivo da correção *</label>

@@ -222,7 +222,7 @@
     }
   });
 
-  // Atualização automática (ex.: Pátio agora), sem atrapalhar quem está digitando
+  // Atualização automática (ex.: Estacionamento), sem atrapalhar quem está digitando
   const intervalo = Number(body.dataset.autoRefresh || 0);
   if (intervalo > 0) {
     setInterval(() => {

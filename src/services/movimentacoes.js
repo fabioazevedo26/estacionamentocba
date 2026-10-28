@@ -83,7 +83,7 @@ function registrarEntrada({ veiculoId, motoristaId, entradaEm, observacao }, usu
 
     const aberta = emAberto(veiculo.id);
     if (aberta) {
-      throw new ErroNegocio(`O veículo ${placaUtil.formatar(veiculo.placa)} já está no pátio desde `
+      throw new ErroNegocio(`O veículo ${placaUtil.formatar(veiculo.placa)} já está no estacionamento desde `
         + `${datas.fmtDataHora(aberta.entrada_em)}. Registre a saída antes de uma nova entrada.`);
     }
 
@@ -169,7 +169,7 @@ function cadastroRapido(body, usuario) {
   })();
 }
 
-// Nível de alerta de um veículo no pátio:
+// Nível de alerta de um veículo no estacionamento:
 // 'vermelho' = entrou em dia anterior e não saiu; 'amarelo' = passou de HORA_FIM_DIA
 function nivelAlerta(mov, agora = datas.agora()) {
   if (mov.entrada_em.slice(0, 10) < agora.slice(0, 10)) return 'vermelho';

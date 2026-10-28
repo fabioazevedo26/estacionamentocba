@@ -100,7 +100,7 @@ function registrarSaida(id, saidaEm, usuario) {
   })();
 }
 
-// Pedestres dentro do CBA agora, com o mesmo critério de alerta do pátio
+// Pedestres dentro do CBA agora, com o mesmo critério de alerta do estacionamento
 function dentro() {
   const agora = datas.agora();
   return db.prepare(`${SELECT} WHERE a.saida_em IS NULL ORDER BY a.entrada_em`).all().map((a) => ({

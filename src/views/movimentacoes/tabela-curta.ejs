@@ -10,7 +10,7 @@
         <tr>
           <td><%= fmtData(m.entrada_em) %></td>
           <td><%= fmtHora(m.entrada_em) %></td>
-          <td><% if (m.saida_em) { %><%= m.saida_em.slice(0, 10) === m.entrada_em.slice(0, 10) ? fmtHora(m.saida_em) : fmtDataHora(m.saida_em) %><% } else { %><span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>No pátio</span><% } %></td>
+          <td><% if (m.saida_em) { %><%= m.saida_em.slice(0, 10) === m.entrada_em.slice(0, 10) ? fmtHora(m.saida_em) : fmtDataHora(m.saida_em) %><% } else { %><span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>No estacionamento</span><% } %></td>
           <td><%= fmtDuracao(minutosEntre(m.entrada_em, m.saida_em)) %></td>
           <td>
             <% if (mostrar === 'veiculo') { %>

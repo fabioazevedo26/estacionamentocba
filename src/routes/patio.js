@@ -7,7 +7,7 @@ const { acao, idParam } = require('./util');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('patio', { titulo: 'Pátio agora', lista: movimentacoes.patio() });
+  res.render('patio', { titulo: 'Estacionamento', lista: movimentacoes.patio() });
 });
 
 router.post('/:id/saida', acao((req, res) => {

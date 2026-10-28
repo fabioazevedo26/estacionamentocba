@@ -1,4 +1,4 @@
-/* Pátio agora: filtro por texto e por situação, sem recarregar a página */
+/* Estacionamento: filtro por texto e por situação, sem recarregar a página */
 (function () {
   'use strict';
   const campo = document.getElementById('filtro-patio');

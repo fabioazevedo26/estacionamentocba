@@ -21,7 +21,7 @@
       <label class="form-label small" for="situacao">Situação</label>
       <select class="form-select" id="situacao" name="situacao">
         <option value="">Todas</option>
-        <option value="abertas"<%= f.situacao === 'abertas' ? ' selected' : '' %>>No pátio (sem saída)</option>
+        <option value="abertas"<%= f.situacao === 'abertas' ? ' selected' : '' %>>No estacionamento (sem saída)</option>
         <option value="fechadas"<%= f.situacao === 'fechadas' ? ' selected' : '' %>>Com saída</option>
       </select>
     </div>
@@ -47,7 +47,7 @@
         <tr>
           <td><%= fmtData(m.entrada_em) %></td>
           <td><%= fmtHora(m.entrada_em) %></td>
-          <td class="text-nowrap"><% if (m.saida_em) { %><%= m.saida_em.slice(0, 10) === m.entrada_em.slice(0, 10) ? fmtHora(m.saida_em) : fmtDataHora(m.saida_em) %><% } else { %><span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>No pátio</span><% } %></td>
+          <td class="text-nowrap"><% if (m.saida_em) { %><%= m.saida_em.slice(0, 10) === m.entrada_em.slice(0, 10) ? fmtHora(m.saida_em) : fmtDataHora(m.saida_em) %><% } else { %><span class="chip chip-info"><i class="bi bi-p-circle-fill" aria-hidden="true"></i>No estacionamento</span><% } %></td>
           <td><%= fmtDuracao(minutosEntre(m.entrada_em, m.saida_em)) %></td>
           <td><a href="/veiculos/<%= m.veiculo_id %>" class="placa <%= placaClasse(m.placa) %> text-decoration-none"><%= placa(m.placa) %></a></td>
           <td><%= rotulo(m.veiculo_tipo) %><%= m.marca_modelo ? ' · ' + m.marca_modelo : '' %></td>

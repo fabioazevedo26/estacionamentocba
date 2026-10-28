@@ -15,7 +15,7 @@
   <div class="alert alert-secondary"><i class="bi bi-archive me-1"></i>Veículo inativo: não aparece nas buscas da portaria.</div>
 <% } %>
 <% if (aberta) { %>
-  <div class="alert alert-info"><i class="bi bi-p-circle me-1"></i>No pátio desde <strong><%= fmtDataHora(aberta.entrada_em) %></strong>
+  <div class="alert alert-info"><i class="bi bi-p-circle me-1"></i>No estacionamento desde <strong><%= fmtDataHora(aberta.entrada_em) %></strong>
     com <%= aberta.motorista_nome %>.</div>
 <% } %>
 
