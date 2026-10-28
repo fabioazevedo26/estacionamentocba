@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+<% const val = valores || { entrada_em: paraInputDataHora(reg.entrada_em), saida_em: paraInputDataHora(reg.saida_em), observacao: '' }; %>
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-xl-6">
+    <a href="/pedestres/historico" class="text-decoration-none"><i class="bi bi-arrow-left" aria-hidden="true"></i> Histórico de pedestres</a>
+    <h1 class="h3 mb-3"><i class="bi bi-pencil-square me-2" aria-hidden="true"></i>Corrigir horário (pedestre)</h1>
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="fs-5"><i class="bi bi-person-walking me-1" aria-hidden="true"></i><strong><%= reg.pessoa_nome %></strong>
+          <span class="text-body-secondary">· <%= rotulo(reg.pessoa_tipo) %><%= reg.empresa ? ' / ' + reg.empresa : '' %></span></div>
+        <div class="text-body-secondary mt-1">Registrado: entrada <%= fmtDataHora(reg.entrada_em) %>
+          · saída <%= reg.saida_em ? fmtDataHora(reg.saida_em) : '(ainda no CBA)' %></div>
+        <% if (reg.observacao) { %><div class="mt-2"><i class="bi bi-chat-left-text me-1" aria-hidden="true"></i><%= reg.observacao %></div><% } %>
+      </div>
+    </div>
+    <% if (erro) { %><div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-octagon me-1" aria-hidden="true"></i><%= erro %></div><% } %>
+    <form method="post" action="/pedestres/<%= reg.id %>/corrigir" class="card card-body">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label" for="entrada_em">Entrada *</label>
+          <input class="form-control" type="datetime-local" id="entrada_em" name="entrada_em" required value="<%= val.entrada_em %>">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label" for="saida_em">Saída<%= reg.saida_em ? ' *' : '' %></label>
+          <input class="form-control" type="datetime-local" id="saida_em" name="saida_em" value="<%= val.saida_em %>"<%= reg.saida_em ? ' required' : '' %>>
+          <% if (!reg.saida_em) { %><div class="form-text">Deixe vazio se a pessoa ainda está no CBA.</div><% } %>
+        </div>
+        <div class="col-12">
+          <label class="form-label" for="observacao">Motivo da correção *</label>
+          <textarea class="form-control" id="observacao" name="observacao" rows="2" required minlength="5" maxlength="300"
+                    placeholder="Ex.: saída não foi registrada no horário"><%= val.observacao %></textarea>
+          <div class="form-text">Obrigatório. Fica registrado no histórico e na auditoria.</div>
+        </div>
+      </div>
+      <div class="d-flex gap-2 mt-4">
+        <button class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i>Salvar correção</button>
+        <a class="btn btn-outline-secondary" href="/pedestres/historico">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+<%- include('../partials/footer') %>

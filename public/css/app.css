@@ -364,3 +364,9 @@ a.placa:hover { background: #e0f2f1; }
 }
 .filtro-campo { min-width: 260px; }
 .text-uppercase::placeholder { text-transform: none; }
+
+/* Telas de até 1500px: menu com 8 itens cabe em uma linha (a logo continua visível) */
+@media (min-width: 1200px) and (max-width: 1499.98px) {
+  .navbar-cba .navbar-brand .nome-sistema { display: none; }
+  .navbar-cba .nav-link { padding: .55rem .6rem !important; }
+}

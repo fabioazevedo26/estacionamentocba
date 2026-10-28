@@ -33,7 +33,7 @@
       </div>
       <div class="card-footer">
         <%- include('../partials/status-acoes', { base: '/pessoas/' + pessoa.id, registro: pessoa,
-              nomeExibicao: pessoa.nome, temMovimentacoes: totalMov > 0 }) %>
+              nomeExibicao: pessoa.nome, temMovimentacoes: totalMov + totalPed > 0 }) %>
       </div>
     </div>
 
@@ -75,6 +75,30 @@
         <% if (totalMov > historico.length) { %><a class="small" href="/movimentacoes?motorista_id=<%= pessoa.id %>">ver todas</a><% } %>
       </div>
       <%- include('../movimentacoes/tabela-curta', { linhas: historico, mostrar: 'veiculo' }) %>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span class="fw-semibold"><i class="bi bi-person-walking me-1" aria-hidden="true"></i>Acessos a pé (<%= totalPed %>)</span>
+        <% if (totalPed > historicoPed.length) { %><a href="/pedestres/historico?pessoa_id=<%= pessoa.id %>">ver todos</a><% } %>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover align-middle mb-0">
+          <thead class="table-light"><tr><th>Data</th><th>Entrada</th><th>Saída</th><th>Permanência</th><th></th></tr></thead>
+          <tbody>
+            <% if (!historicoPed.length) { %><tr><td colspan="5" class="text-center text-body-secondary py-3">Nenhum acesso a pé.</td></tr><% } %>
+            <% for (const a of historicoPed) { %>
+              <tr>
+                <td><%= fmtData(a.entrada_em) %></td>
+                <td class="font-monospace"><%= fmtHora(a.entrada_em) %></td>
+                <td class="font-monospace"><% if (a.saida_em) { %><%= a.saida_em.slice(0, 10) === a.entrada_em.slice(0, 10) ? fmtHora(a.saida_em) : fmtDataHora(a.saida_em) %><% } else { %><span class="chip chip-info"><i class="bi bi-person-walking" aria-hidden="true"></i>No CBA</span><% } %></td>
+                <td class="font-monospace"><%= fmtDuracao(minutosEntre(a.entrada_em, a.saida_em)) %></td>
+                <td class="text-end"><a href="/pedestres/<%= a.id %>/corrigir" class="btn btn-sm btn-link" title="Corrigir horário"><i class="bi bi-pencil-square"></i></a></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

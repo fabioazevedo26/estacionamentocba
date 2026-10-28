@@ -127,4 +127,74 @@ async function gerarRelatorio({ de, ate, linhas, totais, porDia, porTipo }) {
   return wb.xlsx.writeBuffer();
 }
 
-module.exports = { gerarRelatorio };
+// Relatório de pedestres (acessos a pé), com aba "Resumo" por dia
+async function gerarRelatorioPedestres({ de, ate, linhas }) {
+  const wb = new ExcelJS.Workbook();
+  wb.creator = 'EstacionamentoCBA';
+  wb.created = new Date();
+
+  const ws = wb.addWorksheet('Pedestres', { views: [{ state: 'frozen', ySplit: 1 }] });
+  ws.columns = [
+    { header: 'Data', key: 'data', style: { numFmt: 'dd/mm/yyyy' } },
+    { header: 'Entrada', key: 'entrada', style: { numFmt: 'hh:mm' } },
+    { header: 'Saída', key: 'saida', style: { numFmt: 'hh:mm' } },
+    { header: 'Permanência (hh:mm)', key: 'permanencia', style: { numFmt: '[hh]:mm' } },
+    { header: 'Pessoa', key: 'pessoa' },
+    { header: 'Tipo de pessoa', key: 'tipo_pessoa' },
+    { header: 'Cargo', key: 'cargo' },
+    { header: 'Setor', key: 'setor' },
+    { header: 'Empresa', key: 'empresa' },
+    { header: 'Observação', key: 'observacao' },
+  ];
+  estilizarCabecalho(ws.getRow(1));
+
+  const porDia = new Map();
+  for (const l of linhas) {
+    const minutos = l.saida_em ? datas.minutosEntre(l.entrada_em, l.saida_em) : null;
+    const row = ws.addRow({
+      data: soData(l.entrada_em),
+      entrada: paraExcel(l.entrada_em),
+      saida: paraExcel(l.saida_em),
+      permanencia: duracao(minutos),
+      pessoa: l.pessoa_nome,
+      tipo_pessoa: TIPO_PESSOA[l.pessoa_tipo] || l.pessoa_tipo,
+      cargo: l.cargo,
+      setor: l.setor,
+      empresa: l.empresa,
+      observacao: l.observacao,
+    });
+    if (l.saida_em && l.saida_em.slice(0, 10) !== l.entrada_em.slice(0, 10)) {
+      row.getCell('saida').numFmt = 'dd/mm/yyyy hh:mm';
+    }
+    const dia = l.entrada_em.slice(0, 10);
+    const d = porDia.get(dia) || { entradas: 0, pessoas: new Set(), semSaida: 0 };
+    d.entradas++;
+    d.pessoas.add(l.pessoa_id);
+    if (!l.saida_em) d.semSaida++;
+    porDia.set(dia, d);
+  }
+  ws.autoFilter = { from: { row: 1, column: 1 }, to: { row: 1, column: ws.columns.length } };
+  ajustarLarguras(ws);
+
+  const rs = wb.addWorksheet('Resumo');
+  rs.addRow([`Pedestres — ${datas.fmtData(de)} a ${datas.fmtData(ate)}`]).font = { bold: true, size: 14 };
+  rs.addRow([]);
+  rs.addRow(['Total de entradas a pé', linhas.length]).getCell(1).font = { bold: true };
+  rs.addRow(['Pessoas distintas', new Set(linhas.map((l) => l.pessoa_id)).size]).getCell(1).font = { bold: true };
+  rs.addRow(['Sem saída registrada', linhas.filter((l) => !l.saida_em).length]).getCell(1).font = { bold: true };
+  rs.addRow([]);
+  rs.addRow(['Totais por dia']).font = { bold: true, size: 12 };
+  estilizarCabecalho(rs.addRow(['Data', 'Entradas', 'Pessoas distintas', 'Sem saída']));
+  for (const [dia, d] of porDia) {
+    const row = rs.addRow([soData(dia), d.entradas, d.pessoas.size, d.semSaida]);
+    row.getCell(1).numFmt = 'dd/mm/yyyy';
+  }
+  rs.getColumn(1).width = 30;
+  rs.getColumn(2).width = 14;
+  rs.getColumn(3).width = 20;
+  rs.getColumn(4).width = 14;
+
+  return wb.xlsx.writeBuffer();
+}
+
+module.exports = { gerarRelatorio, gerarRelatorioPedestres };

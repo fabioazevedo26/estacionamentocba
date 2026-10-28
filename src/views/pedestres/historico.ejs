@@ -1,0 +1,76 @@
+<%- include('../partials/header') %>
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+  <div>
+    <a href="/pedestres" class="text-decoration-none"><i class="bi bi-arrow-left" aria-hidden="true"></i> Pedestres</a>
+    <h1 class="h3 mb-0"><i class="bi bi-clock-history me-2" aria-hidden="true"></i>Histórico de pedestres</h1>
+  </div>
+  <a class="btn btn-success" href="<%= exportarUrl %>"><i class="bi bi-file-earmark-excel" aria-hidden="true"></i>Exportar Excel</a>
+</div>
+
+<form class="card card-body mb-3" method="get">
+  <% if (f.pessoa_id) { %><input type="hidden" name="pessoa_id" value="<%= f.pessoa_id %>"><% } %>
+  <div class="row g-2 align-items-end">
+    <div class="col-md-3">
+      <label class="form-label small" for="q">Busca</label>
+      <input class="form-control" id="q" name="q" value="<%= f.q %>" placeholder="Nome ou empresa">
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="de">Entrada de</label>
+      <input class="form-control" type="date" id="de" name="de" value="<%= f.de %>">
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="ate">até</label>
+      <input class="form-control" type="date" id="ate" name="ate" value="<%= f.ate %>">
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="tipo">Tipo</label>
+      <select class="form-select" id="tipo" name="tipo">
+        <option value="">Todos</option>
+        <option value="COLABORADOR"<%= f.tipo === 'COLABORADOR' ? ' selected' : '' %>>Colaborador</option>
+        <option value="VISITANTE"<%= f.tipo === 'VISITANTE' ? ' selected' : '' %>>Visitante</option>
+      </select>
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label small" for="situacao">Situação</label>
+      <select class="form-select" id="situacao" name="situacao">
+        <option value="">Todas</option>
+        <option value="abertas"<%= f.situacao === 'abertas' ? ' selected' : '' %>>No CBA (sem saída)</option>
+        <option value="fechadas"<%= f.situacao === 'fechadas' ? ' selected' : '' %>>Com saída</option>
+      </select>
+    </div>
+    <div class="col-md-1 d-flex gap-2">
+      <button class="btn btn-primary" title="Filtrar"><i class="bi bi-funnel" aria-hidden="true"></i><span class="visually-hidden">Filtrar</span></button>
+    </div>
+  </div>
+  <div class="mt-2 d-flex flex-wrap gap-3 align-items-center">
+    <a href="/pedestres/historico">Limpar filtros</a>
+    <% if (f.pessoa_id) { %><span class="text-body-secondary"><i class="bi bi-funnel-fill" aria-hidden="true"></i> Filtrando por uma pessoa específica.</span><% } %>
+    <span class="text-body-secondary">O Excel usa o período informado (sem período: hoje).</span>
+  </div>
+</form>
+
+<div class="table-responsive card mb-3">
+  <table class="table table-hover align-middle mb-0">
+    <thead class="table-light">
+      <tr><th>Data</th><th>Entrada</th><th>Saída</th><th>Permanência</th><th>Pessoa</th><th>Tipo</th><th>Empresa / Setor</th><th>Observação</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% if (!lista.length) { %><tr><td colspan="9" class="text-center text-body-secondary py-4">Nenhum registro encontrado.</td></tr><% } %>
+      <% for (const a of lista) { %>
+        <tr>
+          <td><%= fmtData(a.entrada_em) %></td>
+          <td class="font-monospace"><%= fmtHora(a.entrada_em) %></td>
+          <td class="text-nowrap font-monospace"><% if (a.saida_em) { %><%= a.saida_em.slice(0, 10) === a.entrada_em.slice(0, 10) ? fmtHora(a.saida_em) : fmtDataHora(a.saida_em) %><% } else { %><span class="chip chip-info"><i class="bi bi-person-walking" aria-hidden="true"></i>No CBA</span><% } %></td>
+          <td class="font-monospace"><%= fmtDuracao(minutosEntre(a.entrada_em, a.saida_em)) %></td>
+          <td><a href="/pessoas/<%= a.pessoa_id %>" class="text-decoration-none"><%= a.pessoa_nome %></a></td>
+          <td><%= rotulo(a.pessoa_tipo) %></td>
+          <td><%= a.empresa || a.setor || '' %></td>
+          <td class="obs-col"><%= a.observacao || '' %></td>
+          <td class="text-end"><a href="/pedestres/<%= a.id %>/corrigir" class="btn btn-sm btn-outline-primary text-nowrap"><i class="bi bi-pencil-square" aria-hidden="true"></i> Corrigir</a></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/paginacao') %>
+<%- include('../partials/footer') %>

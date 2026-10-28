@@ -2,6 +2,7 @@ const express = require('express');
 const pessoas = require('../services/pessoas');
 const veiculos = require('../services/veiculos');
 const movimentacoes = require('../services/movimentacoes');
+const pedestres = require('../services/pedestres');
 const opcoes = require('../services/opcoes');
 const placaUtil = require('../utils/placa');
 const { paginar } = require('../utils/paginacao');
@@ -53,6 +54,8 @@ router.get('/:id', acao((req, res) => {
     veiculos: veiculos.doProprietario(pessoa.id),
     historico: movimentacoes.listar(filtro, pag),
     totalMov: movimentacoes.contar(filtro),
+    historicoPed: pedestres.listar({ pessoa_id: pessoa.id }, { limite: 10, offset: 0 }),
+    totalPed: pedestres.contarDaPessoa(pessoa.id),
   });
 }, '/pessoas'));
 

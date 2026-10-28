@@ -71,6 +71,7 @@ function criarApp() {
   app.use('/api', require('./routes/api'));
   app.use('/', require('./routes/portaria'));
   app.use('/patio', require('./routes/patio'));
+  app.use('/pedestres', require('./routes/pedestres'));
   app.use('/pessoas', require('./routes/pessoas'));
   app.use('/veiculos', require('./routes/veiculos'));
   app.use('/movimentacoes', require('./routes/movimentacoes'));

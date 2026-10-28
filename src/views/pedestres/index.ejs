@@ -1,0 +1,145 @@
+<%- include('../partials/header', { autoRefresh: 60 }) %>
+<%
+  const fm = form || {};
+  const modo = fm.pessoa_modo === 'novo' ? 'novo' : 'existente';
+  const STATUS = {
+    vermelho: ['chip-solido-bloq', 'bi-slash-circle', 'Desde dia anterior'],
+    amarelo: ['chip-solido-atencao', 'bi-exclamation-triangle-fill', 'Após ' + horaFimDia],
+    normal: ['chip-info', 'bi-person-walking', 'No CBA'],
+  };
+%>
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+  <div>
+    <h1 class="h2 mb-1"><i class="bi bi-person-walking text-primary me-2" aria-hidden="true"></i>Pedestres</h1>
+    <p class="text-body-secondary mb-0">Entrada e saída de pessoas a pé. Para quem chega de veículo, use a <a href="/">Portaria</a>.</p>
+  </div>
+  <a class="btn btn-outline-primary" href="/pedestres/historico"><i class="bi bi-clock-history" aria-hidden="true"></i>Histórico e Excel</a>
+</div>
+
+<div class="row g-4">
+  <div class="col-xl-6">
+    <div class="card border-primary border-2">
+      <div class="card-header bg-primary text-white fs-4 d-flex align-items-center gap-2">
+        <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>Registrar entrada a pé
+      </div>
+      <div class="card-body p-4">
+        <% if (erroForm) { %>
+          <div class="alert alert-danger d-flex gap-2" role="alert"><i class="bi bi-exclamation-octagon-fill" aria-hidden="true"></i><div><%= erroForm %></div></div>
+        <% } %>
+        <form method="post" action="/pedestres/entrada" id="form-pedestre" class="form-portaria">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="motorista-bloco" data-modo="<%= modo %>">
+            <div class="row g-2 mb-3" role="radiogroup" aria-label="Pessoa">
+              <div class="col-sm-6">
+                <input type="radio" class="btn-check modo-radio" name="pessoa_modo" id="ped-modo-existente" value="existente"<%= modo === 'existente' ? ' checked' : '' %>>
+                <label class="btn btn-outline-primary btn-lg w-100" for="ped-modo-existente"><i class="bi bi-person-check" aria-hidden="true"></i>Pessoa cadastrada</label>
+              </div>
+              <div class="col-sm-6">
+                <input type="radio" class="btn-check modo-radio" name="pessoa_modo" id="ped-modo-novo" value="novo"<%= modo === 'novo' ? ' checked' : '' %>>
+                <label class="btn btn-outline-primary btn-lg w-100" for="ped-modo-novo"><i class="bi bi-person-plus" aria-hidden="true"></i>Novo visitante</label>
+              </div>
+            </div>
+            <div class="modo-existente">
+              <%- include('../partials/pessoa-picker', { campo: 'pessoa_id', valorId: fm.pessoa_id, valorNome: fm.pessoa_id_nome,
+                    rotulo: 'Nome da pessoa', placeholder: 'Digite o nome para buscar…' }) %>
+              <div class="alerta-motorista mt-2"></div>
+            </div>
+            <div class="modo-novo row g-3">
+              <div class="col-12">
+                <label class="form-label" for="ped-vnome">Nome do visitante</label>
+                <input class="form-control" id="ped-vnome" name="visitante_nome" maxlength="120" value="<%= fm.visitante_nome || '' %>" data-requerido>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label" for="ped-vempresa">Empresa</label>
+                <input class="form-control" id="ped-vempresa" name="visitante_empresa" maxlength="120" value="<%= fm.visitante_empresa || '' %>">
+              </div>
+              <div class="col-sm-5">
+                <label class="form-label" for="ped-vtel">Telefone <span class="fw-normal text-body-secondary">(opcional)</span></label>
+                <input class="form-control" id="ped-vtel" name="visitante_telefone" maxlength="30" value="<%= fm.visitante_telefone || '' %>">
+              </div>
+            </div>
+          </div>
+          <div class="row g-3 mt-1">
+            <div class="col-sm-6 col-xl-12">
+              <div class="d-flex justify-content-between align-items-baseline">
+                <label class="form-label" for="ped-entrada">Data e hora</label>
+                <button type="button" class="btn btn-link p-0 fw-bold usar-agora">Usar agora</button>
+              </div>
+              <input class="form-control font-monospace" type="datetime-local" id="ped-entrada" name="entrada_em" data-agora value="<%= fm.entrada_em || '' %>">
+            </div>
+            <div class="col-sm-6 col-xl-12">
+              <label class="form-label" for="ped-obs">Observação <span class="fw-normal text-body-secondary">(opcional)</span></label>
+              <input class="form-control" id="ped-obs" name="observacao" maxlength="500" value="<%= fm.observacao || '' %>" placeholder="Ex.: reunião na Diretoria">
+            </div>
+          </div>
+          <button class="btn btn-success btn-lg w-100 mt-4 btn-acao" type="submit">
+            <i class="bi bi-person-walking" aria-hidden="true"></i>REGISTRAR ENTRADA A PÉ
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-6">
+    <div class="card mb-3">
+      <div class="card-body d-flex justify-content-between align-items-center gap-3">
+        <div>
+          <h2 class="h4 mb-0">Pedestres no CBA agora</h2>
+          <span class="text-body-secondary">Atualiza sozinho a cada minuto</span>
+        </div>
+        <div class="text-end">
+          <div class="rotulo-mono">No CBA agora</div>
+          <div class="contador-grande"><%= lista.length %> <%= lista.length === 1 ? 'pessoa' : 'pessoas' %></div>
+        </div>
+      </div>
+    </div>
+
+    <% if (!lista.length) { %>
+      <div class="alert alert-info"><i class="bi bi-info-circle me-1" aria-hidden="true"></i>Nenhum pedestre no CBA no momento.</div>
+    <% } else { %>
+    <div class="table-responsive card mb-4">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr><th>Pessoa</th><th>Entrada</th><th>Permanência</th><th class="text-end">Ação</th></tr>
+        </thead>
+        <tbody>
+          <% for (const a of lista) { const [cls, icone, texto] = STATUS[a.alerta || 'normal']; %>
+            <tr class="<%= a.alerta === 'vermelho' ? 'table-danger' : (a.alerta === 'amarelo' ? 'table-warning' : '') %>">
+              <td><span class="chip <%= cls %> mb-1"><i class="bi <%= icone %>" aria-hidden="true"></i><%= texto %></span>
+                <div><a href="/pessoas/<%= a.pessoa_id %>" class="fw-bold text-decoration-none"><%= a.pessoa_nome %></a></div>
+                <div class="text-body-secondary"><%= rotulo(a.pessoa_tipo) %><%= a.empresa ? ' · ' + a.empresa : (a.cargo ? ' · ' + a.cargo : '') %></div>
+                <% if (a.observacao) { %><div class="text-body-secondary"><i class="bi bi-chat-left-text me-1" aria-hidden="true"></i><%= a.observacao %></div><% } %></td>
+              <td class="text-nowrap font-monospace"><%= a.entrada_em.slice(0, 10) === hoje() ? 'Hoje' : fmtData(a.entrada_em).slice(0, 5) %>, <%= fmtHora(a.entrada_em) %></td>
+              <td class="text-nowrap"><span class="chip <%= a.alerta === 'vermelho' ? 'chip-bloq' : (a.alerta === 'amarelo' ? 'chip-atencao' : 'chip-neutro') %> font-monospace">
+                <i class="bi bi-clock" aria-hidden="true"></i><%= fmtPermanencia(a.minutos) %></span></td>
+              <td class="text-end">
+                <form method="post" action="/pedestres/<%= a.id %>/saida" data-confirm="Registrar a saída de <%= a.pessoa_nome %> agora?">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <button class="btn btn-warning text-nowrap" aria-label="Registrar saída de <%= a.pessoa_nome %>"><i class="bi bi-box-arrow-left" aria-hidden="true"></i>Saída</button>
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <% } %>
+
+    <h2 class="h5 mb-2">Últimos registros de hoje</h2>
+    <% if (!ultimas.length) { %>
+      <div class="card"><div class="card-body text-body-secondary">Nenhum registro a pé hoje.</div></div>
+    <% } %>
+    <% for (const a of ultimas) { %>
+      <div class="card mb-2"><div class="card-body py-2 d-flex justify-content-between align-items-center gap-2 flex-wrap">
+        <div><strong><%= a.pessoa_nome %></strong>
+          <span class="text-body-secondary"> · <%= rotulo(a.pessoa_tipo) %><%= a.empresa ? ' / ' + a.empresa : '' %></span></div>
+        <% if (a.saida_em) { %>
+          <span class="chip chip-neutro font-monospace"><i class="bi bi-box-arrow-left" aria-hidden="true"></i>Saída <%= fmtHora(a.saida_em) %></span>
+        <% } else { %>
+          <span class="chip chip-solido-ok font-monospace"><i class="bi bi-box-arrow-in-right" aria-hidden="true"></i>Entrada <%= fmtHora(a.entrada_em) %></span>
+        <% } %>
+      </div></div>
+    <% } %>
+  </div>
+</div>
+<%- include('../partials/footer', { scripts: ['/js/pedestres.js'] }) %>

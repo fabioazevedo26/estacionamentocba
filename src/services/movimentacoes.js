@@ -256,6 +256,6 @@ function corrigirHorario(id, { entrada_em: entradaIn, saida_em: saidaIn, observa
 }
 
 module.exports = {
-  buscar, obter, emAberto, registrarEntrada, registrarSaida, entradaPortaria, cadastroRapido, nivelAlerta, patio,
+  buscar, obter, emAberto, registrarEntrada, registrarSaida, entradaPortaria, cadastroRapido, nivelAlerta, lerDataHora, patio,
   contarPatio, ultimasDoDia, contar, listar, corrigirHorario,
 };

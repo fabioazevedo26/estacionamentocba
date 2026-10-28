@@ -104,7 +104,10 @@ function editar(id, body, usuario) {
   })();
 }
 
-const contarMovimentacoes = (id) => db.prepare('SELECT COUNT(*) FROM movimentacoes WHERE motorista_id = ?').pluck().get(id);
+// Movimentações como motorista + acessos a pé
+const contarMovimentacoes = (id) => db.prepare(`
+  SELECT (SELECT COUNT(*) FROM movimentacoes WHERE motorista_id = ?)
+       + (SELECT COUNT(*) FROM acessos_pedestres WHERE pessoa_id = ?)`).pluck().get(id, id);
 
 function excluir(id, usuario) {
   return db.transaction(() => {

@@ -1,5 +1,6 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
+const config = require('../config');
 const usuarios = require('../services/usuarios');
 const auditoria = require('../services/auditoria');
 const { exigirLogin } = require('../middleware/auth');
@@ -56,11 +57,18 @@ router.post('/logout', (req, res, next) => {
   });
 });
 
-router.get('/conta/senha', exigirLogin, (req, res) => {
+// Troca de senha pela interface só quando PERMITIR_TROCA_SENHA=true
+function trocaSenhaPermitida(req, res, next) {
+  if (config.permitirTrocaSenha) return next();
+  req.flash('aviso', 'A troca de senha pela interface está desativada. Procure o administrador do sistema.');
+  return res.redirect('/');
+}
+
+router.get('/conta/senha', exigirLogin, trocaSenhaPermitida, (req, res) => {
   res.render('senha', { titulo: 'Trocar senha' });
 });
 
-router.post('/conta/senha', exigirLogin, async (req, res) => {
+router.post('/conta/senha', exigirLogin, trocaSenhaPermitida, async (req, res) => {
   try {
     await usuarios.trocarSenha(req.session.usuario.id, req.body.atual, req.body.nova, req.body.confirmacao);
     auditoria.registrar({

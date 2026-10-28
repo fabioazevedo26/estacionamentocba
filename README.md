@@ -11,6 +11,9 @@ internet**: Bootstrap e os ícones são servidos pelo próprio sistema.
   (verde = liberado, vermelho = bloqueado), registro de entrada/saída com a hora atual
   (editável), troca de motorista ou novo visitante, **cadastro rápido** para placa nova e
   as últimas 10 movimentações do dia.
+- **Pedestres**: entrada e saída de pessoas a pé (colaborador cadastrado ou novo
+  visitante), lista de quem está no CBA agora com botão de saída, histórico com correção
+  de horário e exportação para Excel. Pessoa bloqueada não pode entrar.
 - **Pátio agora**: veículos dentro do estacionamento, com permanência e botão de saída.
   Linhas em amarelo depois de `HORA_FIM_DIA` e em vermelho para entradas de dias
   anteriores sem saída. Contador no menu em todas as telas.
@@ -61,6 +64,7 @@ Copie `.env.example` para `.env` e preencha:
 
 | Variável | Exemplo | Descrição |
 |---|---|---|
+| `PERMITIR_TROCA_SENHA` | `false` | Mostra e permite a troca de senha pela interface. Com `false` (padrão), só o administrador troca a senha, pela linha de comando. |
 | `PORT` | `3001` | Porta da aplicação (a 3000 já é usada por outro sistema na VM). |
 | `TZ` | `America/Manaus` | Fuso usado para gravar e exibir todas as datas e horas. |
 | `SESSION_SECRET` | *(longo e aleatório)* | Segredo das sessões. Gere com `openssl rand -hex 32`. |
@@ -150,6 +154,23 @@ cd ~/Projeto_EstacionamentoCBA && git pull && docker compose up --build -d
 ```
 
 As migrações do banco rodam sozinhas ao iniciar. Os dados em `./data` são preservados.
+Antes de atualizar, por segurança, baixe um backup (menu do usuário → **Baixar backup agora**).
+
+Se o `git pull` reclamar de alterações locais (arquivos editados direto na VM), veja o que
+mudou com `git status` e descarte a alteração com `git checkout -- caminho/do/arquivo`
+antes de repetir o `git pull`. Configurações ficam no `.env`, que o git não toca.
+
+### 6. Reinstalar levando o banco atual
+
+1. Na instalação atual: menu do usuário → **Baixar backup agora** (ou copie
+   `data/estacionamento.db` com o sistema parado: `docker compose down`).
+2. Na nova instalação, antes do primeiro `docker compose up`: crie a pasta `data`, copie o
+   arquivo para `data/estacionamento.db` e acerte o dono:
+   ```bash
+   mkdir -p data && cp ~/estacionamento_backup.db data/estacionamento.db && sudo chown -R 1000:1000 data
+   ```
+3. Suba com `docker compose up --build -d`. As tabelas novas (por exemplo, a de pedestres)
+   são criadas automaticamente e os dados existentes continuam iguais.
 
 ### Comandos úteis
 
@@ -164,9 +185,10 @@ As migrações do banco rodam sozinhas ao iniciar. Os dados em `./data` são pre
 
 ## Troca de senha
 
-- **Pela interface:** menu do usuário (canto superior direito) → **Trocar senha**.
-  Informe a senha atual e a nova (mínimo de 8 caracteres).
-- **Senha esquecida:** na VM, rode:
+- **Pela interface:** fica **desativada por padrão**, para que a equipe da portaria não
+  troque a senha e o acesso se perca. Para liberar, coloque `PERMITIR_TROCA_SENHA=true` no
+  `.env` e rode `docker compose up -d`; aparece "Trocar senha" no menu do usuário.
+- **Pelo administrador (recomendado) ou senha esquecida:** na VM, rode:
   ```bash
   docker compose exec estacionamento node scripts/redefinir-senha.js Portaria2 'NovaSenhaForte'
   ```
@@ -263,7 +285,9 @@ Os arquivos de `public/vendor` (Bootstrap, ícones e fontes) fazem parte do repo
   sugere **Inativar**. Sempre pede confirmação.
 - O motorista pode ser diferente do proprietário. Um veículo tem no máximo um
   proprietário; uma pessoa pode ter vários veículos.
-- Visitante a pé não é registrado: o visitante só entra no sistema com veículo.
+- **Pedestres** ficam numa tabela própria (`acessos_pedestres`): uma pessoa só pode ter
+  um acesso a pé em aberto, a saída precisa ser posterior à entrada, e pessoa bloqueada não
+  entra. Os relatórios de veículos não mudam; os pedestres têm histórico e Excel próprios.
 - Toda alteração relevante gera um registro na **Auditoria**, com os dados antes e depois.
 
 ## Estrutura do projeto
@@ -293,7 +317,8 @@ Os arquivos de `public/vendor` (Bootstrap, ícones e fontes) fazem parte do repo
 | `pessoas` | colaboradores e visitantes |
 | `opcoes` | listas de cargo e setor (crescem com "Outro (digitar)") |
 | `veiculos` | veículos, com proprietário opcional |
-| `movimentacoes` | entradas e saídas (`saida_em` vazio = no pátio) |
+| `movimentacoes` | entradas e saídas de veículos (`saida_em` vazio = no pátio) |
+| `acessos_pedestres` | entradas e saídas a pé (`saida_em` vazio = no CBA) |
 | `auditoria` | histórico de ações |
 | `migracoes` | migrações já aplicadas |
 

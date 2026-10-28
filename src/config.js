@@ -24,6 +24,8 @@ module.exports = {
   adminUser: process.env.ADMIN_USER || 'Portaria2',
   adminPassword: process.env.ADMIN_PASSWORD || '',
   horaFimDia: lerHora(process.env.HORA_FIM_DIA),
+  // Troca de senha pela interface (desativada por padrão; o administrador usa scripts/redefinir-senha.js)
+  permitirTrocaSenha: process.env.PERMITIR_TROCA_SENHA === 'true',
   backupRetencaoDias: Math.max(1, Number(process.env.BACKUP_RETENCAO_DIAS) || 30),
   producao: process.env.NODE_ENV === 'production',
 };

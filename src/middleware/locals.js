@@ -3,6 +3,7 @@ const config = require('../config');
 const datas = require('../utils/datas');
 const placaUtil = require('../utils/placa');
 const movimentacoes = require('../services/movimentacoes');
+const pedestres = require('../services/pedestres');
 const { TIPOS_ROTULO } = require('../services/veiculos');
 
 const ROTULOS = {
@@ -31,6 +32,7 @@ const helpers = {
   },
   horaFimDia: config.horaFimDia,
   tz: config.tz,
+  permitirTrocaSenha: config.permitirTrocaSenha,
 };
 
 function locals(req, res, next) {
@@ -39,6 +41,7 @@ function locals(req, res, next) {
   res.locals.caminho = req.path;
   res.locals.titulo = '';
   res.locals.patioCount = req.session.usuario ? movimentacoes.contarPatio() : 0;
+  res.locals.pedestresCount = req.session.usuario ? pedestres.contarDentro() : 0;
   next();
 }
 
