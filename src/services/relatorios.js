@@ -37,58 +37,75 @@ function resolverPeriodo(f) {
   return { periodo, de, ate };
 }
 
+const ACESSOS = { todos: 'Veículos e pedestres', veiculos: 'Somente veículos', pedestres: 'Somente pedestres' };
+
+// Movimentações de veículos e acessos a pé numa única lista (somente leitura).
+// Nos acessos a pé, as colunas de veículo ficam vazias.
+const UNIAO = `
+  SELECT 'VEICULO' AS acesso, m.id, m.entrada_em, m.saida_em, m.observacao,
+         m.veiculo_id, m.motorista_id AS pessoa_id,
+         v.placa, v.placa_fora_padrao, v.tipo AS veiculo_tipo, v.marca_modelo, v.cor, pr.nome AS proprietario_nome
+  FROM movimentacoes m
+  JOIN veiculos v ON v.id = m.veiculo_id
+  LEFT JOIN pessoas pr ON pr.id = v.proprietario_id
+  UNION ALL
+  SELECT 'PEDESTRE', a.id, a.entrada_em, a.saida_em, a.observacao,
+         NULL, a.pessoa_id, NULL, 0, NULL, NULL, NULL, NULL
+  FROM acessos_pedestres a`;
+
+const FROM = `FROM (${UNIAO}) x JOIN pessoas mo ON mo.id = x.pessoa_id`;
+
 function filtrosSql(f) {
   const { de, ate } = resolverPeriodo(f);
-  const where = ['m.entrada_em >= ?', 'm.entrada_em <= ?'];
+  const where = ['x.entrada_em >= ?', 'x.entrada_em <= ?'];
   const params = [`${de} 00:00:00`, `${ate} 23:59:59`];
-  const motorista = parseInt(f.motorista_id, 10);
-  if (motorista) { where.push('m.motorista_id = ?'); params.push(motorista); }
+  if (f.acesso === 'veiculos') where.push("x.acesso = 'VEICULO'");
+  if (f.acesso === 'pedestres') where.push("x.acesso = 'PEDESTRE'");
+  const pessoa = parseInt(f.motorista_id, 10);
+  if (pessoa) { where.push('x.pessoa_id = ?'); params.push(pessoa); }
   const placa = placaUtil.normalizar(f.placa);
-  if (placa) { where.push('v.placa LIKE ?'); params.push(`%${placa}%`); }
+  if (placa) { where.push('x.placa LIKE ?'); params.push(`%${placa}%`); }
   if (pessoas.TIPOS.includes(f.tipo_pessoa)) { where.push('mo.tipo = ?'); params.push(f.tipo_pessoa); }
-  if (veiculos.TIPOS.includes(f.tipo_veiculo)) { where.push('v.tipo = ?'); params.push(f.tipo_veiculo); }
+  if (veiculos.TIPOS.includes(f.tipo_veiculo)) { where.push('x.veiculo_tipo = ?'); params.push(f.tipo_veiculo); }
   if (f.cargo) { where.push('mo.cargo = ?'); params.push(f.cargo); }
   if (f.setor) { where.push('mo.setor = ?'); params.push(f.setor); }
   if (f.empresa?.trim()) { where.push('sem_acento(mo.empresa) LIKE ?'); params.push(`%${db.semAcento(f.empresa.trim())}%`); }
-  if (f.sem_saida) where.push('m.saida_em IS NULL');
+  if (f.sem_saida) where.push('x.saida_em IS NULL');
   return { sql: `WHERE ${where.join(' AND ')}`, params, de, ate };
 }
 
-const FROM = `
-  FROM movimentacoes m
-  JOIN veiculos v ON v.id = m.veiculo_id
-  JOIN pessoas mo ON mo.id = m.motorista_id
-  LEFT JOIN pessoas pr ON pr.id = v.proprietario_id`;
-
-const MINUTOS = "CAST(ROUND((julianday(m.saida_em) - julianday(m.entrada_em)) * 1440) AS INTEGER)";
+const MINUTOS = "CAST(ROUND((julianday(x.saida_em) - julianday(x.entrada_em)) * 1440) AS INTEGER)";
 
 function gerar(f, { limite } = {}) {
   const { sql, params, de, ate } = filtrosSql(f);
 
   const linhas = db.prepare(`
-    SELECT m.id, m.entrada_em, m.saida_em, m.observacao, ${MINUTOS} AS minutos,
+    SELECT x.acesso, x.id, x.entrada_em, x.saida_em, x.observacao, ${MINUTOS} AS minutos,
            mo.nome AS motorista_nome, mo.tipo AS motorista_tipo, mo.cargo, mo.setor, mo.empresa,
-           v.placa, v.placa_fora_padrao, v.tipo AS veiculo_tipo, v.marca_modelo, v.cor,
-           pr.nome AS proprietario_nome
+           x.placa, x.placa_fora_padrao, x.veiculo_tipo, x.marca_modelo, x.cor, x.proprietario_nome
     ${FROM} ${sql}
-    ORDER BY m.entrada_em, m.id
+    ORDER BY x.entrada_em, x.acesso DESC, x.id
     ${limite ? 'LIMIT ?' : ''}`).all(...params, ...(limite ? [limite] : []));
 
   const totais = db.prepare(`
-    SELECT COUNT(*) AS entradas, COUNT(DISTINCT m.veiculo_id) AS veiculos,
-           SUM(m.saida_em IS NULL) AS sem_saida, AVG(${MINUTOS}) AS media_minutos
+    SELECT COUNT(*) AS entradas, COUNT(DISTINCT x.veiculo_id) AS veiculos,
+           SUM(x.acesso = 'VEICULO') AS entradas_veiculos, SUM(x.acesso = 'PEDESTRE') AS entradas_pedestres,
+           COUNT(DISTINCT CASE WHEN x.acesso = 'PEDESTRE' THEN x.pessoa_id END) AS pedestres,
+           SUM(x.saida_em IS NULL) AS sem_saida, AVG(${MINUTOS}) AS media_minutos
     ${FROM} ${sql}`).get(...params);
 
   const porDia = db.prepare(`
-    SELECT substr(m.entrada_em, 1, 10) AS dia, COUNT(*) AS entradas, COUNT(DISTINCT m.veiculo_id) AS veiculos,
-           AVG(${MINUTOS}) AS media_minutos
+    SELECT substr(x.entrada_em, 1, 10) AS dia, COUNT(*) AS entradas, COUNT(DISTINCT x.veiculo_id) AS veiculos,
+           SUM(x.acesso = 'PEDESTRE') AS entradas_pedestres, AVG(${MINUTOS}) AS media_minutos
     ${FROM} ${sql} GROUP BY dia ORDER BY dia`).all(...params);
 
+  // Tipo de veículo; os acessos a pé aparecem como "A_PE"
   const porTipo = db.prepare(`
-    SELECT v.tipo AS tipo, COUNT(*) AS entradas, COUNT(DISTINCT m.veiculo_id) AS veiculos
-    ${FROM} ${sql} GROUP BY v.tipo ORDER BY entradas DESC`).all(...params);
+    SELECT COALESCE(x.veiculo_tipo, 'A_PE') AS tipo, COUNT(*) AS entradas,
+           COUNT(DISTINCT COALESCE(x.veiculo_id, 'p' || x.pessoa_id)) AS veiculos
+    ${FROM} ${sql} GROUP BY 1 ORDER BY entradas DESC`).all(...params);
 
   return { de, ate, linhas, totais, porDia, porTipo };
 }
 
-module.exports = { PERIODOS, resolverPeriodo, gerar };
+module.exports = { PERIODOS, ACESSOS, resolverPeriodo, gerar };

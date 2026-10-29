@@ -14,6 +14,14 @@
         <% } %>
       </select>
     </div>
+    <div class="col-sm-6 col-lg-3">
+      <label class="form-label small" for="acesso">Tipo de acesso</label>
+      <select class="form-select" id="acesso" name="acesso">
+        <% for (const [v, nome] of Object.entries(acessos)) { %>
+          <option value="<%= v %>"<%= f.acesso === v ? ' selected' : '' %>><%= nome %></option>
+        <% } %>
+      </select>
+    </div>
     <div class="col-sm-6 col-lg-3 campo-periodo" data-periodo="mes_especifico">
       <label class="form-label small" for="mes">Mês</label>
       <input class="form-control" type="month" id="mes" name="mes" value="<%= f.mes || r.de.slice(0, 7) %>">
@@ -29,7 +37,7 @@
     <div class="w-100 d-none d-lg-block m-0"></div>
     <div class="col-sm-6 col-lg-3">
       <%- include('../partials/pessoa-picker', { campo: 'motorista_id', valorId: f.motorista_id, valorNome: motoristaNome,
-            rotulo: 'Pessoa (motorista)', placeholder: 'Todas' }) %>
+            rotulo: 'Pessoa (motorista ou pedestre)', placeholder: 'Todas' }) %>
     </div>
     <div class="col-sm-6 col-lg-2">
       <label class="form-label small" for="placa">Placa</label>
@@ -88,9 +96,12 @@
   </div></div></div>
   <div class="col-6 col-lg-3"><div class="card shadow-sm text-center"><div class="card-body">
     <div class="text-body-secondary small">Entradas</div><div class="fs-3 fw-bold"><%= r.totais.entradas %></div>
+    <div class="small text-body-secondary"><i class="bi bi-car-front" aria-hidden="true"></i> <%= r.totais.entradas_veiculos || 0 %> de veículo ·
+      <i class="bi bi-person-walking" aria-hidden="true"></i> <%= r.totais.entradas_pedestres || 0 %> a pé</div>
   </div></div></div>
   <div class="col-6 col-lg-3"><div class="card shadow-sm text-center"><div class="card-body">
     <div class="text-body-secondary small">Veículos distintos</div><div class="fs-3 fw-bold"><%= r.totais.veiculos %></div>
+    <div class="small text-body-secondary"><%= r.totais.pedestres || 0 %> pedestre(s) distinto(s)</div>
   </div></div></div>
   <div class="col-6 col-lg-3"><div class="card shadow-sm text-center"><div class="card-body">
     <div class="text-body-secondary small">Permanência média</div>
@@ -107,14 +118,15 @@
 <div class="table-responsive card shadow-sm">
   <table class="table table-sm table-hover align-middle mb-0">
     <thead class="table-light">
-      <tr><th>Data</th><th>Entrada</th><th>Saída</th><th>Perm.</th><th>Motorista</th><th>Tipo</th><th>Cargo</th><th>Setor</th>
+      <tr><th>Data</th><th>Acesso</th><th>Entrada</th><th>Saída</th><th>Perm.</th><th>Pessoa</th><th>Tipo</th><th>Cargo</th><th>Setor</th>
         <th>Empresa</th><th>Placa</th><th>Veículo</th><th>Proprietário</th></tr>
     </thead>
     <tbody>
-      <% if (!r.linhas.length) { %><tr><td colspan="12" class="text-center text-body-secondary py-4">Nenhuma movimentação no período/filtros escolhidos.</td></tr><% } %>
+      <% if (!r.linhas.length) { %><tr><td colspan="13" class="text-center text-body-secondary py-4">Nenhuma movimentação no período/filtros escolhidos.</td></tr><% } %>
       <% for (const l of r.linhas) { %>
         <tr>
           <td><%= fmtData(l.entrada_em) %></td>
+          <td class="text-nowrap"><% if (l.acesso === 'PEDESTRE') { %><span class="chip chip-neutro"><i class="bi bi-person-walking" aria-hidden="true"></i>A pé</span><% } else { %><span class="chip chip-neutro"><i class="bi bi-car-front" aria-hidden="true"></i>Veículo</span><% } %></td>
           <td><%= fmtHora(l.entrada_em) %></td>
           <td class="text-nowrap"><% if (l.saida_em) { %><%= l.saida_em.slice(0, 10) === l.entrada_em.slice(0, 10) ? fmtHora(l.saida_em) : fmtDataHora(l.saida_em) %><% } else { %><span class="chip chip-atencao"><i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>Sem saída</span><% } %></td>
           <td><%= fmtDuracao(l.minutos) %></td>
@@ -123,8 +135,8 @@
           <td><%= l.cargo || '' %></td>
           <td><%= l.setor || '' %></td>
           <td><%= l.empresa || '' %></td>
-          <td class="placa-cel"><%= placa(l.placa) %></td>
-          <td><%= rotulo(l.veiculo_tipo) %><%= l.marca_modelo ? ' · ' + l.marca_modelo : '' %><%= l.cor ? ' · ' + l.cor : '' %></td>
+          <td class="placa-cel"><%= l.placa ? placa(l.placa) : '' %></td>
+          <td><%= l.acesso === 'PEDESTRE' ? '' : rotulo(l.veiculo_tipo) %><%= l.marca_modelo ? ' · ' + l.marca_modelo : '' %><%= l.cor ? ' · ' + l.cor : '' %></td>
           <td><%= l.proprietario_nome || '' %></td>
         </tr>
       <% } %>

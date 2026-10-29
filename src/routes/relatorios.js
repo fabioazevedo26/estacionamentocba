@@ -9,12 +9,13 @@ const router = express.Router();
 
 const LIMITE_TELA = 500;
 
-const CAMPOS = ['periodo', 'mes', 'de', 'ate', 'motorista_id', 'placa', 'tipo_pessoa', 'tipo_veiculo',
+const CAMPOS = ['periodo', 'mes', 'de', 'ate', 'acesso', 'motorista_id', 'placa', 'tipo_pessoa', 'tipo_veiculo',
   'cargo', 'setor', 'empresa', 'sem_saida'];
 
 function lerFiltros(query) {
   const f = Object.fromEntries(CAMPOS.map((c) => [c, typeof query[c] === 'string' ? query[c] : '']));
   if (!f.periodo) f.periodo = 'hoje';
+  if (!relatorios.ACESSOS[f.acesso]) f.acesso = 'todos';
   return f;
 }
 
@@ -29,6 +30,7 @@ router.get('/', (req, res) => {
     limiteTela: LIMITE_TELA,
     motoristaNome: motorista?.nome || '',
     periodos: relatorios.PERIODOS,
+    acessos: relatorios.ACESSOS,
     cargos: opcoes.listar('CARGO'),
     setores: opcoes.listar('SETOR'),
     tiposVeiculo: veiculos.TIPOS,
